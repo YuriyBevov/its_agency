@@ -1,0 +1,37 @@
+.cart-add-button {
+  @extend .button-default;
+  @extend .flex-centered-content;
+
+  width: 80px;
+  height: 32px;
+
+  border-radius: 8px;
+  background-color: var(--green-color);
+
+  svg {
+    fill: none;
+    stroke: var(--main-color);
+  }
+
+  transition: opacity var(--main-t-rules), background 0.1s ease-in;
+
+  &:active {
+    background-color: var(--gray-color);
+  }
+
+  @include m-b-tablet-up {
+    opacity: 0;
+  }
+
+  @include m-b-tablet-down {
+    width: 40px;
+    height: 24px;
+
+    background-color: var(--gray-color);
+    border-radius: 6px;
+
+    &:active {
+      background-color: var(--green-color);
+    }
+  }
+}

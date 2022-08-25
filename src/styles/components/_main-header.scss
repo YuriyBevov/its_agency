@@ -1,0 +1,17 @@
+.main-header {
+  position: sticky;
+  top: 0;
+  z-index: 101;
+  background-color: var(--white-color);
+
+  &__wrapper {
+    @extend .flex-wrap;
+    align-items: center;
+    padding: 30px 0;
+
+    @include m-b-tablet-down {
+      border-bottom: 1px solid rgba(31, 32, 32, 0.06);
+      margin-bottom: 16px;
+    }
+  }
+}

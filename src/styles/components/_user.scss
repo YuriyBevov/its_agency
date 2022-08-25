@@ -1,0 +1,18 @@
+.user {
+  @extend .flex-wrap;
+  margin-left: 30px;
+
+  a {
+    @extend .flex-centered-content;
+    margin: 0 2px;
+
+    svg {
+      fill: none;
+      stroke: var(--black-color);
+    }
+
+    @include m-b-tablet-down {
+      display: none;
+    }
+  }
+}

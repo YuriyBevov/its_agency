@@ -1,0 +1,51 @@
+.breadcrumbs {
+  position: absolute;
+  top: 32px;
+  left: 0;
+  z-index: 9;
+
+  @include m-b-tablet-down {
+    position: relative;
+    top: 0;
+  }
+
+  a,span {
+    font-size: 10px;
+    line-height: 1;
+
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+
+    color: var(--white-color);
+
+    opacity: 0.3;
+
+    /* up/down desktop-lg(1920),desktop(1440),laptop(1140),tablet-lg(960),tablet(768),mobile-lg(534)*/
+    @include m-b-tablet-down {
+      color: var(--main-color);
+    }
+  }
+
+  a {
+    position: relative;
+    padding-right: 20px;
+
+    &::after {
+      position: absolute;
+      top: 5px;
+      right: 9px;
+
+      content: '';
+
+      width: 3px;
+      height: 3px;
+
+      background-color: var(--white-color);
+      opacity: 0.3;
+
+      @include m-b-tablet-down {
+        background-color: var(--main-color);
+      }
+    }
+  }
+}

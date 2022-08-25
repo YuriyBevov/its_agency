@@ -1,0 +1,28 @@
+extends layouts/main-layout.pug
+include ./mixins/breadcrumbs
+
+block variables
+  -
+    const title = "its.agency test"
+    const desc = "Тестовое задание для its.agency"
+    const keywords = ""
+
+block content
+  +breadcrumbs([
+      {
+        title: 'Главная', url: 'index.html'
+      },
+      {
+        title: 'Продукты', url: '#'
+      },
+
+      {
+        title: 'Краски'
+      }
+    ])
+
+  include ./sections/index-page/hero
+  include ./sections/index-page/catalog
+
+block modals
+  //include ./modals/...

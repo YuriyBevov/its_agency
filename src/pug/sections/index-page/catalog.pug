@@ -1,0 +1,67 @@
+include ../../mixins/product-card
+
+-
+  const catalogList = [
+    {
+      img: 'catalog-item-1',
+      title: 'Краска Wallquest, Brownsone MS90102',
+      price: '5800'
+    },
+
+    {
+      img: 'catalog-item-2',
+      title: 'Краска Wallquest, Brownsone MS90102',
+      price: '6000'
+    },
+
+    {
+      img: 'catalog-item-3',
+      title: 'Краска Wallquest, Brownsone MS90102',
+      price: '4200'
+    },
+
+    {
+      img: 'catalog-item-4',
+      title: 'Краска Wallquest, Brownsone MS90102',
+      price: '5600'
+    },
+
+    {
+      img: 'catalog-item-2',
+      title: 'Краска Wallquest, Brownsone MS90102',
+      price: '6000'
+    },
+
+    {
+      img: 'catalog-item-3',
+      title: 'Краска Wallquest, Brownsone MS90102',
+      price: '4200'
+    },
+
+    {
+      img: 'catalog-item-4',
+      title: 'Краска Wallquest, Brownsone MS90102',
+      price: '5600'
+    },
+  ]
+
+section.catalog
+  .container
+    .catalog__wrapper
+      .catalog__sidebar
+        include ../../components/catalog-filter
+
+
+      .catalog__content
+        .catalog__content-header
+          button(type="button").lw-text-xs.filter-show-button Фильтры
+          span.lw-text-xs.items-count 412 товаров
+          p sorting
+        ul.catalog__list
+          each item in catalogList
+            li.catalog__list-item
+              +product-card(item)
+
+
+
+

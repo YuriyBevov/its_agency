@@ -1,0 +1,37 @@
+/* base */
+@import "vendor";
+@import "vars";
+@import "mixins";
+@import "fonts";
+@import "global";
+@import "extends";
+@import "common";
+@import "animations";
+
+/*vendor custom*/
+
+@import "./vendor/swiper-custom";
+
+/* base components */
+@import "./components/base-components/burger";
+@import "./components/base-components/main-logo";
+@import "./components/base-components/cart-add-button";
+
+/* components */
+//@import "./components/modal";
+@import "./components/main-footer";
+@import "./components/main-header";
+@import "./components/nav";
+@import "./components/callback";
+@import "./components/user";
+@import "./components/mini-cart";
+@import "./components/breadcrumbs";
+@import "./components/product-card";
+
+/* views */
+@import "./views/index-page/hero";
+@import "./views/index-page/catalog";
+
+/* modals */
+
+

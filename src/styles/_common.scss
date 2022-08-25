@@ -1,0 +1,56 @@
+.lw {
+  &-text-xxl {
+    font-size: var(--text-xxl);
+    font-weight: 400;
+  }
+
+  &-text-xl {
+    font-size: var(--text-xl);
+    font-weight: 400;
+  }
+
+  &-text-lg {
+    font-size: var(--text-lg);
+    font-weight: 400;
+  }
+
+  &-text-md {
+    font-size: var(--text-md);
+    font-weight: 400;
+  }
+
+  &-text-sm {
+    font-size: var(--text-sm);
+    font-weight: 400;
+  }
+
+  &-text-xs {
+    font-size: var(--text-xs);
+    font-weight: 400;
+  }
+
+  &-text-xxs {
+    font-size: var(--text-xxs);
+    font-weight: 400;
+  }
+
+  &-text-center {
+    text-align: center;
+  }
+
+  &-fw-light {
+    font-weight: 300;
+  }
+  &-fw-normal {
+    font-weight: 400;
+  }
+  &-fw-medium {
+    font-weight: 500;
+  }
+  &-fw-semibold {
+    font-weight: 600;
+  }
+  &-fw-bold {
+    font-weight: 700;
+  }
+}

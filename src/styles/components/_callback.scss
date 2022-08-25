@@ -1,0 +1,20 @@
+.callback {
+  @extend .flex-column;
+  justify-content: center;
+  margin: 0 30px;
+
+  @include m-b-tablet-lg-down {
+    display: none;
+  }
+
+  &__phone {
+    font-weight: 500;
+    letter-spacing: -0.02em;
+  }
+
+  &__desc {
+    font-size: 14px;
+    line-height: 1;
+    opacity: 0.3;
+  }
+}

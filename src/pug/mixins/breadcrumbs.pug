@@ -1,0 +1,9 @@
+mixin breadcrumbs(arr)
+  .breadcrumbs
+    .container
+      div.breadcrumbs__list
+        each crumb in arr
+          if crumb.url
+            a(href= crumb.url).lw-text-xxs!= crumb.title
+          else
+            span.lw-text-xxs= crumb.title
