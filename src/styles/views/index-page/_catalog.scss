@@ -24,7 +24,9 @@
     padding: 30px 0;
 
     @include m-b-tablet-down {
+      display: none;
       position: absolute;
+      top: initial;
       bottom: 0;
       left: 0;
       width: 100vw;
