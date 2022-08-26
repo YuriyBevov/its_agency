@@ -1,0 +1,63 @@
+.minicart-product {
+  @extend .flex-wrap;
+  align-items: center;
+  picture {
+    display: flex;
+    width: 96px;
+    height: 96px;
+    margin-right: 8px;
+
+    @include m-b-tablet-down {
+      margin-bottom: 25px;
+    }
+  }
+
+  &__desc {
+    @extend .flex-column;
+    max-width: 190px;
+    margin-right: auto;
+
+    h2 {
+      font-size: 16px;
+      font-weight: 300;
+      line-height: 112%;
+      letter-spacing: 0.02em;
+      margin-bottom: 16px;
+    }
+
+    span {
+      font-weight: 600;
+      line-height: 1;
+    }
+
+    @include m-b-tablet-down {
+      margin-right: 0;
+      max-width: 170px;
+    }
+  }
+
+  &__remove {
+    @extend .button-default;
+    @extend .flex-centered-content;
+
+    width: 40px;
+    height: 40px;
+    opacity: .2;
+    margin-left: auto;
+
+    .icon-refresh {
+      display: none;
+    }
+
+    &--refresh {
+      .icon-refresh {
+        display: block;
+      }
+
+      .icon-remove {
+        display: none;
+      }
+      opacity: 1;
+    }
+  }
+}

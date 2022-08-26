@@ -2,115 +2,96 @@
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
-/***/ "./src/scripts/modules/debounce.js":
-/*!*****************************************!*\
-  !*** ./src/scripts/modules/debounce.js ***!
-  \*****************************************/
+/***/ "./src/scripts/modules/counter.js":
+/*!****************************************!*\
+  !*** ./src/scripts/modules/counter.js ***!
+  \****************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "debounce": () => (/* binding */ debounce),
-/* harmony export */   "setDebounce": () => (/* binding */ setDebounce)
-/* harmony export */ });
-var debounce = false;
-function setDebounce(timeoutTime) {
-  debounce = true;
-  setTimeout(function () {
-    debounce = false;
-  }, timeoutTime);
+/* harmony import */ var _utils_helpers_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../utils/helpers.js */ "./src/scripts/utils/helpers.js");
+
+var decBtns = document.querySelectorAll('.js-counter-dec');
+var incBtns = document.querySelectorAll('.js-counter-inc');
+
+if (decBtns && incBtns) {
+  var minValue = 1;
+  var maxValue = 99;
+
+  var setValue = function setValue(operationType, value, counter) {
+    operationType === 'dec' ? value -= 1 : operationType === 'inc' ? value += 1 : null;
+    counter.innerHTML = value;
+  };
+
+  var onClickDecValue = function onClickDecValue(evt) {
+    var decBtn = evt.currentTarget;
+    var counter = decBtn.parentNode.querySelector('.js-counter-total');
+    var currentCounterValue = Number(counter.innerHTML);
+
+    if (currentCounterValue === maxValue) {
+      var disabledIncBtn = decBtn.parentNode.querySelector('.js-counter-inc');
+      (0,_utils_helpers_js__WEBPACK_IMPORTED_MODULE_0__.removeClass)(disabledIncBtn, 'disabled');
+      setValue('dec', currentCounterValue, counter);
+    }
+
+    if (currentCounterValue > minValue + 1 && currentCounterValue < maxValue) {
+      (0,_utils_helpers_js__WEBPACK_IMPORTED_MODULE_0__.checkClass)(decBtn, 'disabled') ? (0,_utils_helpers_js__WEBPACK_IMPORTED_MODULE_0__.removeClass)(decBtn, 'disabled') : null;
+      setValue('dec', currentCounterValue, counter);
+    } else if (currentCounterValue === 2) {
+      setValue('dec', currentCounterValue, counter);
+      (0,_utils_helpers_js__WEBPACK_IMPORTED_MODULE_0__.addClass)(decBtn, 'disabled');
+    }
+  };
+
+  var onClickIncValue = function onClickIncValue(evt) {
+    var incBtn = evt.currentTarget;
+    var counter = incBtn.parentNode.querySelector('.js-counter-total');
+    var currentCounterValue = Number(counter.innerHTML);
+
+    if (currentCounterValue === 1) {
+      var disabledDecBtn = incBtn.parentNode.querySelector('.js-counter-dec');
+      (0,_utils_helpers_js__WEBPACK_IMPORTED_MODULE_0__.removeClass)(disabledDecBtn, 'disabled');
+      setValue('inc', currentCounterValue, counter);
+    } else if (currentCounterValue > minValue && currentCounterValue < maxValue - 1) {
+      setValue('inc', currentCounterValue, counter);
+    } else if (currentCounterValue === maxValue - 1) {
+      setValue('inc', currentCounterValue, counter);
+      (0,_utils_helpers_js__WEBPACK_IMPORTED_MODULE_0__.addClass)(incBtn, 'disabled');
+    }
+  };
+
+  decBtns.forEach(function (btn) {
+    btn.addEventListener('click', onClickDecValue);
+  });
+  incBtns.forEach(function (btn) {
+    btn.addEventListener('click', onClickIncValue);
+  });
 }
 
 /***/ }),
 
-/***/ "./src/scripts/modules/nav.js":
-/*!************************************!*\
-  !*** ./src/scripts/modules/nav.js ***!
-  \************************************/
+/***/ "./src/scripts/modules/modals.js":
+/*!***************************************!*\
+  !*** ./src/scripts/modules/modals.js ***!
+  \***************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var gsap__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! gsap */ "./node_modules/gsap/index.js");
-/* harmony import */ var _debounce__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./debounce */ "./src/scripts/modules/debounce.js");
-/* harmony import */ var _utils_functions_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../utils/functions.js */ "./src/scripts/utils/functions.js");
-/* harmony import */ var _utils_nodesHelper__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../utils/nodesHelper */ "./src/scripts/utils/nodesHelper.js");
+/* harmony import */ var _utils_Modal_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../utils/Modal.js */ "./src/scripts/utils/Modal.js");
 
+var modals = document.querySelectorAll('.modal, #catalog-filter');
 
-
-
-var navOpener = document.querySelector('.js-nav-opener');
-var navCloser = document.querySelector('.js-nav-closer');
-
-if (navOpener) {
-  var debounceTime = 1800;
-  var navAnimationInTimeline = gsap__WEBPACK_IMPORTED_MODULE_3__.gsap.timeline();
-  navAnimationInTimeline.paused(true);
-  navAnimationInTimeline.fromTo(_utils_nodesHelper__WEBPACK_IMPORTED_MODULE_2__.nav, {
-    opacity: 0
-  }, {
-    opacity: 1,
-    duration: 0.6,
-    ease: 'linear'
-  }).fromTo('.nav__container', {
-    x: '-100%'
-  }, {
-    x: 0,
-    duration: 0.6,
-    ease: 'ease-in'
-  }).fromTo('.nav__list-item a', {
-    y: '50px'
-  }, {
-    y: 0,
-    duration: 0.5,
-    ease: 'linear'
-  }, "-=.3");
-
-  var onClickOpenNav = function onClickOpenNav() {
-    if (!_debounce__WEBPACK_IMPORTED_MODULE_0__.debounce) {
-      _utils_nodesHelper__WEBPACK_IMPORTED_MODULE_2__.nav.classList.add('opened');
-      (0,_debounce__WEBPACK_IMPORTED_MODULE_0__.setDebounce)(debounceTime);
-      navAnimationInTimeline.play();
-      (0,_utils_functions_js__WEBPACK_IMPORTED_MODULE_1__.focusTrap)(_utils_nodesHelper__WEBPACK_IMPORTED_MODULE_2__.nav, navCloser);
+if (modals) {
+  modals.forEach(function (modal) {
+    if (modal.classList.contains('filter')) {
+      new _utils_Modal_js__WEBPACK_IMPORTED_MODULE_0__.Modal(modal, {
+        swipe: true,
+        swipeArea: '.filter'
+      });
+    } else {
+      new _utils_Modal_js__WEBPACK_IMPORTED_MODULE_0__.Modal(modal);
     }
-  };
-
-  var onClickCloseNav = function onClickCloseNav() {
-    if (!_debounce__WEBPACK_IMPORTED_MODULE_0__.debounce) {
-      (0,_debounce__WEBPACK_IMPORTED_MODULE_0__.setDebounce)(debounceTime);
-      navAnimationInTimeline.reverse();
-      setTimeout(function () {
-        _utils_nodesHelper__WEBPACK_IMPORTED_MODULE_2__.nav.classList.remove('opened');
-        (0,_utils_functions_js__WEBPACK_IMPORTED_MODULE_1__.focusTrap)(_utils_nodesHelper__WEBPACK_IMPORTED_MODULE_2__.body, navOpener);
-      }, 1800);
-    }
-  };
-
-  var onClickByEscCloseNav = function onClickByEscCloseNav(evt) {
-    if (evt.key === "Escape" && !_debounce__WEBPACK_IMPORTED_MODULE_0__.debounce) {
-      (0,_debounce__WEBPACK_IMPORTED_MODULE_0__.setDebounce)(debounceTime);
-      navAnimationInTimeline.reverse();
-      setTimeout(function () {
-        _utils_nodesHelper__WEBPACK_IMPORTED_MODULE_2__.nav.classList.remove('opened');
-        (0,_utils_functions_js__WEBPACK_IMPORTED_MODULE_1__.focusTrap)(_utils_nodesHelper__WEBPACK_IMPORTED_MODULE_2__.body, navOpener);
-      }, 1800);
-    }
-  };
-
-  var onClickByOverlayCloseNav = function onClickByOverlayCloseNav(evt) {
-    if (evt.target === _utils_nodesHelper__WEBPACK_IMPORTED_MODULE_2__.nav && !_debounce__WEBPACK_IMPORTED_MODULE_0__.debounce) {
-      (0,_debounce__WEBPACK_IMPORTED_MODULE_0__.setDebounce)(debounceTime);
-      navAnimationInTimeline.reverse();
-      setTimeout(function () {
-        _utils_nodesHelper__WEBPACK_IMPORTED_MODULE_2__.nav.classList.remove('opened');
-        (0,_utils_functions_js__WEBPACK_IMPORTED_MODULE_1__.focusTrap)(_utils_nodesHelper__WEBPACK_IMPORTED_MODULE_2__.body, navOpener);
-      }, 1800);
-    }
-  };
-
-  navOpener.addEventListener('click', onClickOpenNav);
-  navCloser.addEventListener('click', onClickCloseNav);
-  window.addEventListener('keydown', onClickByEscCloseNav);
-  window.addEventListener('click', onClickByOverlayCloseNav);
+  });
 }
 
 /***/ }),
@@ -182,10 +163,225 @@ if (heroSlider) {
 
 /***/ }),
 
-/***/ "./src/scripts/utils/functions.js":
-/*!****************************************!*\
-  !*** ./src/scripts/utils/functions.js ***!
-  \****************************************/
+/***/ "./src/scripts/utils/Modal.js":
+/*!************************************!*\
+  !*** ./src/scripts/utils/Modal.js ***!
+  \************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "Modal": () => (/* binding */ Modal)
+/* harmony export */ });
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+var Modal = /*#__PURE__*/function () {
+  function Modal(modal) {
+    var _this = this;
+
+    var options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+
+    _classCallCheck(this, Modal);
+
+    _defineProperty(this, "bodyLocker", function (bool) {
+      var body = document.querySelector('body');
+      var paddingOffset = window.innerWidth - document.body.offsetWidth + 'px';
+
+      if (bool) {
+        body.style.overflow = 'hidden';
+        body.style.paddingRight = paddingOffset;
+      } else {
+        body.style.overflow = 'auto';
+        body.style.paddingRight = '0px';
+      }
+    });
+
+    _defineProperty(this, "focusTrap", function () {
+      var firstFocusableElement = _this.modal.querySelectorAll(_this.focusableElements)[0];
+
+      var focusableContent = _this.modal.querySelectorAll(_this.focusableElements);
+
+      var lastFocusableElement = focusableContent[focusableContent.length - 1];
+
+      var onBtnClickHandler = function onBtnClickHandler(evt) {
+        var isTabPressed = evt.key === 'Tab' || evt.key === 9;
+
+        if (evt.key === 'Escape') {
+          document.removeEventListener('keydown', onBtnClickHandler);
+        }
+
+        if (!isTabPressed) {
+          return;
+        }
+
+        if (evt.shiftKey) {
+          if (document.activeElement === firstFocusableElement) {
+            lastFocusableElement.focus();
+            evt.preventDefault();
+          }
+        } else {
+          if (document.activeElement === lastFocusableElement) {
+            firstFocusableElement.focus();
+            evt.preventDefault();
+          }
+        }
+      };
+
+      document.addEventListener('keydown', onBtnClickHandler);
+      firstFocusableElement.focus();
+    });
+
+    _defineProperty(this, "addListeners", function () {
+      _this.openers.forEach(function (opener) {
+        opener.removeEventListener('click', _this.openModal);
+      });
+
+      document.addEventListener('click', _this.closeByOverlayClick);
+      document.addEventListener('keydown', _this.closeByEscBtn);
+
+      if (_this.close) {
+        _this.close.addEventListener('click', _this.closeByBtnClick);
+      }
+
+      if (_this.swipe) {
+        console.log('swipe on', _this.swipeArea);
+        document.addEventListener('mousedown', _this.onMouseDownListenSwipeHandler);
+        document.addEventListener('touchstart', _this.onTouchListenSwipeHandler);
+      }
+    });
+
+    _defineProperty(this, "refresh", function () {
+      if (!_this.debounce) {
+        _this.setDebounce(_this.debounceTime);
+
+        document.removeEventListener('click', _this.closeByOverlayClick);
+        document.removeEventListener('keydown', _this.closeByEscBtn);
+
+        if (_this.close) {
+          _this.close.removeEventListener('click', _this.closeByBtnClick);
+        }
+
+        if (_this.swipe) {
+          console.log('swipe on', _this.swipeArea);
+          document.removeEventListener('mousedown', _this.onMouseDownListenSwipeHandler);
+          document.removeEventListener('touchstart', _this.onTouchListenSwipeHandler);
+        }
+
+        _this.overlay.classList.add('is-closing');
+
+        setTimeout(function () {
+          _this.overlay.classList.remove('is-opened');
+
+          _this.overlay.classList.remove('is-closing');
+
+          _this.bodyLocker(false);
+
+          _this.openers.forEach(function (opener) {
+            opener.addEventListener('click', _this.openModal);
+          });
+        }, 600);
+      }
+    });
+
+    _defineProperty(this, "onMouseDownListenSwipeHandler", function (evt) {
+      if (evt.target === _this.swipeArea) {
+        console.log('area');
+      }
+    });
+
+    _defineProperty(this, "onTouchListenSwipeHandler", function (evt) {
+      alert('onTouchListenSwipeHandler', evt, evt.target);
+    });
+
+    _defineProperty(this, "closeByOverlayClick", function (evt) {
+      if (evt.target === _this.overlay) {
+        _this.refresh();
+      }
+    });
+
+    _defineProperty(this, "closeByEscBtn", function (evt) {
+      if (evt.key === "Escape") {
+        _this.refresh();
+      }
+    });
+
+    _defineProperty(this, "closeByBtnClick", function () {
+      _this.refresh();
+    });
+
+    _defineProperty(this, "openModal", function (evt) {
+      evt.preventDefault();
+
+      if (!_this.debounce) {
+        _this.setDebounce(_this.debounceTime);
+
+        _this.overlay.classList.add('is-opened');
+
+        _this.addListeners();
+
+        _this.focusTrap();
+
+        _this.bodyLocker(true);
+      }
+    });
+
+    //this.isBodyLocked = options.isBodyLocked ? true : false,
+    this.options = options;
+    this.swipe = options.swipe ? options.swipe : null;
+    this.swipeArea = options.swipeArea ? document.querySelector(options.swipeArea) : null;
+    this.modal = modal;
+    this.id = this.modal.getAttribute('id');
+    this.openers = document.querySelectorAll('[data-modal-anchor="' + this.id + '"]');
+    this.isInited = false;
+    this.overlay = this.modal.parentNode;
+    this.close = this.modal.querySelector('.js-modal-close');
+    this.focusableElements = ['a[href]', 'input', 'select', 'textarea', 'button', 'iframe', '[contenteditable]', '[tabindex]:not([tabindex^="-"])'];
+    this.debounce = false;
+    this.debounceTime = 750;
+    this.init();
+  }
+
+  _createClass(Modal, [{
+    key: "setDebounce",
+    value: function setDebounce(timeoutTime) {
+      var _this2 = this;
+
+      this.debounce = true;
+      setTimeout(function () {
+        _this2.debounce = false;
+      }, timeoutTime);
+    }
+  }, {
+    key: "init",
+    value: function init() {
+      var _this3 = this;
+
+      if (this.openers) {
+        this.isInited = true;
+        this.openers.forEach(function (opener) {
+          opener.addEventListener('click', _this3.openModal, _this3.modal, _this3.overlay);
+        });
+      } else {
+        console.error('Не добавлена кнопка открытия модального окна, либо в ней не прописан аттр-т: data-modal-anchor={modal-id} ');
+      }
+    }
+  }]);
+
+  return Modal;
+}();
+
+/***/ }),
+
+/***/ "./src/scripts/utils/helpers.js":
+/*!**************************************!*\
+  !*** ./src/scripts/utils/helpers.js ***!
+  \**************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
@@ -193,6 +389,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "addClass": () => (/* binding */ addClass),
 /* harmony export */   "bodyLocker": () => (/* binding */ bodyLocker),
 /* harmony export */   "checkClass": () => (/* binding */ checkClass),
+/* harmony export */   "debounce": () => (/* binding */ debounce),
 /* harmony export */   "focusTrap": () => (/* binding */ focusTrap),
 /* harmony export */   "getBoundingClientRect": () => (/* binding */ getBoundingClientRect),
 /* harmony export */   "getCssPropertyValue": () => (/* binding */ getCssPropertyValue),
@@ -202,6 +399,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "limitStr": () => (/* binding */ limitStr),
 /* harmony export */   "removeClass": () => (/* binding */ removeClass),
 /* harmony export */   "setCssProperty": () => (/* binding */ setCssProperty),
+/* harmony export */   "setDebounce": () => (/* binding */ setDebounce),
 /* harmony export */   "toggleClass": () => (/* binding */ toggleClass)
 /* harmony export */ });
 // работа с классами эл-та
@@ -343,23 +541,16 @@ function focusTrap(el) {
   initialFocusedEl !== null ? initialFocusedEl.focus() : firstFocusableElement.focus();
 }
 
+var debounce = false;
+
+function setDebounce(timeoutTime) {
+  debounce = true;
+  setTimeout(function () {
+    debounce = false;
+  }, timeoutTime);
+}
 
 
-/***/ }),
-
-/***/ "./src/scripts/utils/nodesHelper.js":
-/*!******************************************!*\
-  !*** ./src/scripts/utils/nodesHelper.js ***!
-  \******************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "body": () => (/* binding */ body),
-/* harmony export */   "nav": () => (/* binding */ nav)
-/* harmony export */ });
-var body = document.querySelector('body');
-var nav = document.querySelector('.nav');
 
 /***/ }),
 
@@ -19532,7 +19723,9 @@ var __webpack_exports__ = {};
   \*****************************/
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _modules_swiper_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./modules/swiper.js */ "./src/scripts/modules/swiper.js");
-/* harmony import */ var _modules_nav_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modules/nav.js */ "./src/scripts/modules/nav.js");
+/* harmony import */ var _modules_counter_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modules/counter.js */ "./src/scripts/modules/counter.js");
+/* harmony import */ var _modules_modals_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modules/modals.js */ "./src/scripts/modules/modals.js");
+
 
 
 })();

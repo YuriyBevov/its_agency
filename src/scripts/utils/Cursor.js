@@ -1,5 +1,5 @@
 import { gsap } from 'gsap';
-import { lerp, getMousePos } from './functions.js';
+import { lerp, getMousePos } from './helpers.js';
 
 let cursorCoords = {x: 0, y: 0};
 window.addEventListener('mousemove', evt => cursorCoords = getMousePos(evt));

@@ -4,6 +4,7 @@ import {gsap} from "gsap";
 let heroSlider = document.querySelector('.hero__slider');
 
 if(heroSlider) {
+
   new Swiper(heroSlider, {
     modules: [Navigation, Pagination, EffectFade, Autoplay],
 

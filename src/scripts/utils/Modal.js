@@ -1,12 +1,15 @@
 export class Modal {
   constructor( modal, options = {} ) {
-      this.isBodyLocked = options.isBodyLocked ? true : false,
+      //this.isBodyLocked = options.isBodyLocked ? true : false,
+      this.options = options;
+      this.swipe = options.swipe ? options.swipe : null;
+      this.swipeArea = options.swipeArea ? document.querySelector(options.swipeArea) : null;
       this.modal = modal;
       this.id = this.modal.getAttribute('id');
       this.openers = document.querySelectorAll('[data-modal-anchor="' + this.id + '"]');
       this.isInited = false;
       this.overlay = this.modal.parentNode;
-      this.close = this.modal.querySelector('.modal__close');
+      this.close = this.modal.querySelector('.js-modal-close');
       this.focusableElements = [
         'a[href]',
         'input',
@@ -17,6 +20,8 @@ export class Modal {
         '[contenteditable]',
         '[tabindex]:not([tabindex^="-"])'
       ];
+      this.debounce = false;
+      this.debounceTime = 750;
       this.init();
   }
 
@@ -31,6 +36,13 @@ export class Modal {
           body.style.overflow = 'auto';
           body.style.paddingRight = '0px';
       }
+  }
+
+  setDebounce(timeoutTime) {
+    this.debounce = true;
+    setTimeout(() => {
+      this.debounce = false;
+    }, timeoutTime);
   }
 
   focusTrap = () => {
@@ -73,23 +85,60 @@ export class Modal {
 
       document.addEventListener('click', this.closeByOverlayClick);
       document.addEventListener('keydown', this.closeByEscBtn);
+      if(this.close) {
+        this.close.addEventListener('click', this.closeByBtnClick);
+      }
 
-      this.close.addEventListener('click', this.closeByBtnClick);
+      if(this.swipe) {
+        console.log('swipe on', this.swipeArea)
+
+        document.addEventListener('mousedown', this.onMouseDownListenSwipeHandler);
+        document.addEventListener('touchstart', this.onTouchListenSwipeHandler);
+      }
   }
 
   refresh = () => {
+    if(!this.debounce) {
+      this.setDebounce(this.debounceTime);
       document.removeEventListener('click', this.closeByOverlayClick);
       document.removeEventListener('keydown', this.closeByEscBtn);
 
-      this.close.removeEventListener('click', this.closeByBtnClick);
-      this.overlay.classList.remove('is-opened');
-      this.modal.classList.remove('is-active');
-      this.bodyLocker(false);
+      if(this.close) {
+        this.close.removeEventListener('click', this.closeByBtnClick);
+      }
 
-      this.openers.forEach(opener => {
-          opener.addEventListener('click', this.openModal);
-      })
-}
+      if(this.swipe) {
+        console.log('swipe on', this.swipeArea)
+
+        document.removeEventListener('mousedown', this.onMouseDownListenSwipeHandler);
+        document.removeEventListener('touchstart', this.onTouchListenSwipeHandler);
+      }
+
+      this.overlay.classList.add('is-closing');
+
+      setTimeout(() => {
+        this.overlay.classList.remove('is-opened');
+        this.overlay.classList.remove('is-closing');
+        this.bodyLocker(false);
+
+        this.openers.forEach(opener => {
+            opener.addEventListener('click', this.openModal);
+        })
+      }, 600);
+    }
+  }
+
+  onMouseDownListenSwipeHandler = (evt) => {
+    if(evt.target === this.swipeArea) {
+      console.log('area')
+
+
+    }
+  }
+
+  onTouchListenSwipeHandler = (evt) => {
+    alert('onTouchListenSwipeHandler', evt, evt.target);
+  }
 
   closeByOverlayClick = (evt) => {
       if(evt.target === this.overlay) {
@@ -109,11 +158,13 @@ export class Modal {
 
   openModal = (evt) => {
       evt.preventDefault();
-      this.overlay.classList.add('is-opened');
-      this.modal.classList.add('is-active');
-      this.addListeners();
-      this.focusTrap();
-      this.bodyLocker(true);
+      if(!this.debounce) {
+        this.setDebounce(this.debounceTime);
+        this.overlay.classList.add('is-opened');
+        this.addListeners();
+        this.focusTrap();
+        this.bodyLocker(true);
+      }
   }
 
   init() {

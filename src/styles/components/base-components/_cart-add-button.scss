@@ -21,6 +21,10 @@
 
   @include m-b-tablet-up {
     opacity: 0;
+
+    &:focus-visible {
+      opacity: 1;
+    }
   }
 
   @include m-b-tablet-down {

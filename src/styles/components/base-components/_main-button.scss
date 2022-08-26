@@ -1,0 +1,17 @@
+.main-button {
+  @extend .flex-centered-content;
+  @extend .button-default;
+
+  height: fit-content;
+  width: fit-content;
+
+  padding: 20px 35px;
+  border-radius: 4px;
+  background-color: var(--green-color);
+
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 15px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}

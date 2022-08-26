@@ -145,4 +145,13 @@ function focusTrap(el, initialFocusedEl = null) {
   initialFocusedEl.focus() : firstFocusableElement.focus();
 }
 
-export  { focusTrap, getCssPropertyValue, setCssProperty, lerp, getMousePos, getRadians,limitStr, addClass, removeClass, checkClass, toggleClass, bodyLocker, getBoundingClientRect }
+let debounce = false;
+
+function setDebounce(timeoutTime) {
+  debounce = true;
+  setTimeout(() => {
+    debounce = false;
+  }, timeoutTime);
+}
+
+export  { debounce, setDebounce, focusTrap, getCssPropertyValue, setCssProperty, lerp, getMousePos, getRadians,limitStr, addClass, removeClass, checkClass, toggleClass, bodyLocker, getBoundingClientRect }

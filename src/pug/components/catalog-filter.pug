@@ -1,2 +1,37 @@
-.filter
-  p filter
+-
+  const catalogFilters = [
+    {
+      title: 'Новинки',
+      name: 'new',
+      id: 'new',
+    },
+    {
+      title: 'Есть в наличии',
+      name: 'available',
+      id: 'available',
+    },
+    {
+      title: 'Контрактные',
+      name: 'contract',
+      id: 'contract',
+    },
+    {
+      title: 'Эксклюзивные',
+      name: 'exclusive',
+      id: 'exclusive',
+    },
+    {
+      title: 'Распродажа',
+      name: 'sale',
+      id: 'sale',
+    },
+  ]
+
+.filter#catalog-filter.modal
+  each filter in catalogFilters
+    .filter__item
+      input(type="checkbox" id= filter.id name= filter.name)
+      label(for= filter.id class="filter__label")
+        include ./base-components/switcher
+        span.lw-text-xs!= filter.title
+

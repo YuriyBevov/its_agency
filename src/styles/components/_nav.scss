@@ -20,7 +20,6 @@
   &__list-item {
     margin: 0 12px;
     padding: 2px;
-    overflow: hidden;
     a {
       @extend .flex-centered-content;
 
@@ -29,10 +28,6 @@
       letter-spacing: 0.06em;
       text-transform: uppercase;
     }
-  }
-
-  @include m-b-desktop-up {
-    opacity: 1 !important;
   }
 
   @include m-b-desktop-down {
@@ -44,21 +39,33 @@
     height: 100vh;
 
     padding: 0;
-    background-color: rgba(0,0,0,0.5);
+    background-color: var(--overlay-color);
     z-index: 101;
 
-    transform: translateX(-100vw);
+    transform: translateX(-105%);
 
-    &.opened {
+    .nav__container {
+      transform: translateX(-105%);
+    }
+
+    .nav__list-item a {
+      transform: translateY(50px);
+      opacity: 0;
+    }
+
+    &.is-opened {
       display: block;
       transform: translateX(0);
 
-      //animation: fadeIn var(--slow-t-rules) forwards;
+      animation: fadeIn var(--modal-t-rules);
+
       .nav__container {
         position: relative;
         width: 30vw;
         min-width: 320px;
         height: 100%;
+
+        animation: transformX 0.5s 0.15s linear forwards;
 
         button {
           position: absolute;
@@ -71,7 +78,6 @@
         }
       }
 
-
       ul {
         display: flex;
         flex-direction: column;
@@ -81,6 +87,17 @@
         height: inherit;
         padding: 30px;
       }
+
+      .nav__list-item a {
+        transform: translateY(50px);
+        opacity: 0;
+
+        animation: nav-list-links 0.5s 0.3s ease-in forwards;
+      }
+    }
+
+    &.is-closing {
+      animation: fadeOut var(--modal-t-rules) forwards;
     }
   }
 }

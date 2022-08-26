@@ -22,6 +22,8 @@
 
     --main-bg-color: var(--white-color);
 
+    --overlay-color: rgba(0,0,0,.7);
+
     // scrollbar
     --main-scrollbar-width: 6px;
     --main-scrollbar-color: var(--white-color);
@@ -39,5 +41,6 @@
     // transitions
 
     --main-t-rules: 0.4s 0.1s ease;
-    --slow-t-rules: 0.7s 0.2s ease
+    --slow-t-rules: 0.7s 0.2s ease;
+    --modal-t-rules: 0.5s linear;
   }

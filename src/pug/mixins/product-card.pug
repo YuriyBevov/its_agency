@@ -1,5 +1,5 @@
 mixin product-card(product)
-  .product-card
+  .product-card(tabindex="0")
     .product-card__header
       picture
         source(srcset=`./assets/img/${product.img}@1x.webp 1x, ./assets/img/${product.img}@2x.webp 2x` type="image/webp")
@@ -9,5 +9,5 @@ mixin product-card(product)
       h2!= product.title
 
     .product-card__footer
-      span= product.price
+      span!= product.price
       include ../components/base-components/cart-add-button

@@ -14,13 +14,13 @@
     <header class="main-header">
       <div class="container">
         <div class="main-header__wrapper">
-          <button class="lw-button-main burger js-nav-opener" type="button"><span class="burger__lines"><span class="burger-line burger-line--top"></span><span class="burger-line burger-line--middle"></span><span class="burger-line burger-line--bottom"></span></span></button><a class="main-logo" href="index.html" aria-label="colors.ru">
+          <button class="lw-button-main burger js-nav-opener" type="button" data-modal-anchor="nav"><span class="burger__lines"><span class="burger-line burger-line--top"></span><span class="burger-line burger-line--middle"></span><span class="burger-line burger-line--bottom"></span></span></button><a class="main-logo" href="index.html" aria-label="colors.ru">
             <svg width="131" height="26">
               <use xlink:href="./assets/sprite.svg#icon-logo"></use>
             </svg></a>
           <nav class="nav">
-            <div class="nav__container">
-              <button class="js-nav-closer" type="button">
+            <div class="nav__container modal" id="nav">
+              <button class="js-modal-close" type="button">
                 <svg width="24" height="24">
                   <use xlink:href="./assets/sprite.svg#icon-close"></use>
                 </svg>
@@ -44,8 +44,126 @@
               <svg width="20" height="20">
                 <use xlink:href="./assets/sprite.svg#icon-heart"></use>
               </svg></a>
-            <div class="mini-cart">
-              <button class="mini-cart__button" type="button" aria-label="Просмотр корзины"><span class="mini-cart__counter">4</span></button>
+            <div class="minicart">
+              <button class="minicart__button js-minicart-opener" type="button" aria-label="Просмотр корзины" data-modal-anchor="minicart"><span class="minicart__counter">4</span></button>
+              <div class="minicart__overlay">
+                <div class="minicart__body modal" id="minicart">
+                  <div class="minicart__header"><span>Корзина</span>
+                    <button class="js-modal-close minicart__closer" type="button" aria-label="закрыть корзину">
+                      <svg width="24" height="24">
+                        <use xlink:href="./assets/sprite.svg#icon-close"></use>
+                      </svg>
+                    </button>
+                  </div>
+                  <div class="minicart__content">
+                    <div class="minicart__content-header"><span class="js-minicart-total">4 товара</span>
+                      <button class="js-minicart-remove-all">очистить список</button>
+                    </div>
+                    <ul class="minicart__content-list">
+                      <li class="minicart__content-item">
+                                    <div class="minicart-product">
+                                      <picture>
+                                        <source srcset="./assets/img/catalog-item-1@1x.webp 1x, ./assets/img/catalog-item-1@2x.webp 2x" type="image/webp"><img src="./assets/img/catalog-item-1@1x.jpg&quot; srcset=&quot;./assets/img/catalog-item-1.jpg 2x" alt="Краска Wallquest, Brownsone MS90102" width="96" height="96">
+                                      </picture>
+                                      <div class="minicart-product__desc">
+                                        <h2>Краска Wallquest, Brownsone MS90102</h2><span>5800&nbsp;&#8381;</span>
+                                      </div>
+                                      <div class="minicart-product__counter">
+                                        <div class="counter">
+                                          <button class="js-counter-dec" type="button">
+                                            <svg width="24" height="24">
+                                              <use xlink:href="./assets/sprite.svg#icon-minus"></use>
+                                            </svg>
+                                          </button><span class="js-counter-total">3</span>
+                                          <button class="js-counter-inc" type="button">
+                                            <svg width="24" height="24">
+                                              <use xlink:href="./assets/sprite.svg#icon-plus"></use>
+                                            </svg>
+                                          </button>
+                                        </div>
+                                      </div>
+                                      <button class="minicart-product__remove minicart-product__remove--refresh js-minicart-product-remove" type="button">
+                                        <svg class="icon-remove" width="24" height="24">
+                                          <use xlink:href="./assets/sprite.svg#icon-close"></use>
+                                        </svg>
+                                        <svg class="icon-refresh" width="24" height="24">
+                                          <use xlink:href="./assets/sprite.svg#icon-refresh"></use>
+                                        </svg>
+                                      </button>
+                                    </div>
+                      </li>
+                      <li class="minicart__content-item">
+                                    <div class="minicart-product">
+                                      <picture>
+                                        <source srcset="./assets/img/catalog-item-2@1x.webp 1x, ./assets/img/catalog-item-2@2x.webp 2x" type="image/webp"><img src="./assets/img/catalog-item-2@1x.jpg&quot; srcset=&quot;./assets/img/catalog-item-2.jpg 2x" alt="Краска Wallquest, Brownsone MS90102" width="96" height="96">
+                                      </picture>
+                                      <div class="minicart-product__desc">
+                                        <h2>Краска Wallquest, Brownsone MS90102</h2><span>6000&nbsp;&#8381;</span>
+                                      </div>
+                                      <div class="minicart-product__counter">
+                                        <div class="counter">
+                                          <button class="js-counter-dec" type="button">
+                                            <svg width="24" height="24">
+                                              <use xlink:href="./assets/sprite.svg#icon-minus"></use>
+                                            </svg>
+                                          </button><span class="js-counter-total">3</span>
+                                          <button class="js-counter-inc" type="button">
+                                            <svg width="24" height="24">
+                                              <use xlink:href="./assets/sprite.svg#icon-plus"></use>
+                                            </svg>
+                                          </button>
+                                        </div>
+                                      </div>
+                                      <button class="minicart-product__remove minicart-product__remove--refresh js-minicart-product-remove" type="button">
+                                        <svg class="icon-remove" width="24" height="24">
+                                          <use xlink:href="./assets/sprite.svg#icon-close"></use>
+                                        </svg>
+                                        <svg class="icon-refresh" width="24" height="24">
+                                          <use xlink:href="./assets/sprite.svg#icon-refresh"></use>
+                                        </svg>
+                                      </button>
+                                    </div>
+                      </li>
+                      <li class="minicart__content-item">
+                                    <div class="minicart-product">
+                                      <picture>
+                                        <source srcset="./assets/img/catalog-item-3@1x.webp 1x, ./assets/img/catalog-item-3@2x.webp 2x" type="image/webp"><img src="./assets/img/catalog-item-3@1x.jpg&quot; srcset=&quot;./assets/img/catalog-item-3.jpg 2x" alt="Краска Wallquest, Brownsone MS90102" width="96" height="96">
+                                      </picture>
+                                      <div class="minicart-product__desc">
+                                        <h2>Краска Wallquest, Brownsone MS90102</h2><span>4200&nbsp;&#8381;</span>
+                                      </div>
+                                      <div class="minicart-product__counter">
+                                        <div class="counter">
+                                          <button class="js-counter-dec" type="button">
+                                            <svg width="24" height="24">
+                                              <use xlink:href="./assets/sprite.svg#icon-minus"></use>
+                                            </svg>
+                                          </button><span class="js-counter-total">3</span>
+                                          <button class="js-counter-inc" type="button">
+                                            <svg width="24" height="24">
+                                              <use xlink:href="./assets/sprite.svg#icon-plus"></use>
+                                            </svg>
+                                          </button>
+                                        </div>
+                                      </div>
+                                      <button class="minicart-product__remove minicart-product__remove--refresh js-minicart-product-remove" type="button">
+                                        <svg class="icon-remove" width="24" height="24">
+                                          <use xlink:href="./assets/sprite.svg#icon-close"></use>
+                                        </svg>
+                                        <svg class="icon-refresh" width="24" height="24">
+                                          <use xlink:href="./assets/sprite.svg#icon-refresh"></use>
+                                        </svg>
+                                      </button>
+                                    </div>
+                      </li>
+                    </ul>
+                  </div>
+                  <div class="minicart__footer">
+                    <div class="minicart__footer-total"><span>Итого</span><b class="js-minicart-total-price">14400&#8381;</b></div>
+                                <button class="minicart__footer-offer-button js-minicart-offer main-button" type="button">Оформить заказ</button>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -140,18 +258,57 @@
         <div class="container">
           <div class="catalog__wrapper">
             <div class="catalog__sidebar">
-              <div class="filter">
-                <p>filter</p>
+              <div class="filter modal" id="catalog-filter">
+                <div class="filter__item">
+                  <input type="checkbox" id="new" name="new">
+                  <label class="filter__label" for="new">
+                    <div class="switcher" aria-label="переключатель">
+                      <div class="switcher-inner"></div>
+                    </div><span class="lw-text-xs">Новинки</span>
+                  </label>
+                </div>
+                <div class="filter__item">
+                  <input type="checkbox" id="available" name="available">
+                  <label class="filter__label" for="available">
+                    <div class="switcher" aria-label="переключатель">
+                      <div class="switcher-inner"></div>
+                    </div><span class="lw-text-xs">Есть в наличии</span>
+                  </label>
+                </div>
+                <div class="filter__item">
+                  <input type="checkbox" id="contract" name="contract">
+                  <label class="filter__label" for="contract">
+                    <div class="switcher" aria-label="переключатель">
+                      <div class="switcher-inner"></div>
+                    </div><span class="lw-text-xs">Контрактные</span>
+                  </label>
+                </div>
+                <div class="filter__item">
+                  <input type="checkbox" id="exclusive" name="exclusive">
+                  <label class="filter__label" for="exclusive">
+                    <div class="switcher" aria-label="переключатель">
+                      <div class="switcher-inner"></div>
+                    </div><span class="lw-text-xs">Эксклюзивные</span>
+                  </label>
+                </div>
+                <div class="filter__item">
+                  <input type="checkbox" id="sale" name="sale">
+                  <label class="filter__label" for="sale">
+                    <div class="switcher" aria-label="переключатель">
+                      <div class="switcher-inner"></div>
+                    </div><span class="lw-text-xs">Распродажа</span>
+                  </label>
+                </div>
               </div>
             </div>
             <div class="catalog__content">
               <div class="catalog__content-header">
-                <button class="lw-text-xs filter-show-button" type="button">Фильтры</button><span class="lw-text-xs items-count">412 товаров</span>
+                <button class="lw-text-xs filter-show-button" type="button" data-modal-anchor="catalog-filter">Фильтры</button><span class="lw-text-xs items-count">412 товаров</span>
                 <p>sorting</p>
               </div>
               <ul class="catalog__list">
                 <li class="catalog__list-item">
-                        <div class="product-card">
+                        <div class="product-card" tabindex="0">
                           <div class="product-card__header">
                             <picture>
                               <source srcset="./assets/img/catalog-item-1@1x.webp 1x, ./assets/img/catalog-item-1@2x.webp 2x" type="image/webp"><img src="./assets/img/catalog-item-1@1x.jpg" srcset="./assets/img/catalog-item-1@2x.jpg 2x" alt="Краска Wallquest, Brownsone MS90102" width="278" height="278">
@@ -160,7 +317,7 @@
                           <div class="product-card__content">
                             <h2>Краска Wallquest, Brownsone MS90102</h2>
                           </div>
-                          <div class="product-card__footer"><span>5800</span>
+                          <div class="product-card__footer"><span>5800&nbsp;&#8381;</span>
                             <button class="cart-add-button" type="button" aria-label="добавить в корзину">
                               <svg width="20" height="20">
                                 <use xlink:href="./assets/sprite.svg#icon-plus"></use>
@@ -170,7 +327,7 @@
                         </div>
                 </li>
                 <li class="catalog__list-item">
-                        <div class="product-card">
+                        <div class="product-card" tabindex="0">
                           <div class="product-card__header">
                             <picture>
                               <source srcset="./assets/img/catalog-item-2@1x.webp 1x, ./assets/img/catalog-item-2@2x.webp 2x" type="image/webp"><img src="./assets/img/catalog-item-2@1x.jpg" srcset="./assets/img/catalog-item-2@2x.jpg 2x" alt="Краска Wallquest, Brownsone MS90102" width="278" height="278">
@@ -179,7 +336,7 @@
                           <div class="product-card__content">
                             <h2>Краска Wallquest, Brownsone MS90102</h2>
                           </div>
-                          <div class="product-card__footer"><span>6000</span>
+                          <div class="product-card__footer"><span>6000&nbsp;&#8381;</span>
                             <button class="cart-add-button" type="button" aria-label="добавить в корзину">
                               <svg width="20" height="20">
                                 <use xlink:href="./assets/sprite.svg#icon-plus"></use>
@@ -189,7 +346,7 @@
                         </div>
                 </li>
                 <li class="catalog__list-item">
-                        <div class="product-card">
+                        <div class="product-card" tabindex="0">
                           <div class="product-card__header">
                             <picture>
                               <source srcset="./assets/img/catalog-item-3@1x.webp 1x, ./assets/img/catalog-item-3@2x.webp 2x" type="image/webp"><img src="./assets/img/catalog-item-3@1x.jpg" srcset="./assets/img/catalog-item-3@2x.jpg 2x" alt="Краска Wallquest, Brownsone MS90102" width="278" height="278">
@@ -198,7 +355,7 @@
                           <div class="product-card__content">
                             <h2>Краска Wallquest, Brownsone MS90102</h2>
                           </div>
-                          <div class="product-card__footer"><span>4200</span>
+                          <div class="product-card__footer"><span>4200&nbsp;&#8381;</span>
                             <button class="cart-add-button" type="button" aria-label="добавить в корзину">
                               <svg width="20" height="20">
                                 <use xlink:href="./assets/sprite.svg#icon-plus"></use>
@@ -208,7 +365,7 @@
                         </div>
                 </li>
                 <li class="catalog__list-item">
-                        <div class="product-card">
+                        <div class="product-card" tabindex="0">
                           <div class="product-card__header">
                             <picture>
                               <source srcset="./assets/img/catalog-item-4@1x.webp 1x, ./assets/img/catalog-item-4@2x.webp 2x" type="image/webp"><img src="./assets/img/catalog-item-4@1x.jpg" srcset="./assets/img/catalog-item-4@2x.jpg 2x" alt="Краска Wallquest, Brownsone MS90102" width="278" height="278">
@@ -217,7 +374,7 @@
                           <div class="product-card__content">
                             <h2>Краска Wallquest, Brownsone MS90102</h2>
                           </div>
-                          <div class="product-card__footer"><span>5600</span>
+                          <div class="product-card__footer"><span>5600&nbsp;&#8381;</span>
                             <button class="cart-add-button" type="button" aria-label="добавить в корзину">
                               <svg width="20" height="20">
                                 <use xlink:href="./assets/sprite.svg#icon-plus"></use>
@@ -227,7 +384,7 @@
                         </div>
                 </li>
                 <li class="catalog__list-item">
-                        <div class="product-card">
+                        <div class="product-card" tabindex="0">
                           <div class="product-card__header">
                             <picture>
                               <source srcset="./assets/img/catalog-item-2@1x.webp 1x, ./assets/img/catalog-item-2@2x.webp 2x" type="image/webp"><img src="./assets/img/catalog-item-2@1x.jpg" srcset="./assets/img/catalog-item-2@2x.jpg 2x" alt="Краска Wallquest, Brownsone MS90102" width="278" height="278">
@@ -236,7 +393,7 @@
                           <div class="product-card__content">
                             <h2>Краска Wallquest, Brownsone MS90102</h2>
                           </div>
-                          <div class="product-card__footer"><span>6000</span>
+                          <div class="product-card__footer"><span>6000&nbsp;&#8381;</span>
                             <button class="cart-add-button" type="button" aria-label="добавить в корзину">
                               <svg width="20" height="20">
                                 <use xlink:href="./assets/sprite.svg#icon-plus"></use>
@@ -246,7 +403,7 @@
                         </div>
                 </li>
                 <li class="catalog__list-item">
-                        <div class="product-card">
+                        <div class="product-card" tabindex="0">
                           <div class="product-card__header">
                             <picture>
                               <source srcset="./assets/img/catalog-item-3@1x.webp 1x, ./assets/img/catalog-item-3@2x.webp 2x" type="image/webp"><img src="./assets/img/catalog-item-3@1x.jpg" srcset="./assets/img/catalog-item-3@2x.jpg 2x" alt="Краска Wallquest, Brownsone MS90102" width="278" height="278">
@@ -255,7 +412,7 @@
                           <div class="product-card__content">
                             <h2>Краска Wallquest, Brownsone MS90102</h2>
                           </div>
-                          <div class="product-card__footer"><span>4200</span>
+                          <div class="product-card__footer"><span>4200&nbsp;&#8381;</span>
                             <button class="cart-add-button" type="button" aria-label="добавить в корзину">
                               <svg width="20" height="20">
                                 <use xlink:href="./assets/sprite.svg#icon-plus"></use>
@@ -265,7 +422,7 @@
                         </div>
                 </li>
                 <li class="catalog__list-item">
-                        <div class="product-card">
+                        <div class="product-card" tabindex="0">
                           <div class="product-card__header">
                             <picture>
                               <source srcset="./assets/img/catalog-item-4@1x.webp 1x, ./assets/img/catalog-item-4@2x.webp 2x" type="image/webp"><img src="./assets/img/catalog-item-4@1x.jpg" srcset="./assets/img/catalog-item-4@2x.jpg 2x" alt="Краска Wallquest, Brownsone MS90102" width="278" height="278">
@@ -274,7 +431,7 @@
                           <div class="product-card__content">
                             <h2>Краска Wallquest, Brownsone MS90102</h2>
                           </div>
-                          <div class="product-card__footer"><span>5600</span>
+                          <div class="product-card__footer"><span>5600&nbsp;&#8381;</span>
                             <button class="cart-add-button" type="button" aria-label="добавить в корзину">
                               <svg width="20" height="20">
                                 <use xlink:href="./assets/sprite.svg#icon-plus"></use>

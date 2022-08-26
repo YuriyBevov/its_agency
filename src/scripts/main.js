@@ -1,2 +1,3 @@
 import './modules/swiper.js';
-import './modules/nav.js';
+import './modules/counter.js';
+import './modules/modals.js';

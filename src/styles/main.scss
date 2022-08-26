@@ -14,8 +14,11 @@
 
 /* base components */
 @import "./components/base-components/burger";
+@import "./components/base-components/main-button";
 @import "./components/base-components/main-logo";
 @import "./components/base-components/cart-add-button";
+@import "./components/base-components/counter";
+@import "./components/base-components/switcher";
 
 /* components */
 //@import "./components/modal";
@@ -24,9 +27,11 @@
 @import "./components/nav";
 @import "./components/callback";
 @import "./components/user";
-@import "./components/mini-cart";
+@import "./components/minicart";
 @import "./components/breadcrumbs";
 @import "./components/product-card";
+@import "./components/minicart-product-card";
+@import "./components/filter";
 
 /* views */
 @import "./views/index-page/hero";

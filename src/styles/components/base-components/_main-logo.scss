@@ -4,8 +4,10 @@
   width: fit-content;
   min-height: 40px;
   margin-right: 142px;
+  svg {
+    fill: var(--main-color);
+  }
 
-  /* up/down desktop-lg(1920),desktop(1440),laptop(1140),tablet-lg(960),tablet(768),mobile-lg(534)*/
   @include m-b-desktop-down {
     margin: 0 auto;
     flex-grow: 1;

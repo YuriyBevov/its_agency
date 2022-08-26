@@ -1,3 +1,69 @@
-.mini-cart
-  button(type="button" aria-label="Просмотр корзины").mini-cart__button
-    span.mini-cart__counter 4
+include ../mixins/main-button
+include ../mixins/minicart-product-card
+
+-
+  const minicartList = [
+    {
+      img: 'catalog-item-1',
+      imgWidth: '96',
+      imgHeight: '96',
+      title: 'Краска Wallquest, Brownsone MS90102',
+      price: '5800&nbsp;&#8381;'
+    },
+
+    {
+      img: 'catalog-item-2',
+      imgWidth: '96',
+      imgHeight: '96',
+      title: 'Краска Wallquest, Brownsone MS90102',
+      price: '6000&nbsp;&#8381;'
+    },
+
+    {
+      img: 'catalog-item-3',
+      imgWidth: '96',
+      imgHeight: '96',
+      title: 'Краска Wallquest, Brownsone MS90102',
+      price: '4200&nbsp;&#8381;'
+    },
+  ]
+
+.minicart
+  button(type="button" aria-label="Просмотр корзины" data-modal-anchor="minicart").minicart__button.js-minicart-opener
+    span.minicart__counter 4
+
+  .minicart__overlay
+    .minicart__body#minicart.modal
+      .minicart__header
+        span Корзина
+        button(type="button" aria-label="закрыть корзину").js-modal-close.minicart__closer
+          svg(width="24" height="24")
+            use(xlink:href="./assets/sprite.svg#icon-close")
+
+      .minicart__content
+        .minicart__content-header
+          span.js-minicart-total 4 товара
+          button.js-minicart-remove-all очистить список
+        ul.minicart__content-list
+          each product in minicartList
+            li.minicart__content-item
+              +minicart-product(product)
+
+
+      .minicart__footer
+        .minicart__footer-total
+          span Итого
+          b.js-minicart-total-price 14400&#8381;
+
+        +main-button({
+          text: 'Оформить заказ',
+          cls: 'minicart__footer-offer-button js-minicart-offer'
+        })
+
+
+
+
+
+
+
+
