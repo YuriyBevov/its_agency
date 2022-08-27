@@ -264,6 +264,7 @@ var Modal = /*#__PURE__*/function () {
 
     _defineProperty(this, "updateSwipeRestPosition", function () {
       _this.swipeArea.style.bottom = '-100%';
+      alert('update swipe position');
     });
 
     _defineProperty(this, "handleGestureStart", function (evt) {
@@ -325,6 +326,7 @@ var Modal = /*#__PURE__*/function () {
       _this.updateSwipeRestPosition();
 
       _this.initialTouchPos = null;
+      alert('handleGestureEnd');
     });
 
     _defineProperty(this, "addListeners", function () {
@@ -363,6 +365,8 @@ var Modal = /*#__PURE__*/function () {
 
 
           _this.swipeArea.addEventListener('mousedown', _this.handleGestureStart, true);
+
+          alert('touch or mouse events');
         }
       }
     });

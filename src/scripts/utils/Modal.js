@@ -125,6 +125,8 @@ export class Modal {
 
   updateSwipeRestPosition = () => {
     this.swipeArea.style.bottom = '-100%';
+
+    alert('update swipe position')
   }
 
   handleGestureStart = (evt) => {
@@ -191,6 +193,8 @@ export class Modal {
     this.updateSwipeRestPosition();
 
     this.initialTouchPos = null;
+
+    alert('handleGestureEnd')
   }
 
   addListeners = () => {
@@ -221,6 +225,7 @@ export class Modal {
 
           // Add Mouse Listener
           this.swipeArea.addEventListener('mousedown', this.handleGestureStart, true);
+          alert('touch or mouse events')
         }
       }
   }
