@@ -237,53 +237,32 @@ var Modal = /*#__PURE__*/function () {
       firstFocusableElement.focus();
     });
 
-    _defineProperty(this, "onAnimFrame", function () {
+    _defineProperty(this, "swipeAnimation", function () {
       if (_this.rafPending === false) {
         return;
-      } //currentXPosition
-
+      }
 
       var differenceInY = _this.lastTouchPos.y - _this.initialTouchPos.y;
-      console.log(differenceInY);
-      var newYTransform = _this.initialTouchPos.y - differenceInY + 'px'; //let transformStyle = `translateY(${ differenceInY }px)`;
-      //this.swipeArea.style.webkitTransform = transformStyle;
-      //this.swipeArea.style.MozTransform = transformStyle;
-      //this.swipeArea.style.msTransform = transformStyle;
-      //this.swipeArea.style.transform = transformStyle;
 
       if (differenceInY > 0) {
         _this.swipeArea.style.bottom = "calc(-100% - (".concat(differenceInY, "px))");
 
-        if (differenceInY > 100) {
+        if (differenceInY > _this.swipeDistance) {
           _this.refresh();
         }
       }
 
-      console.log(differenceInY);
       _this.rafPending = false;
     });
 
     _defineProperty(this, "updateSwipeRestPosition", function () {
       _this.swipeArea.style.bottom = '-100%';
-      console.log('update swipe position');
     });
 
     _defineProperty(this, "handleGestureStart", function (evt) {
       evt.preventDefault();
-      /*if(evt.touches && evt.touches.length > 1) {
-        return;
-      }*/
-      // Add the move and end listeners
-
-      /*if (window.PointerEvent) {
-        evt.target.setPointerCapture(evt.pointerId);
-      } else {*/
-      // Add Mouse Listeners
-
       document.addEventListener('mousemove', _this.handleGestureMove, true);
       document.addEventListener('mouseup', _this.handleGestureEnd, true);
-      console.log('add event mouse'); //}
-
       _this.initialTouchPos = _this.getGesturePointFromEvent(evt);
       _this.swipeArea.style.transition = 'initial';
     });
@@ -302,7 +281,7 @@ var Modal = /*#__PURE__*/function () {
       }
 
       _this.rafPending = true;
-      window.requestAnimationFrame(_this.onAnimFrame);
+      window.requestAnimationFrame(_this.swipeAnimation);
     });
 
     _defineProperty(this, "handleGestureEnd", function (evt) {
@@ -312,16 +291,9 @@ var Modal = /*#__PURE__*/function () {
         return;
       }
 
-      _this.rafPending = false; // Remove Event Listeners
-
-      /*if (window.PointerEvent) {
-        evt.target.releasePointerCapture(evt.pointerId);
-      } else {*/
-      // Remove Mouse Listeners
-
+      _this.rafPending = false;
       document.removeEventListener('mousemove', _this.handleGestureMove, true);
       document.removeEventListener('mouseup', _this.handleGestureEnd, true);
-      console.log('remove'); //}
 
       _this.updateSwipeRestPosition();
 
@@ -341,30 +313,19 @@ var Modal = /*#__PURE__*/function () {
       }
 
       if (_this.swipe) {
-        /*if (window.PointerEvent) {
-          // Add Pointer Event Listener
-          this.swipeArea.addEventListener('pointerdown', this.handleGestureStart, true);
-          this.swipeArea.addEventListener('pointermove', this.handleGestureMove, true);
-          this.swipeArea.addEventListener('pointerup', this.handleGestureEnd, true);
-          this.swipeArea.addEventListener('pointercancel', this.handleGestureEnd, true);
-          console.log('POINTER')
-        } else {*/
-        // Add Touch Listener
         _this.swipeArea.addEventListener('touchstart', _this.handleGestureStart, true);
 
         _this.swipeArea.addEventListener('touchmove', _this.handleGestureMove, true);
 
         _this.swipeArea.addEventListener('touchend', _this.handleGestureEnd, true);
 
-        _this.swipeArea.addEventListener('touchcancel', _this.handleGestureEnd, true); // Add Mouse Listener
+        _this.swipeArea.addEventListener('touchcancel', _this.handleGestureEnd, true);
 
-
-        _this.swipeArea.addEventListener('mousedown', _this.handleGestureStart, true); //}
-
+        _this.swipeArea.addEventListener('mousedown', _this.handleGestureStart, true);
       }
     });
 
-    _defineProperty(this, "refresh", function (evt) {
+    _defineProperty(this, "refresh", function () {
       if (!_this.debounce) {
         _this.setDebounce(_this.debounceTime);
 
@@ -376,29 +337,15 @@ var Modal = /*#__PURE__*/function () {
         }
 
         if (_this.swipe) {
-          /*if (window.PointerEvent) {
-            console.log('remove pointer')
-            // Add Pointer Event Listener
-            this.swipeArea.removeEventListener('pointerdown', this.handleGestureStart, true);
-            this.swipeArea.removeEventListener('pointermove', this.handleGestureMove, true);
-            this.swipeArea.removeEventListener('pointerup', this.handleGestureEnd, true);
-            this.swipeArea.removeEventListener('pointercancel', this.handleGestureEnd, true);
-             this.updateSwipeRestPosition();
-          } else {*/
-          console.log('remove touch'); // Add Touch Listener
-
           _this.swipeArea.removeEventListener('touchstart', _this.handleGestureStart, true);
 
           _this.swipeArea.removeEventListener('touchmove', _this.handleGestureMove, true);
 
           _this.swipeArea.removeEventListener('touchend', _this.handleGestureEnd, true);
 
-          _this.swipeArea.removeEventListener('touchcancel', _this.handleGestureEnd, true); // Add Mouse Listener
-
+          _this.swipeArea.removeEventListener('touchcancel', _this.handleGestureEnd, true);
 
           _this.swipeArea.removeEventListener('mousedown', _this.handleGestureStart, true);
-
-          console.log('POINTER 2'); //}
         }
 
         _this.overlay.classList.add('is-closing');
@@ -449,10 +396,10 @@ var Modal = /*#__PURE__*/function () {
       }
     });
 
-    //this.isBodyLocked = options.isBodyLocked ? true : false,
     this.options = options;
     this.swipe = options.swipe ? options.swipe : null;
     this.swipeArea = options.swipeArea ? document.querySelector(options.swipeArea) : null;
+    this.swipeDistance = 150;
     this.initialTouchPos = null;
     this.lastTouchPos = null;
     this.rafPending = false;
@@ -484,11 +431,9 @@ var Modal = /*#__PURE__*/function () {
       var point = {};
 
       if (evt.targetTouches) {
-        // Prefer Touch Events
         point.x = evt.targetTouches[0].clientX;
         point.y = evt.targetTouches[0].clientY;
       } else {
-        // Either Mouse event or Pointer Event
         point.x = evt.clientX;
         point.y = evt.clientY;
       }
@@ -538,6 +483,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "removeClass": () => (/* binding */ removeClass),
 /* harmony export */   "setCssProperty": () => (/* binding */ setCssProperty),
 /* harmony export */   "setDebounce": () => (/* binding */ setDebounce),
+/* harmony export */   "setVieportHeight": () => (/* binding */ setVieportHeight),
 /* harmony export */   "toggleClass": () => (/* binding */ toggleClass)
 /* harmony export */ });
 // работа с классами эл-та
@@ -549,6 +495,15 @@ function getCssPropertyValue(name) {
 
 function setCssProperty(name, value) {
   root.style.setProperty(name, value);
+}
+
+function setVieportHeight() {
+  var vh = window.innerHeight * 0.01;
+  setCssProperty('--vh', "".concat(vh, "px"));
+  window.addEventListener('resize', function () {
+    var vh = window.innerHeight * 0.01;
+    setCssProperty('--vh', "".concat(vh, "px"));
+  });
 }
 
 function addClass(el, cl) {
@@ -19863,13 +19818,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _modules_swiper_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./modules/swiper.js */ "./src/scripts/modules/swiper.js");
 /* harmony import */ var _modules_counter_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modules/counter.js */ "./src/scripts/modules/counter.js");
 /* harmony import */ var _modules_modals_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modules/modals.js */ "./src/scripts/modules/modals.js");
+/* harmony import */ var _utils_helpers_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./utils/helpers.js */ "./src/scripts/utils/helpers.js");
 
 
- //import './modules/swipe.js';
 
-document.querySelector('.filter').addEventListener('pointerdown', function (evt) {
-  console.log(evt.clientX, evt.clientY); // drag origin coordinates
-});
+
+(0,_utils_helpers_js__WEBPACK_IMPORTED_MODULE_3__.setVieportHeight)();
 })();
 
 /******/ })()

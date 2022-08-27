@@ -10,6 +10,16 @@ function setCssProperty(name, value) {
   root.style.setProperty(name, value);
 }
 
+function setVieportHeight() {
+  let vh = window.innerHeight * 0.01;
+  setCssProperty('--vh', `${vh}px`);
+
+  window.addEventListener('resize', () => {
+    let vh = window.innerHeight * 0.01;
+    setCssProperty('--vh', `${vh}px`);
+  });
+}
+
 function addClass(el, cl) {
   el.classList.add(cl);
 }
@@ -154,4 +164,4 @@ function setDebounce(timeoutTime) {
   }, timeoutTime);
 }
 
-export  { debounce, setDebounce, focusTrap, getCssPropertyValue, setCssProperty, lerp, getMousePos, getRadians,limitStr, addClass, removeClass, checkClass, toggleClass, bodyLocker, getBoundingClientRect }
+export  { setVieportHeight, debounce, setDebounce, focusTrap, getCssPropertyValue, setCssProperty, lerp, getMousePos, getRadians,limitStr, addClass, removeClass, checkClass, toggleClass, bodyLocker, getBoundingClientRect }

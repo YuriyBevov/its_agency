@@ -58,6 +58,7 @@
       transform: translateX(0);
 
       animation: fadeIn var(--modal-t-rules);
+      height: calc(var(--vh, 1vh) * 100);
 
       .nav__container {
         position: relative;
