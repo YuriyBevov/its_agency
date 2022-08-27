@@ -326,7 +326,6 @@ var Modal = /*#__PURE__*/function () {
       _this.updateSwipeRestPosition();
 
       _this.initialTouchPos = null;
-      alert('handleGestureEnd');
     });
 
     _defineProperty(this, "addListeners", function () {
@@ -365,8 +364,6 @@ var Modal = /*#__PURE__*/function () {
 
 
           _this.swipeArea.addEventListener('mousedown', _this.handleGestureStart, true);
-
-          alert('touch or mouse events');
         }
       }
     });
@@ -392,9 +389,8 @@ var Modal = /*#__PURE__*/function () {
 
             _this.swipeArea.removeEventListener('pointerup', _this.handleGestureEnd);
 
-            _this.swipeArea.removeEventListener('pointercancel', _this.handleGestureEnd);
+            _this.swipeArea.removeEventListener('pointercancel', _this.handleGestureEnd); //this.updateSwipeRestPosition();
 
-            _this.updateSwipeRestPosition();
           } else {
             console.log('remove touch'); // Add Touch Listener
 

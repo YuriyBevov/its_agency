@@ -193,8 +193,6 @@ export class Modal {
     this.updateSwipeRestPosition();
 
     this.initialTouchPos = null;
-
-    alert('handleGestureEnd')
   }
 
   addListeners = () => {
@@ -225,7 +223,6 @@ export class Modal {
 
           // Add Mouse Listener
           this.swipeArea.addEventListener('mousedown', this.handleGestureStart, true);
-          alert('touch or mouse events')
         }
       }
   }
@@ -249,7 +246,7 @@ export class Modal {
           this.swipeArea.removeEventListener('pointerup', this.handleGestureEnd);
           this.swipeArea.removeEventListener('pointercancel', this.handleGestureEnd);
 
-          this.updateSwipeRestPosition();
+          //this.updateSwipeRestPosition();
         } else {
           console.log('remove touch')
           // Add Touch Listener
