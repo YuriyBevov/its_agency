@@ -330,7 +330,7 @@ var Modal = /*#__PURE__*/function () {
       var differenceInY = _this.lastTouchPos.y - _this.initialTouchPos.y;
 
       if (differenceInY > 0) {
-        _this.swipeArea.style.bottom = "calc(-100vh - (".concat(differenceInY, "px))");
+        _this.swipeArea.style.bottom = "calc(-100% - 50px - (".concat(differenceInY, "px))");
 
         if (differenceInY > _this.swipeDistance) {
           _this.updateSwipeRestPositionPaused = true;
@@ -345,10 +345,10 @@ var Modal = /*#__PURE__*/function () {
     _defineProperty(this, "updateSwipeRestPosition", function () {
       if (_this.updateSwipeRestPositionPaused) {
         setTimeout(function () {
-          _this.swipeArea.style.bottom = '-100vh';
+          _this.swipeArea.style.bottom = 'calc(-100% - 50px)';
         }, 600);
       } else {
-        _this.swipeArea.style.bottom = '-100vh';
+        _this.swipeArea.style.bottom = 'calc(-100% - 50px)';
       }
     });
 
