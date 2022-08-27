@@ -2679,10 +2679,11 @@ svg {
   }
 }
 .catalog__sidebar {
+  position: sticky;
+  top: 120px;
   height: -webkit-fit-content;
   height: -moz-fit-content;
   height: fit-content;
-  position: relative;
   padding: 30px 0;
 }
 @media (max-width: 768px) {

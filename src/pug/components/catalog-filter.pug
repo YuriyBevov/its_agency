@@ -30,7 +30,7 @@
 .filter#catalog-filter.is-modal
   each filter in catalogFilters
     .filter__item
-      input(type="checkbox" id= filter.id name= filter.name)
+      input(type="checkbox" id= filter.id name= filter.name checked)
       label(for= filter.id class="filter__label")
         include ./base-components/switcher
         span.lw-text-xs!= filter.title

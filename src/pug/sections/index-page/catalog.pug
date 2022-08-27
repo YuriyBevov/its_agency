@@ -57,10 +57,26 @@ section.catalog
           button(type="button" data-modal-anchor="catalog-filter").lw-text-xs.filter-show-button Фильтры
           span.lw-text-xs.items-count 412 товаров
           include ../../components/catalog-sort
+
         ul.catalog__list
-          each item in catalogList
+          template(id="product-card-template")
             li.catalog__list-item
-              +product-card(item)
+              .product-card(tabindex="0")
+                .product-card__header
+                  picture
+                    source(srcset="" type="image/webp")
+                    img(src="" alt="" width="278" height="278")
+
+                .product-card__content
+                  h2
+
+                .product-card__footer
+                  span
+                  button(type="button" aria-label="добавить в корзину").cart-add-button
+                    svg(width="20" height="20")
+                      use(xlink:href="./assets/sprite.svg#icon-plus")
+
+
 
 
 

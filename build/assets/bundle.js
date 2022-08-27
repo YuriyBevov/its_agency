@@ -2,6 +2,132 @@
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
+/***/ "./src/scripts/modules/catalog.js":
+/*!****************************************!*\
+  !*** ./src/scripts/modules/catalog.js ***!
+  \****************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _catalog_mockData_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./catalog/mockData.js */ "./src/scripts/modules/catalog/mockData.js");
+/* harmony import */ var _catalog_init_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./catalog/init.js */ "./src/scripts/modules/catalog/init.js");
+/* harmony import */ var _minicart_init_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./minicart/init.js */ "./src/scripts/modules/minicart/init.js");
+
+
+
+var storage = window.localStorage;
+(0,_catalog_init_js__WEBPACK_IMPORTED_MODULE_1__.init)(_catalog_mockData_js__WEBPACK_IMPORTED_MODULE_0__.mock);
+
+if (storage.getItem('colors_catalog')) {
+  var data = storage.getItem('colors_catalog');
+  (0,_minicart_init_js__WEBPACK_IMPORTED_MODULE_2__.init)(data);
+}
+
+/***/ }),
+
+/***/ "./src/scripts/modules/catalog/init.js":
+/*!*********************************************!*\
+  !*** ./src/scripts/modules/catalog/init.js ***!
+  \*********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "init": () => (/* binding */ init)
+/* harmony export */ });
+function init(data) {
+  var node = document.querySelector('.catalog__content');
+  var template = document.querySelector('#product-card-template');
+  var catalog = document.createElement('ul');
+  catalog.classList.add('catalog__list');
+  data.forEach(function (item) {
+    var catalogItem = template.content.cloneNode(true);
+    catalogItem.querySelector('picture source').setAttribute('srcset', "./assets/img/".concat(item.img, "@1x.webp 1x, ./assets/img/").concat(item.img, "@2x.webp 2x"));
+    catalogItem.querySelector('picture img').setAttribute('src', "./assets/img/".concat(item.img, "@1x.jpg 1x, ./assets/img/").concat(item.img, "@2x.jpg 2x"));
+    catalogItem.querySelector('.product-card__content h2').innerHTML = item.title;
+    catalogItem.querySelector('.product-card__footer span').innerHTML = "".concat(item.price, "&nbsp;&#8381;");
+    catalog.appendChild(catalogItem);
+    node.appendChild(catalog);
+  });
+}
+/*
+myStorage = window.localStorage;
+localStorage.setItem('myCat', 'Tom');
+//Считывать данные из localStorage для определённого ключа, можно следующим образом:
+let cat = localStorage.getItem('myCat');
+//Удалять данные можно так:
+localStorage.removeItem('myCat'); // вернёт undefined
+//Для удаления всех записей, то есть полной очистки localStorage, используйте:
+localStorage.clear();
+*/
+
+/***/ }),
+
+/***/ "./src/scripts/modules/catalog/mockData.js":
+/*!*************************************************!*\
+  !*** ./src/scripts/modules/catalog/mockData.js ***!
+  \*************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "mock": () => (/* binding */ mock)
+/* harmony export */ });
+var count = 16;
+var mockArray = [];
+
+function getDate() {
+  var maxDate = Date.now();
+  var timestamp = Math.floor(Math.random() * maxDate);
+  return new Date(timestamp);
+}
+
+function getBoolean(num) {
+  var bool = false;
+  num === 1 ? bool = true : null;
+  return bool;
+}
+
+function generateMockData() {
+  for (var i = 1; i < count; i++) {
+    mockArray.push({
+      id: Number(i),
+      title: 'Краска Wallquest, Brownsone MS90102',
+      img: "catalog-item-".concat((Math.random(1, 8) * 10).toFixed()),
+      // неверно, попадается 10
+      price: (Math.random(3000, 100000) * 10000).toFixed(),
+      watchedCount: (Math.random(0, 10000) * 10000).toFixed(),
+      dateFrom: getDate(),
+      isPopular: getBoolean(Math.round(Math.random(0, 1))),
+      isSale: getBoolean(Math.round(Math.random(0, 1))),
+      isContract: getBoolean(Math.round(Math.random(0, 1))),
+      isExclusive: getBoolean(Math.round(Math.random(0, 1)))
+    });
+  }
+}
+
+generateMockData();
+var mock = mockArray;
+
+/***/ }),
+
+/***/ "./src/scripts/modules/catalog/sorting.js":
+/*!************************************************!*\
+  !*** ./src/scripts/modules/catalog/sorting.js ***!
+  \************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "sorting": () => (/* binding */ sorting)
+/* harmony export */ });
+function sorting(type) {
+  //вынести логику в отдельный модуль
+  console.log(type);
+}
+
+/***/ }),
+
 /***/ "./src/scripts/modules/counter.js":
 /*!****************************************!*\
   !*** ./src/scripts/modules/counter.js ***!
@@ -83,6 +209,22 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./src/scripts/modules/minicart/init.js":
+/*!**********************************************!*\
+  !*** ./src/scripts/modules/minicart/init.js ***!
+  \**********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "init": () => (/* binding */ init)
+/* harmony export */ });
+function init(data) {
+  console.log('init cart');
+}
+
+/***/ }),
+
 /***/ "./src/scripts/modules/modals.js":
 /*!***************************************!*\
   !*** ./src/scripts/modules/modals.js ***!
@@ -109,39 +251,41 @@ if (modals) {
 
 /***/ }),
 
-/***/ "./src/scripts/modules/sort.js":
-/*!*************************************!*\
-  !*** ./src/scripts/modules/sort.js ***!
-  \*************************************/
+/***/ "./src/scripts/modules/select.js":
+/*!***************************************!*\
+  !*** ./src/scripts/modules/select.js ***!
+  \***************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _utils_helpers__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../utils/helpers */ "./src/scripts/utils/helpers.js");
+/* harmony import */ var _catalog_sorting__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./catalog/sorting */ "./src/scripts/modules/catalog/sorting.js");
+
 
 var catalogHeader = document.querySelector('.catalog__content-header');
-var sort = document.querySelector('.sorting');
+var select = document.querySelector('.sorting');
 var container = document.querySelector('.sorting__items');
-var header = document.querySelector('.sorting__header');
-var items = document.querySelectorAll('.sorting__item');
+var selected = document.querySelector('.sorting__header');
+var selectOptions = document.querySelectorAll('.sorting__item');
 
 function refresh() {
-  items.forEach(function (item) {
-    item.addEventListener('click', onClickSetActiveOption);
+  selectOptions.forEach(function (opt) {
+    opt.addEventListener('click', onClickSetActiveOption);
   });
   document.removeEventListener('keydown', onClickCloseSortList);
   document.removeEventListener('click', onClickByOverlayCloseSortList);
-  sort.classList.add('is-closing');
+  select.classList.add('is-closing');
   (0,_utils_helpers__WEBPACK_IMPORTED_MODULE_0__.bodyLocker)(false);
   setTimeout(function () {
-    sort.classList.remove('is-opened');
-    sort.classList.remove('is-closing');
+    select.classList.remove('is-opened');
+    select.classList.remove('is-closing');
     catalogHeader.style.zIndex = '100';
   }, 600);
 }
 
 var onClickSetActiveOption = function onClickSetActiveOption(evt) {
-  catalogSorting(evt.target.dataset.sort);
-  header.innerHTML = evt.target.innerHTML;
+  (0,_catalog_sorting__WEBPACK_IMPORTED_MODULE_1__.sorting)(evt.target.dataset.sort);
+  selected.innerHTML = evt.target.innerHTML;
   refresh();
 };
 
@@ -159,23 +303,18 @@ var onClickByOverlayCloseSortList = function onClickByOverlayCloseSortList(evt) 
 
 var onClickOpenSortList = function onClickOpenSortList(evt) {
   evt.stopPropagation();
-  sort.classList.add('is-opened');
+  select.classList.add('is-opened');
   catalogHeader.style.zIndex = '103';
   (0,_utils_helpers__WEBPACK_IMPORTED_MODULE_0__.bodyLocker)(true);
   (0,_utils_helpers__WEBPACK_IMPORTED_MODULE_0__.focusTrap)(container);
-  items.forEach(function (item) {
-    item.addEventListener('click', onClickSetActiveOption);
+  selectOptions.forEach(function (opt) {
+    opt.addEventListener('click', onClickSetActiveOption);
   });
   document.addEventListener('keydown', onClickCloseSortList);
   document.addEventListener('click', onClickByOverlayCloseSortList);
 };
 
-header.addEventListener('click', onClickOpenSortList);
-
-function catalogSorting(type) {
-  //вынести логику в отдельный модуль
-  console.log(type);
-}
+selected.addEventListener('click', onClickOpenSortList);
 
 /***/ }),
 
@@ -19914,12 +20053,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _modules_swiper_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modules/swiper.js */ "./src/scripts/modules/swiper.js");
 /* harmony import */ var _modules_counter_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modules/counter.js */ "./src/scripts/modules/counter.js");
 /* harmony import */ var _modules_modals_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./modules/modals.js */ "./src/scripts/modules/modals.js");
-/* harmony import */ var _modules_sort_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./modules/sort.js */ "./src/scripts/modules/sort.js");
+/* harmony import */ var _modules_select_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./modules/select.js */ "./src/scripts/modules/select.js");
+/* harmony import */ var _modules_catalog_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./modules/catalog.js */ "./src/scripts/modules/catalog.js");
 
 
 
 
 
+ //import "./modules/catalog/mockData.js";
 })();
 
 /******/ })()

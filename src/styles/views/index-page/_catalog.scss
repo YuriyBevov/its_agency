@@ -16,8 +16,10 @@
   }
 
   &__sidebar {
+    position: sticky;
+    top: 120px;
     height: fit-content;
-    position: relative;
+    //position: relative;
     padding: 30px 0;
 
     @include m-b-tablet-down {
