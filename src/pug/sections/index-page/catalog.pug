@@ -56,7 +56,7 @@ section.catalog
         .catalog__content-header
           button(type="button" data-modal-anchor="catalog-filter").lw-text-xs.filter-show-button Фильтры
           span.lw-text-xs.items-count 412 товаров
-          p sorting
+          include ../../components/catalog-sort
         ul.catalog__list
           each item in catalogList
             li.catalog__list-item

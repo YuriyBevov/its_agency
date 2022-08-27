@@ -19,7 +19,7 @@
               <use xlink:href="./assets/sprite.svg#icon-logo"></use>
             </svg></a>
           <nav class="nav">
-            <div class="nav__container modal" id="nav">
+            <div class="nav__container is-modal" id="nav">
               <button class="js-modal-close" type="button">
                 <svg width="24" height="24">
                   <use xlink:href="./assets/sprite.svg#icon-close"></use>
@@ -47,7 +47,7 @@
             <div class="minicart">
               <button class="minicart__button js-minicart-opener" type="button" aria-label="Просмотр корзины" data-modal-anchor="minicart"><span class="minicart__counter">4</span></button>
               <div class="minicart__overlay">
-                <div class="minicart__body modal" id="minicart">
+                <div class="minicart__body is-modal" id="minicart">
                   <div class="minicart__header"><span>Корзина</span>
                     <button class="js-modal-close minicart__closer" type="button" aria-label="закрыть корзину">
                       <svg width="24" height="24">
@@ -258,7 +258,7 @@
         <div class="container">
           <div class="catalog__wrapper">
             <div class="catalog__sidebar">
-              <div class="filter modal" id="catalog-filter">
+              <div class="filter is-modal" id="catalog-filter">
                 <div class="filter__item">
                   <input type="checkbox" id="new" name="new">
                   <label class="filter__label" for="new">
@@ -304,7 +304,15 @@
             <div class="catalog__content">
               <div class="catalog__content-header">
                 <button class="lw-text-xs filter-show-button" type="button" data-modal-anchor="catalog-filter">Фильтры</button><span class="lw-text-xs items-count">412 товаров</span>
-                <p>sorting</p>
+                <div class="sorting">
+                  <button class="sorting__header" type="button" data-active-sort="expensive">Сначала дорогие</button>
+                  <div class="sorting__items">
+                    <button class="sorting__item js-sort-btn" type="button" data-sort="expensive">Сначала дорогие</button>
+                    <button class="sorting__item js-sort-btn" type="button" data-sort="cheap">Сначала недорогие</button>
+                    <button class="sorting__item js-sort-btn" type="button" data-sort="popular">Сначала популярные</button>
+                    <button class="sorting__item js-sort-btn" type="button" data-sort="new">Сначала новые</button>
+                  </div>
+                </div>
               </div>
               <ul class="catalog__list">
                 <li class="catalog__list-item">

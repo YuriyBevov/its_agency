@@ -1,6 +1,6 @@
 import { Modal } from '../utils/Modal.js'
 
-let modals = document.querySelectorAll('.modal, #catalog-filter');
+let modals = document.querySelectorAll('.is-modal, #catalog-filter');
 
 if(modals) {
   modals.forEach(modal => {

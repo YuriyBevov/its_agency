@@ -1,3 +1,5 @@
+import { setCssProperty } from "./helpers";
+
 export class Modal {
   constructor( modal, options = {} ) {
       this.options = options;
@@ -7,6 +9,7 @@ export class Modal {
       this.initialTouchPos = null;
       this.lastTouchPos = null;
       this.rafPending = false;
+      this.updateSwipeRestPositionPaused = false;
       this.modal = modal;
       this.id = this.modal.getAttribute('id');
       this.openers = document.querySelectorAll('[data-modal-anchor="' + this.id + '"]');
@@ -105,6 +108,7 @@ export class Modal {
       this.swipeArea.style.bottom = `calc(-100% - (${differenceInY}px))`;
 
       if(differenceInY > this.swipeDistance) {
+        this.updateSwipeRestPositionPaused = true;
         this.refresh();
       }
     }
@@ -113,7 +117,13 @@ export class Modal {
   }
 
   updateSwipeRestPosition = () => {
-    this.swipeArea.style.bottom = '-100%';
+    if(this.updateSwipeRestPositionPaused) {
+      setTimeout(() => {
+        this.swipeArea.style.bottom = '-100%';
+      }, 600);
+    } else {
+      this.swipeArea.style.bottom = '-100%';
+    }
   }
 
   handleGestureStart = (evt) => {
@@ -179,6 +189,8 @@ export class Modal {
         this.swipeArea.addEventListener('touchcancel', this.handleGestureEnd, true);
 
         this.swipeArea.addEventListener('mousedown', this.handleGestureStart, true);
+
+        this.updateSwipeRestPositionPaused = false;
       }
   }
 
@@ -209,7 +221,7 @@ export class Modal {
         this.bodyLocker(false);
 
         this.openers.forEach(opener => {
-            opener.addEventListener('click', this.openModal);
+          opener.addEventListener('click', this.openModal);
         })
       }, 600);
     }

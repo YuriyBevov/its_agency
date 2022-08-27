@@ -70,6 +70,19 @@ if (decBtns && incBtns) {
 
 /***/ }),
 
+/***/ "./src/scripts/modules/init.js":
+/*!*************************************!*\
+  !*** ./src/scripts/modules/init.js ***!
+  \*************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _utils_helpers_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../utils/helpers.js */ "./src/scripts/utils/helpers.js");
+
+(0,_utils_helpers_js__WEBPACK_IMPORTED_MODULE_0__.setVieportHeight)();
+
+/***/ }),
+
 /***/ "./src/scripts/modules/modals.js":
 /*!***************************************!*\
   !*** ./src/scripts/modules/modals.js ***!
@@ -79,7 +92,7 @@ if (decBtns && incBtns) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _utils_Modal_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../utils/Modal.js */ "./src/scripts/utils/Modal.js");
 
-var modals = document.querySelectorAll('.modal, #catalog-filter');
+var modals = document.querySelectorAll('.is-modal, #catalog-filter');
 
 if (modals) {
   modals.forEach(function (modal) {
@@ -92,6 +105,76 @@ if (modals) {
       new _utils_Modal_js__WEBPACK_IMPORTED_MODULE_0__.Modal(modal);
     }
   });
+}
+
+/***/ }),
+
+/***/ "./src/scripts/modules/sort.js":
+/*!*************************************!*\
+  !*** ./src/scripts/modules/sort.js ***!
+  \*************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _utils_helpers__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../utils/helpers */ "./src/scripts/utils/helpers.js");
+
+var catalogHeader = document.querySelector('.catalog__content-header');
+var sort = document.querySelector('.sorting');
+var container = document.querySelector('.sorting__items');
+var header = document.querySelector('.sorting__header');
+var items = document.querySelectorAll('.sorting__item');
+
+function refresh() {
+  items.forEach(function (item) {
+    item.addEventListener('click', onClickSetActiveOption);
+  });
+  document.removeEventListener('keydown', onClickCloseSortList);
+  document.removeEventListener('click', onClickByOverlayCloseSortList);
+  sort.classList.add('is-closing');
+  (0,_utils_helpers__WEBPACK_IMPORTED_MODULE_0__.bodyLocker)(false);
+  setTimeout(function () {
+    sort.classList.remove('is-opened');
+    sort.classList.remove('is-closing');
+    catalogHeader.style.zIndex = '100';
+  }, 600);
+}
+
+var onClickSetActiveOption = function onClickSetActiveOption(evt) {
+  catalogSorting(evt.target.dataset.sort);
+  header.innerHTML = evt.target.innerHTML;
+  refresh();
+};
+
+var onClickCloseSortList = function onClickCloseSortList(evt) {
+  if (evt.key === 'Escape') {
+    refresh();
+  }
+};
+
+var onClickByOverlayCloseSortList = function onClickByOverlayCloseSortList(evt) {
+  if (evt.target !== container) {
+    refresh();
+  }
+};
+
+var onClickOpenSortList = function onClickOpenSortList(evt) {
+  evt.stopPropagation();
+  sort.classList.add('is-opened');
+  catalogHeader.style.zIndex = '103';
+  (0,_utils_helpers__WEBPACK_IMPORTED_MODULE_0__.bodyLocker)(true);
+  (0,_utils_helpers__WEBPACK_IMPORTED_MODULE_0__.focusTrap)(container);
+  items.forEach(function (item) {
+    item.addEventListener('click', onClickSetActiveOption);
+  });
+  document.addEventListener('keydown', onClickCloseSortList);
+  document.addEventListener('click', onClickByOverlayCloseSortList);
+};
+
+header.addEventListener('click', onClickOpenSortList);
+
+function catalogSorting(type) {
+  //вынести логику в отдельный модуль
+  console.log(type);
 }
 
 /***/ }),
@@ -173,6 +256,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "Modal": () => (/* binding */ Modal)
 /* harmony export */ });
+/* harmony import */ var _helpers__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./helpers */ "./src/scripts/utils/helpers.js");
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
@@ -180,6 +264,7 @@ function _defineProperties(target, props) { for (var i = 0; i < props.length; i+
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 
 var Modal = /*#__PURE__*/function () {
   function Modal(modal) {
@@ -248,6 +333,8 @@ var Modal = /*#__PURE__*/function () {
         _this.swipeArea.style.bottom = "calc(-100% - (".concat(differenceInY, "px))");
 
         if (differenceInY > _this.swipeDistance) {
+          _this.updateSwipeRestPositionPaused = true;
+
           _this.refresh();
         }
       }
@@ -256,7 +343,13 @@ var Modal = /*#__PURE__*/function () {
     });
 
     _defineProperty(this, "updateSwipeRestPosition", function () {
-      _this.swipeArea.style.bottom = '-100%';
+      if (_this.updateSwipeRestPositionPaused) {
+        setTimeout(function () {
+          _this.swipeArea.style.bottom = '-100%';
+        }, 600);
+      } else {
+        _this.swipeArea.style.bottom = '-100%';
+      }
     });
 
     _defineProperty(this, "handleGestureStart", function (evt) {
@@ -322,6 +415,8 @@ var Modal = /*#__PURE__*/function () {
         _this.swipeArea.addEventListener('touchcancel', _this.handleGestureEnd, true);
 
         _this.swipeArea.addEventListener('mousedown', _this.handleGestureStart, true);
+
+        _this.updateSwipeRestPositionPaused = false;
       }
     });
 
@@ -403,6 +498,7 @@ var Modal = /*#__PURE__*/function () {
     this.initialTouchPos = null;
     this.lastTouchPos = null;
     this.rafPending = false;
+    this.updateSwipeRestPositionPaused = false;
     this.modal = modal;
     this.id = this.modal.getAttribute('id');
     this.openers = document.querySelectorAll('[data-modal-anchor="' + this.id + '"]');
@@ -610,7 +706,6 @@ function focusTrap(el) {
 
     if (evt.key === 'Escape') {
       document.removeEventListener('keydown', onBtnClickHandler);
-      console.log('ESC');
     }
 
     if (!isTabPressed) {
@@ -19815,15 +19910,16 @@ var __webpack_exports__ = {};
   !*** ./src/scripts/main.js ***!
   \*****************************/
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _modules_swiper_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./modules/swiper.js */ "./src/scripts/modules/swiper.js");
-/* harmony import */ var _modules_counter_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modules/counter.js */ "./src/scripts/modules/counter.js");
-/* harmony import */ var _modules_modals_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modules/modals.js */ "./src/scripts/modules/modals.js");
-/* harmony import */ var _utils_helpers_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./utils/helpers.js */ "./src/scripts/utils/helpers.js");
+/* harmony import */ var _modules_init_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./modules/init.js */ "./src/scripts/modules/init.js");
+/* harmony import */ var _modules_swiper_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modules/swiper.js */ "./src/scripts/modules/swiper.js");
+/* harmony import */ var _modules_counter_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modules/counter.js */ "./src/scripts/modules/counter.js");
+/* harmony import */ var _modules_modals_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./modules/modals.js */ "./src/scripts/modules/modals.js");
+/* harmony import */ var _modules_sort_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./modules/sort.js */ "./src/scripts/modules/sort.js");
 
 
 
 
-(0,_utils_helpers_js__WEBPACK_IMPORTED_MODULE_3__.setVieportHeight)();
+
 })();
 
 /******/ })()
