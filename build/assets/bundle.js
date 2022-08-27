@@ -237,6 +237,96 @@ var Modal = /*#__PURE__*/function () {
       firstFocusableElement.focus();
     });
 
+    _defineProperty(this, "onAnimFrame", function () {
+      if (_this.rafPending === false) {
+        return;
+      } //currentXPosition
+
+
+      var differenceInY = _this.lastTouchPos.y - _this.initialTouchPos.y;
+      console.log(differenceInY);
+      var newYTransform = _this.initialTouchPos.y - differenceInY + 'px'; //let transformStyle = `translateY(${ differenceInY }px)`;
+      //this.swipeArea.style.webkitTransform = transformStyle;
+      //this.swipeArea.style.MozTransform = transformStyle;
+      //this.swipeArea.style.msTransform = transformStyle;
+      //this.swipeArea.style.transform = transformStyle;
+
+      if (differenceInY > 0) {
+        _this.swipeArea.style.bottom = "calc(-100% - (".concat(differenceInY, "px))");
+
+        if (differenceInY > 75) {
+          _this.refresh();
+        }
+      }
+
+      _this.rafPending = false;
+    });
+
+    _defineProperty(this, "updateSwipeRestPosition", function () {
+      _this.swipeArea.style.bottom = '-100%';
+    });
+
+    _defineProperty(this, "handleGestureStart", function (evt) {
+      evt.preventDefault();
+
+      if (evt.touches && evt.touches.length > 1) {
+        return;
+      } // Add the move and end listeners
+
+
+      if (window.PointerEvent) {
+        evt.target.setPointerCapture(evt.pointerId);
+      } else {
+        // Add Mouse Listeners
+        document.addEventListener('mousemove', _this.handleGestureMove, true);
+        document.addEventListener('mouseup', _this.handleGestureEnd, true);
+        console.log('add event mouse');
+      }
+
+      _this.initialTouchPos = _this.getGesturePointFromEvent(evt);
+      _this.swipeArea.style.transition = 'initial';
+    });
+
+    _defineProperty(this, "handleGestureMove", function (evt) {
+      evt.preventDefault();
+
+      if (_this.initialTouchPos === null) {
+        return;
+      }
+
+      _this.lastTouchPos = _this.getGesturePointFromEvent(evt);
+
+      if (_this.rafPending) {
+        return;
+      }
+
+      _this.rafPending = true;
+      window.requestAnimationFrame(_this.onAnimFrame);
+    });
+
+    _defineProperty(this, "handleGestureEnd", function (evt) {
+      evt.preventDefault();
+
+      if (evt.touches && evt.touches.length > 0) {
+        return;
+      }
+
+      _this.rafPending = false; // Remove Event Listeners
+
+      if (window.PointerEvent) {
+        evt.target.releasePointerCapture(evt.pointerId);
+      } else {
+        // Remove Mouse Listeners
+        document.removeEventListener('mousemove', _this.handleGestureMove, true);
+        document.removeEventListener('mouseup', _this.handleGestureEnd, true);
+        console.log('remove');
+      }
+
+      _this.updateSwipeRestPosition();
+
+      _this.initialTouchPos = null;
+    });
+
     _defineProperty(this, "addListeners", function () {
       _this.openers.forEach(function (opener) {
         opener.removeEventListener('click', _this.openModal);
@@ -250,13 +340,34 @@ var Modal = /*#__PURE__*/function () {
       }
 
       if (_this.swipe) {
-        console.log('swipe on', _this.swipeArea);
-        document.addEventListener('mousedown', _this.onMouseDownListenSwipeHandler);
-        document.addEventListener('touchstart', _this.onTouchListenSwipeHandler);
+        if (window.PointerEvent) {
+          // Add Pointer Event Listener
+          _this.swipeArea.addEventListener('pointerdown', _this.handleGestureStart, true);
+
+          _this.swipeArea.addEventListener('pointermove', _this.handleGestureMove, true);
+
+          _this.swipeArea.addEventListener('pointerup', _this.handleGestureEnd, true);
+
+          _this.swipeArea.addEventListener('pointercancel', _this.handleGestureEnd, true);
+
+          console.log('POINTER');
+        } else {
+          // Add Touch Listener
+          _this.swipeArea.addEventListener('touchstart', _this.handleGestureStart, true);
+
+          _this.swipeArea.addEventListener('touchmove', _this.handleGestureMove, true);
+
+          _this.swipeArea.addEventListener('touchend', _this.handleGestureEnd, true);
+
+          _this.swipeArea.addEventListener('touchcancel', _this.handleGestureEnd, true); // Add Mouse Listener
+
+
+          _this.swipeArea.addEventListener('mousedown', _this.handleGestureStart, true);
+        }
       }
     });
 
-    _defineProperty(this, "refresh", function () {
+    _defineProperty(this, "refresh", function (evt) {
       if (!_this.debounce) {
         _this.setDebounce(_this.debounceTime);
 
@@ -268,9 +379,36 @@ var Modal = /*#__PURE__*/function () {
         }
 
         if (_this.swipe) {
-          console.log('swipe on', _this.swipeArea);
-          document.removeEventListener('mousedown', _this.onMouseDownListenSwipeHandler);
-          document.removeEventListener('touchstart', _this.onTouchListenSwipeHandler);
+          if (window.PointerEvent) {
+            console.log('remove pointer'); // Add Pointer Event Listener
+
+            _this.swipeArea.removeEventListener('pointerdown', _this.handleGestureStart);
+
+            _this.swipeArea.removeEventListener('pointermove', _this.handleGestureMove);
+
+            _this.swipeArea.removeEventListener('pointerup', _this.handleGestureEnd);
+
+            _this.swipeArea.removeEventListener('pointercancel', _this.handleGestureEnd);
+
+            _this.updateSwipeRestPosition();
+          } else {
+            console.log('remove touch'); // Add Touch Listener
+
+            _this.swipeArea.removeEventListener('touchstart', _this.handleGestureStart);
+
+            _this.swipeArea.removeEventListener('touchmove', _this.handleGestureMove);
+
+            _this.swipeArea.removeEventListener('touchend', _this.handleGestureEnd);
+
+            _this.swipeArea.removeEventListener('touchcancel', _this.handleGestureEnd); // Add Mouse Listener
+
+
+            _this.swipeArea.removeEventListener('mousedown', _this.handleGestureStart); //document.removeEventListener('mousemove', this.handleGestureMove, true);
+            //document.removeEventListener('mouseup', this.handleGestureEnd, true);
+
+
+            console.log('POINTER 2');
+          }
         }
 
         _this.overlay.classList.add('is-closing');
@@ -287,16 +425,6 @@ var Modal = /*#__PURE__*/function () {
           });
         }, 600);
       }
-    });
-
-    _defineProperty(this, "onMouseDownListenSwipeHandler", function (evt) {
-      if (evt.target === _this.swipeArea) {
-        console.log('area');
-      }
-    });
-
-    _defineProperty(this, "onTouchListenSwipeHandler", function (evt) {
-      alert('onTouchListenSwipeHandler', evt, evt.target);
     });
 
     _defineProperty(this, "closeByOverlayClick", function (evt) {
@@ -335,6 +463,9 @@ var Modal = /*#__PURE__*/function () {
     this.options = options;
     this.swipe = options.swipe ? options.swipe : null;
     this.swipeArea = options.swipeArea ? document.querySelector(options.swipeArea) : null;
+    this.initialTouchPos = null;
+    this.lastTouchPos = null;
+    this.rafPending = false;
     this.modal = modal;
     this.id = this.modal.getAttribute('id');
     this.openers = document.querySelectorAll('[data-modal-anchor="' + this.id + '"]');
@@ -356,6 +487,23 @@ var Modal = /*#__PURE__*/function () {
       setTimeout(function () {
         _this2.debounce = false;
       }, timeoutTime);
+    }
+  }, {
+    key: "getGesturePointFromEvent",
+    value: function getGesturePointFromEvent(evt) {
+      var point = {};
+
+      if (evt.targetTouches) {
+        // Prefer Touch Events
+        point.x = evt.targetTouches[0].clientX;
+        point.y = evt.targetTouches[0].clientY;
+      } else {
+        // Either Mouse event or Pointer Event
+        point.x = evt.clientX;
+        point.y = evt.clientY;
+      }
+
+      return point;
     }
   }, {
     key: "init",

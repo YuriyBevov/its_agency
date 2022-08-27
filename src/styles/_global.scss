@@ -5,6 +5,7 @@
   border-radius: 0;
 
   @extend .main-scroll;
+  user-select: none;
 }
 
 html {

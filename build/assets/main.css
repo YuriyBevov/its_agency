@@ -1238,6 +1238,10 @@ button.swiper-pagination-bullet {
   -webkit-box-sizing: inherit;
   box-sizing: inherit;
   border-radius: 0;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
 html {
@@ -1647,25 +1651,25 @@ svg {
 }
 @-webkit-keyframes filterTransformY {
   0% {
-    -webkit-transform: translateY(100vh);
-    transform: translateY(100vh);
+    -webkit-transform: translateY(0);
+    transform: translateY(0);
     opacity: 0.5;
   }
   100% {
-    -webkit-transform: translateY(0);
-    transform: translateY(0);
+    -webkit-transform: translateY(-100vh);
+    transform: translateY(-100vh);
     opacity: 1;
   }
 }
 @keyframes filterTransformY {
   0% {
-    -webkit-transform: translateY(100vh);
-    transform: translateY(100vh);
+    -webkit-transform: translateY(0);
+    transform: translateY(0);
     opacity: 0.5;
   }
   100% {
-    -webkit-transform: translateY(0);
-    transform: translateY(0);
+    -webkit-transform: translateY(-100vh);
+    transform: translateY(-100vh);
     opacity: 1;
   }
 }
@@ -2314,6 +2318,9 @@ svg {
   display: none;
 }
 
+.filter {
+  pointer-events: touch;
+}
 .filter__item {
   margin-bottom: 10px;
   width: 100%;
@@ -2371,12 +2378,16 @@ svg {
     width: 100%;
     height: 375px;
     max-height: 75vh;
-    bottom: 0;
+    bottom: -100%;
+    left: 0;
     border-radius: 24px 24px 0 0;
     padding: 54px 24px;
     padding-bottom: 30px;
-    -webkit-animation: filterTransformY var(--modal-t-rules) forwards;
-    animation: filterTransformY var(--modal-t-rules) forwards;
+    -webkit-transform: translateY(-100vh);
+    -ms-transform: translateY(-100vh);
+    transform: translateY(-100vh);
+    -webkit-animation: filterTransformY var(--modal-t-rules);
+    animation: filterTransformY var(--modal-t-rules);
   }
 
   .catalog__sidebar.is-closing > .filter {
@@ -2536,8 +2547,7 @@ svg {
   height: -webkit-fit-content;
   height: -moz-fit-content;
   height: fit-content;
-  position: sticky;
-  top: 120px;
+  position: relative;
   padding: 30px 0;
 }
 @media (max-width: 768px) {
