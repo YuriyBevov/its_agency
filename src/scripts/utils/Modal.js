@@ -105,7 +105,7 @@ export class Modal {
     let differenceInY = this.lastTouchPos.y - this.initialTouchPos.y;
 
     if(differenceInY > 0) {
-      this.swipeArea.style.bottom = `calc(-100% - (${differenceInY}px))`;
+      this.swipeArea.style.bottom = `calc(-100vh - (${differenceInY}px))`;
 
       if(differenceInY > this.swipeDistance) {
         this.updateSwipeRestPositionPaused = true;
@@ -119,10 +119,10 @@ export class Modal {
   updateSwipeRestPosition = () => {
     if(this.updateSwipeRestPositionPaused) {
       setTimeout(() => {
-        this.swipeArea.style.bottom = '-100%';
+        this.swipeArea.style.bottom = '-100vh';
       }, 600);
     } else {
-      this.swipeArea.style.bottom = '-100%';
+      this.swipeArea.style.bottom = '-100vh';
     }
   }
 
