@@ -321,9 +321,8 @@ var Modal = /*#__PURE__*/function () {
         document.removeEventListener('mousemove', _this.handleGestureMove, true);
         document.removeEventListener('mouseup', _this.handleGestureEnd, true);
         console.log('remove');
-      }
+      } //this.updateSwipeRestPosition();
 
-      _this.updateSwipeRestPosition();
 
       _this.initialTouchPos = null;
     });

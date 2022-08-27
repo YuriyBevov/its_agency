@@ -190,7 +190,7 @@ export class Modal {
       console.log('remove')
     }
 
-    this.updateSwipeRestPosition();
+    //this.updateSwipeRestPosition();
 
     this.initialTouchPos = null;
   }
