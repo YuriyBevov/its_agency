@@ -115,10 +115,12 @@ export class Modal {
     if(differenceInY > 0) {
       this.swipeArea.style.bottom = `calc(-100% - (${differenceInY}px))`;
 
-      if(differenceInY > 75) {
+      if(differenceInY > 100) {
         this.refresh();
       }
     }
+
+    console.log(differenceInY)
 
     this.rafPending = false;
   }
@@ -126,26 +128,26 @@ export class Modal {
   updateSwipeRestPosition = () => {
     this.swipeArea.style.bottom = '-100%';
 
-    alert('update swipe position')
+    console.log('update swipe position')
   }
 
   handleGestureStart = (evt) => {
 
     evt.preventDefault();
 
-    if(evt.touches && evt.touches.length > 1) {
+    /*if(evt.touches && evt.touches.length > 1) {
       return;
-    }
+    }*/
 
     // Add the move and end listeners
-    if (window.PointerEvent) {
+    /*if (window.PointerEvent) {
       evt.target.setPointerCapture(evt.pointerId);
-    } else {
+    } else {*/
       // Add Mouse Listeners
       document.addEventListener('mousemove', this.handleGestureMove, true);
       document.addEventListener('mouseup', this.handleGestureEnd, true);
       console.log('add event mouse')
-    }
+    //}
 
     this.initialTouchPos = this.getGesturePointFromEvent(evt);
     this.swipeArea.style.transition = 'initial';
@@ -180,17 +182,17 @@ export class Modal {
     this.rafPending = false;
 
     // Remove Event Listeners
-    if (window.PointerEvent) {
+    /*if (window.PointerEvent) {
       evt.target.releasePointerCapture(evt.pointerId);
-    } else {
+    } else {*/
       // Remove Mouse Listeners
       document.removeEventListener('mousemove', this.handleGestureMove, true);
       document.removeEventListener('mouseup', this.handleGestureEnd, true);
 
       console.log('remove')
-    }
+    //}
 
-    //this.updateSwipeRestPosition();
+    this.updateSwipeRestPosition();
 
     this.initialTouchPos = null;
   }
@@ -207,14 +209,14 @@ export class Modal {
       }
 
       if(this.swipe) {
-        if (window.PointerEvent) {
+        /*if (window.PointerEvent) {
           // Add Pointer Event Listener
           this.swipeArea.addEventListener('pointerdown', this.handleGestureStart, true);
           this.swipeArea.addEventListener('pointermove', this.handleGestureMove, true);
           this.swipeArea.addEventListener('pointerup', this.handleGestureEnd, true);
           this.swipeArea.addEventListener('pointercancel', this.handleGestureEnd, true);
           console.log('POINTER')
-        } else {
+        } else {*/
           // Add Touch Listener
           this.swipeArea.addEventListener('touchstart', this.handleGestureStart, true);
           this.swipeArea.addEventListener('touchmove', this.handleGestureMove, true);
@@ -223,7 +225,7 @@ export class Modal {
 
           // Add Mouse Listener
           this.swipeArea.addEventListener('mousedown', this.handleGestureStart, true);
-        }
+        //}
       }
   }
 
@@ -238,31 +240,28 @@ export class Modal {
       }
 
       if(this.swipe) {
-        if (window.PointerEvent) {
+        /*if (window.PointerEvent) {
           console.log('remove pointer')
           // Add Pointer Event Listener
-          this.swipeArea.removeEventListener('pointerdown', this.handleGestureStart);
-          this.swipeArea.removeEventListener('pointermove', this.handleGestureMove);
-          this.swipeArea.removeEventListener('pointerup', this.handleGestureEnd);
-          this.swipeArea.removeEventListener('pointercancel', this.handleGestureEnd);
+          this.swipeArea.removeEventListener('pointerdown', this.handleGestureStart, true);
+          this.swipeArea.removeEventListener('pointermove', this.handleGestureMove, true);
+          this.swipeArea.removeEventListener('pointerup', this.handleGestureEnd, true);
+          this.swipeArea.removeEventListener('pointercancel', this.handleGestureEnd, true);
 
-          //this.updateSwipeRestPosition();
-        } else {
+          this.updateSwipeRestPosition();
+        } else {*/
           console.log('remove touch')
           // Add Touch Listener
-          this.swipeArea.removeEventListener('touchstart', this.handleGestureStart);
-          this.swipeArea.removeEventListener('touchmove', this.handleGestureMove);
-          this.swipeArea.removeEventListener('touchend', this.handleGestureEnd);
-          this.swipeArea.removeEventListener('touchcancel', this.handleGestureEnd);
+          this.swipeArea.removeEventListener('touchstart', this.handleGestureStart, true);
+          this.swipeArea.removeEventListener('touchmove', this.handleGestureMove, true);
+          this.swipeArea.removeEventListener('touchend', this.handleGestureEnd, true);
+          this.swipeArea.removeEventListener('touchcancel', this.handleGestureEnd, true);
 
           // Add Mouse Listener
-          this.swipeArea.removeEventListener('mousedown', this.handleGestureStart);
-
-          //document.removeEventListener('mousemove', this.handleGestureMove, true);
-          //document.removeEventListener('mouseup', this.handleGestureEnd, true);
+          this.swipeArea.removeEventListener('mousedown', this.handleGestureStart, true);
 
           console.log('POINTER 2')
-        }
+        //}
       }
 
       this.overlay.classList.add('is-closing');
