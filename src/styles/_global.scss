@@ -84,3 +84,16 @@ svg {
   fill: none;
   stroke: var(--main-color);
 }
+
+.hidden {
+  display: none !important;
+}
+
+.showed {
+  display: block !important;
+}
+
+button:disabled {
+  cursor: initial !important;
+  opacity: 0.5;
+}

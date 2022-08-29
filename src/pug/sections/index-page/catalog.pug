@@ -59,22 +59,23 @@ section.catalog
           include ../../components/catalog-sort
 
         ul.catalog__list
-          template(id="product-card-template")
-            li.catalog__list-item
-              .product-card(tabindex="0")
-                .product-card__header
-                  picture
-                    source(srcset="" type="image/webp")
-                    img(src="" alt="" width="278" height="278")
 
-                .product-card__content
-                  h2
+  template(id="product-card-template")
+    li.catalog__list-item
+      .product-card(tabindex="0")
+        .product-card__header
+          picture
+            source(srcset="" type="image/webp")
+            img(src="" alt="" width="278" height="278")
 
-                .product-card__footer
-                  span
-                  button(type="button" aria-label="добавить в корзину").cart-add-button
-                    svg(width="20" height="20")
-                      use(xlink:href="./assets/sprite.svg#icon-plus")
+        .product-card__content
+          h2
+
+        .product-card__footer
+          span
+          button(type="button" aria-label="добавить в корзину").cart-add-button
+            svg(width="20" height="20")
+              use(xlink:href="./assets/sprite.svg#icon-plus")
 
 
 

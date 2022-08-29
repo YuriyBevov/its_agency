@@ -1,6 +1,17 @@
 .minicart-product {
   @extend .flex-wrap;
   align-items: center;
+  position: relative;
+
+  &.predelete {
+    picture {
+      opacity: 0.4;
+    }
+    .minicart-product__desc,
+    .minicart-product__counter {
+      opacity: 0.2;
+    }
+  }
   picture {
     display: flex;
     width: 96px;

@@ -57,12 +57,12 @@
       margin-bottom: 10px;
 
       position: sticky;
-      top: 104px;
+      top: 100px;
       background-color: var(--white-color);
       z-index: 100;
 
       @include m-b-tablet-down {
-        top: 117px;
+        top: 115px;
       }
 
       .items-count {

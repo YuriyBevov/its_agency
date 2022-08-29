@@ -1329,6 +1329,19 @@ svg {
   stroke: var(--main-color);
 }
 
+.hidden {
+  display: none !important;
+}
+
+.showed {
+  display: block !important;
+}
+
+button:disabled {
+  cursor: initial !important;
+  opacity: 0.5;
+}
+
 /*section*/
 .section-mb {
   margin-bottom: 20px;
@@ -2315,6 +2328,14 @@ svg {
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
+  position: relative;
+}
+.minicart-product.predelete picture {
+  opacity: 0.4;
+}
+.minicart-product.predelete .minicart-product__desc,
+.minicart-product.predelete .minicart-product__counter {
+  opacity: 0.2;
 }
 .minicart-product picture {
   display: -webkit-box;
@@ -2369,9 +2390,6 @@ svg {
   display: none;
 }
 
-.filter {
-  pointer-events: touch;
-}
 .filter__item {
   margin-bottom: 10px;
   width: 100%;
@@ -2429,7 +2447,7 @@ svg {
     width: 100%;
     height: 425px;
     max-height: 75vh;
-    bottom: calc(-100% - 50px);
+    bottom: calc(-100% - 75px);
     left: 0;
     border-radius: 24px 24px 0 0;
     padding: 54px 24px;
@@ -2718,13 +2736,13 @@ svg {
   padding: 20px 0;
   margin-bottom: 10px;
   position: sticky;
-  top: 104px;
+  top: 100px;
   background-color: var(--white-color);
   z-index: 100;
 }
 @media (max-width: 768px) {
   .catalog__content-header {
-    top: 117px;
+    top: 115px;
   }
 }
 .catalog__content-header .items-count {

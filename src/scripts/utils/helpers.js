@@ -163,4 +163,9 @@ function setDebounce(timeoutTime) {
   }, timeoutTime);
 }
 
-export  { setVieportHeight, debounce, setDebounce, focusTrap, getCssPropertyValue, setCssProperty, lerp, getMousePos, getRadians,limitStr, addClass, removeClass, checkClass, toggleClass, bodyLocker, getBoundingClientRect }
+function randomInteger(min, max) {
+  let rand = min + Math.random() * (max + 1 - min);
+  return Math.floor(rand);
+}
+
+export  { randomInteger, setVieportHeight, debounce, setDebounce, focusTrap, getCssPropertyValue, setCssProperty, lerp, getMousePos, getRadians,limitStr, addClass, removeClass, checkClass, toggleClass, bodyLocker, getBoundingClientRect }

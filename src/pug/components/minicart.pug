@@ -29,8 +29,7 @@ include ../mixins/minicart-product-card
   ]
 
 .minicart
-  button(type="button" aria-label="Просмотр корзины" data-modal-anchor="minicart").minicart__button.js-minicart-opener
-    span.minicart__counter 4
+  button(type="button" aria-label="Просмотр корзины" data-modal-anchor="minicart").minicart__button.js-minicart-opener 4
 
   .minicart__overlay
     .minicart__body#minicart.is-modal
@@ -45,11 +44,10 @@ include ../mixins/minicart-product-card
           span.js-minicart-total 4 товара
           button.js-minicart-remove-all очистить список
         ul.minicart__content-list
-          each product in minicartList
-            li.minicart__content-item
-              +minicart-product(product)
+          // тут будет шаблон
 
-
+      .minicart__content--empty.hidden
+        span Корзина пока пуста...
       .minicart__footer
         .minicart__footer-total
           span Итого
@@ -59,6 +57,29 @@ include ../mixins/minicart-product-card
           text: 'Оформить заказ',
           cls: 'minicart__footer-offer-button js-minicart-offer'
         })
+
+  // убрать в layout все template
+  template(id="cart-product-template")
+    li.minicart__content-item
+      .minicart-product
+        picture
+          source(srcset=`./assets/img/img_name@1x.webp 1x, ./assets/img/img_name@2x.webp 2x` type="image/webp")
+          img(src=`./assets/img/img_name@1x.jpg" srcset="./assets/img/img_name.jpg 2x` alt="" width="96" height="96")
+
+        .minicart-product__desc
+          h2
+          span
+
+        .minicart-product__counter
+          include ../components/base-components/counter
+
+        //.minicart-product__remove--refresh
+        button(type="button").minicart-product__remove.js-minicart-product-remove
+          svg(width="24" height="24").icon-remove
+            use(xlink:href="./assets/sprite.svg#icon-close")
+          svg(width="24" height="24").icon-refresh
+            use(xlink:href="./assets/sprite.svg#icon-refresh")
+
 
 
 
