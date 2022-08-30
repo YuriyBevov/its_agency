@@ -1,5 +1,4 @@
 import { initialMockData } from "./mockData";
-import { init as catalogInit } from "./init";
 import { ls, catalogStorageField } from "../../utils/localStorageHelper";
 import { sorting } from "./sorting";
 
@@ -36,10 +35,7 @@ const onClickActivateFiltration = (evt) => {
     }
   })
 
-  console.log(mock);
-
   ls('update', catalogStorageField, mock);
-
   sorting(currentSortType);
 }
 

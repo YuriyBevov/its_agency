@@ -1,4 +1,5 @@
 .filter {
+  z-index: 10000; // temp?
   &__item {
     margin-bottom: 10px;
     width: 100%;
@@ -9,6 +10,7 @@
     cursor: pointer;
     @extend .flex-wrap;
     align-items: center;
+    pointer-events: auto;
 
     span {
       line-height: 1;

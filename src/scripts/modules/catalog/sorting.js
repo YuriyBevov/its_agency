@@ -3,8 +3,6 @@ import { ls, catalogStorageField } from "../../utils/localStorageHelper";
 
 export function sorting (type) {
   let mock = ls('get', catalogStorageField);
-  console.log(type)
-
   if(type === 'expensive') {
     ls('update', catalogStorageField, mock.sort((a,b) => Number(b.price) - Number(a.price)));
   }

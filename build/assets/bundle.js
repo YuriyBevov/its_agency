@@ -181,10 +181,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "initCatalogFilter": () => (/* binding */ initCatalogFilter)
 /* harmony export */ });
 /* harmony import */ var _mockData__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./mockData */ "./src/scripts/modules/catalog/mockData.js");
-/* harmony import */ var _init__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./init */ "./src/scripts/modules/catalog/init.js");
-/* harmony import */ var _utils_localStorageHelper__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../utils/localStorageHelper */ "./src/scripts/utils/localStorageHelper.js");
-/* harmony import */ var _sorting__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./sorting */ "./src/scripts/modules/catalog/sorting.js");
-
+/* harmony import */ var _utils_localStorageHelper__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../utils/localStorageHelper */ "./src/scripts/utils/localStorageHelper.js");
+/* harmony import */ var _sorting__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./sorting */ "./src/scripts/modules/catalog/sorting.js");
 
 
 
@@ -230,9 +228,8 @@ var onClickActivateFiltration = function onClickActivateFiltration(evt) {
       }
     }
   });
-  console.log(mock);
-  (0,_utils_localStorageHelper__WEBPACK_IMPORTED_MODULE_2__.ls)('update', _utils_localStorageHelper__WEBPACK_IMPORTED_MODULE_2__.catalogStorageField, mock);
-  (0,_sorting__WEBPACK_IMPORTED_MODULE_3__.sorting)(currentSortType);
+  (0,_utils_localStorageHelper__WEBPACK_IMPORTED_MODULE_1__.ls)('update', _utils_localStorageHelper__WEBPACK_IMPORTED_MODULE_1__.catalogStorageField, mock);
+  (0,_sorting__WEBPACK_IMPORTED_MODULE_2__.sorting)(currentSortType);
 };
 
 function initCatalogFilter() {
@@ -363,7 +360,6 @@ __webpack_require__.r(__webpack_exports__);
 
 function sorting(type) {
   var mock = (0,_utils_localStorageHelper__WEBPACK_IMPORTED_MODULE_1__.ls)('get', _utils_localStorageHelper__WEBPACK_IMPORTED_MODULE_1__.catalogStorageField);
-  console.log(type);
 
   if (type === 'expensive') {
     (0,_utils_localStorageHelper__WEBPACK_IMPORTED_MODULE_1__.ls)('update', _utils_localStorageHelper__WEBPACK_IMPORTED_MODULE_1__.catalogStorageField, mock.sort(function (a, b) {
