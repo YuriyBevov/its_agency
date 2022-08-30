@@ -1,6 +1,5 @@
 import { changeItemCount } from './minicart/changeItemCount.js';
-import { storage } from '../utils/nodesHelper.js';
-import { cartFieldName } from '../utils/nodesHelper.js';
+import { ls, cartStorageField } from "../utils/localStorageHelper.js";
 
 export function initCounters() {
   const decBtns = document.querySelectorAll('.js-counter-dec');
@@ -12,14 +11,15 @@ export function initCounters() {
 
       const setValue = (operationType, value, counter, target) => {
           let itemID = Number(target.closest('.minicart-product').dataset.id);
-          let storeItems = JSON.parse(storage.getItem(cartFieldName));
+          let storeItems = ls('get', cartStorageField)
 
           if(operationType === 'dec') {
+            value--;
             changeItemCount('dec', itemID, storeItems);
-            value -= 1;
+            console.log(value, 'dec');
           } else {
+            value++;
             changeItemCount('inc', itemID, storeItems);
-            value += 1;
           }
 
           counter.innerHTML = value;
@@ -29,7 +29,7 @@ export function initCounters() {
 
           let decBtn = evt.currentTarget;
           let counter =  decBtn.parentNode.querySelector('.js-counter-total');
-          let currentCounterValue = Number(counter.innerHTML);
+          let currentCounterValue = Number(counter.textContent);
 
           if (currentCounterValue === maxValue) {
               setValue('dec',  currentCounterValue, counter, evt.currentTarget);
@@ -44,7 +44,7 @@ export function initCounters() {
       const onClickIncValue = (evt) => {
           let incBtn = evt.currentTarget;
           let counter =  incBtn.parentNode.querySelector('.js-counter-total');
-          let currentCounterValue = Number(counter.innerHTML);
+          let currentCounterValue = Number(counter.textContent);
 
           if(currentCounterValue === 1) {
               setValue('inc', currentCounterValue, counter, evt.currentTarget);

@@ -57,7 +57,7 @@
                   </div>
                   <div class="minicart__content">
                     <div class="minicart__content-header"><span class="js-minicart-total">4 товара</span>
-                      <button class="js-minicart-remove-all">очистить список</button>
+                      <button class="minicart-remove-all">очистить список</button>
                     </div>
                     <ul class="minicart__content-list">
                       <!-- тут будет шаблон-->
@@ -202,7 +202,7 @@
             <div class="catalog__sidebar">
               <div class="filter is-modal" id="catalog-filter">
                 <div class="filter__item">
-                  <input type="checkbox" id="new" name="new" checked>
+                  <input type="checkbox" id="new" data-type="new">
                   <label class="filter__label" for="new">
                     <div class="switcher" aria-label="переключатель">
                       <div class="switcher-inner"></div>
@@ -210,7 +210,7 @@
                   </label>
                 </div>
                 <div class="filter__item">
-                  <input type="checkbox" id="available" name="available" checked>
+                  <input type="checkbox" id="available" data-type="available">
                   <label class="filter__label" for="available">
                     <div class="switcher" aria-label="переключатель">
                       <div class="switcher-inner"></div>
@@ -218,7 +218,7 @@
                   </label>
                 </div>
                 <div class="filter__item">
-                  <input type="checkbox" id="contract" name="contract" checked>
+                  <input type="checkbox" id="contract" data-type="contract">
                   <label class="filter__label" for="contract">
                     <div class="switcher" aria-label="переключатель">
                       <div class="switcher-inner"></div>
@@ -226,7 +226,7 @@
                   </label>
                 </div>
                 <div class="filter__item">
-                  <input type="checkbox" id="exclusive" name="exclusive" checked>
+                  <input type="checkbox" id="exclusive" data-type="exclusive">
                   <label class="filter__label" for="exclusive">
                     <div class="switcher" aria-label="переключатель">
                       <div class="switcher-inner"></div>
@@ -234,7 +234,7 @@
                   </label>
                 </div>
                 <div class="filter__item">
-                  <input type="checkbox" id="sale" name="sale" checked>
+                  <input type="checkbox" id="sale" data-type="sale">
                   <label class="filter__label" for="sale">
                     <div class="switcher" aria-label="переключатель">
                       <div class="switcher-inner"></div>

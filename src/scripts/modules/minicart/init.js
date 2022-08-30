@@ -1,34 +1,25 @@
 import {
-  cartFieldName,
-  storage,
-  minicartTotalCount,
-  minicartTotalPrice,
+  minicartTotalCountNode,
+  minicartTotalPriceNode,
   cartNode,
-  cartOpenerButton } from "../../utils/nodesHelper.js";
+  cartOpenerButton,
+  removeAllBtn } from "../../utils/nodesHelper.js";
+
+import { ls, cartStorageField } from "../../utils/localStorageHelper.js";
 
 import { minicartButtonDisabling } from "./minicartButtonDisabling.js";
 import { initCounters } from "../counter.js";
-import { clearCartButtonInit, cartBtnsInit } from "./clear.js";
-
-function countLibrary(count) {
-  if( count === 1 ) {
-    return " товар"
-  } if( count > 1 && count < 5 ) {
-    return " товара"
-  } else {
-    return " товаров"
-  }
-}
+import { cartBtnsInit } from "./clear.js";
+import { countLibrary } from "./countLibrary.js";
 
 export function init() {
   if(cartNode) {
-    let data = JSON.parse(storage.getItem(cartFieldName));
-    console.log('INIT DATA', data)
-    let parentNode = document.querySelector('.minicart__content-list');
+    let data = ls('get', cartStorageField)
+    let minicartContainer = document.querySelector('.minicart__content-list');
 
     if(data) {
-      if(parentNode.querySelector('.minicart__content-item')) {
-        let childNodes = parentNode.querySelectorAll('.minicart__content-item');
+      if(minicartContainer.querySelector('.minicart__content-item')) {
+        let childNodes = minicartContainer.querySelectorAll('.minicart__content-item');
 
         childNodes.forEach(node => {
           node.remove();
@@ -38,13 +29,19 @@ export function init() {
       const fragment = document.createDocumentFragment();
       const template = document.querySelector('#cart-product-template');
 
-      let totalCartItemsCount = data.length;
+      let totalCartItemsCount = 0;
       let totalCartItemsPrice = 0;
 
       data.forEach(product => {
         let cartItem = template.content.cloneNode(true);
 
         const productCard = cartItem.querySelector('.minicart-product');
+
+        if(!!product.predeleted) {
+          productCard.classList.add('predeleted');
+          productCard.querySelector('.minicart-product__remove').classList.add('minicart-product__remove--refresh');
+        }
+
         productCard.setAttribute('data-id', product.id);
 
         if(product.count === 1) {
@@ -63,17 +60,31 @@ export function init() {
         cartItem.querySelector('.js-counter-total').textContent = product.count ? product.count : 1;
 
         fragment.appendChild(cartItem);
-        totalCartItemsPrice += (Number(product.price) * (product.count ? product.count : 1));
+
+        if(!product.predeleted) {
+          totalCartItemsPrice += (Number(product.price) * (product.count ? product.count : 1));
+          totalCartItemsCount += 1;
+        }
       });
 
-      parentNode.appendChild(fragment);
+      minicartContainer.appendChild(fragment);
 
-      minicartTotalCount.textContent = totalCartItemsCount + countLibrary(totalCartItemsCount);
-      minicartTotalPrice.textContent = totalCartItemsPrice;
+      minicartTotalCountNode.textContent = totalCartItemsCount + countLibrary(totalCartItemsCount);
+      minicartTotalPriceNode.textContent = totalCartItemsPrice;
       cartOpenerButton.textContent = totalCartItemsCount;
 
+      if(totalCartItemsCount === 0) {
+        removeAllBtn.classList.add('minicart-remove-all-refresh');
+        removeAllBtn.textContent = 'восстановить';
+        cartOpenerButton.setAttribute('disabled', true);
+      } else {
+        removeAllBtn.classList.remove('minicart-remove-all-refresh');
+        removeAllBtn.textContent = 'очистить все';
+        cartOpenerButton.removeAttribute('disabled');
+      }
+
       initCounters();
-      cartBtnsInit(parentNode);
+      cartBtnsInit(minicartContainer);
     } else {
       minicartButtonDisabling(true);
     }

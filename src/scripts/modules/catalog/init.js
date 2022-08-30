@@ -1,9 +1,18 @@
 import { initCartAddButtons } from "./addToCart";
+import { initCatalogFilter } from "./filtration";
+import { ls, catalogStorageField } from "../../utils/localStorageHelper";
 
-export function init(data) {
-    let node = document.querySelector('.catalog__content');
-    let template = document.querySelector('#product-card-template');
-    let catalog = node.querySelector('.catalog__list');
+export function init() {
+    let data = ls('get', catalogStorageField);
+    const fragment = document.createDocumentFragment();
+    const template = document.querySelector('#product-card-template');
+
+    const catalogContainer = document.querySelector('.catalog__list');
+    const catalogItems = catalogContainer.querySelectorAll('.catalog__list-item');
+
+    if(catalogItems.length) {
+      catalogItems.forEach(item => item.remove());
+    }
 
     data.forEach(item => {
       let catalogItem = template.content.cloneNode(true);
@@ -17,9 +26,11 @@ export function init(data) {
       catalogItem.querySelector('.product-card__content h2').textContent = item.title;
       catalogItem.querySelector('.product-card__footer span').textContent = item.price;
 
-      catalog.appendChild(catalogItem);
-      node.appendChild(catalog);
+      fragment.appendChild(catalogItem);
     })
 
+    catalogContainer.appendChild(fragment);
+
     initCartAddButtons();
+    initCatalogFilter();
 };

@@ -1,26 +1,29 @@
-import { storage, cartFieldName } from "../../utils/nodesHelper";
-import { mock } from "./mockData";
-import { init as initMinicart } from "../minicart/minicartInit.js";
+//import { mock } from "./mockData";
+
+import { init as initMinicart } from "../minicart/init.js";
 import { changeItemCount } from "../minicart/changeItemCount.js";
 import { isMinicartButtonDisabled, minicartButtonDisabling } from "../minicart/minicartButtonDisabling";
+import { ls, cartStorageField, catalogStorageField } from "../../utils/localStorageHelper";
 
 function addCartItem(id, items = null) {
+  let mock = ls('get', catalogStorageField);
+
   if(items) {
-    let product = mock[id-1];
+    let product = mock.find(item => item.id === id);
     product.count = 1;
     let updated = [...items, product];
 
-    storage.removeItem(cartFieldName);
-    storage.setItem(cartFieldName, JSON.stringify(updated));
+    ls('update', cartStorageField, updated);
 
     initMinicart();
   } else {
+    console.log('heare')
     let products = [];
-    let product = mock[id-1];
+    let product = mock.find(item => item.id === id);
     product.count = 1;
     products.push(product);
 
-    storage.setItem(cartFieldName, JSON.stringify(products));
+    ls('update', cartStorageField, products)
     initMinicart();
   }
 };
@@ -31,15 +34,15 @@ const onClickHandler = (evt) => {
   }
 
   let itemID = Number(evt.currentTarget.closest('.product-card').dataset.id);
-  let storeItems = JSON.parse(storage.getItem(cartFieldName));
+  let storeItems = ls('get', cartStorageField);
 
-  if(storeItems) {
+  if(storeItems.length) {
     let isExist = storeItems.find(item => item.id === itemID);
 
-    if(!!isExist === false) {
+    if(!isExist) {
       addCartItem(itemID,storeItems);
     } else {
-      changeItemCount('inc', itemID,storeItems);
+      changeItemCount('inc', itemID, storeItems);
     }
   } else {
     addCartItem(itemID);

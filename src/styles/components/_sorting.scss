@@ -35,8 +35,7 @@
         &::after {display: none;}
         transition: background-color var(--main-t-rules);
 
-        &:hover,
-        &:focus {
+        &:hover {
           background-color: var(--green-color);
         }
       }

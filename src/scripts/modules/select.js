@@ -28,6 +28,7 @@ function refresh() {
 const onClickSetActiveOption = (evt) => {
   sorting(evt.target.dataset.sort);
   selected.innerHTML = evt.target.innerHTML;
+  selected.dataset.activeSort = evt.target.dataset.sort;
 
   refresh();
 };
@@ -46,6 +47,7 @@ const onClickByOverlayCloseSortList = (evt) => {
 
 const onClickOpenSortList = (evt) => {
   evt.stopPropagation();
+  console.log(evt.target.dataset.activeSort)
 
   select.classList.add('is-opened');
   catalogHeader.style.zIndex = '103';

@@ -1,3 +1,3 @@
-import { init } from "./minicart/minicartInit";
+import { init } from "./minicart/init";
 
 init();

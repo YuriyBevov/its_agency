@@ -1,34 +1,36 @@
 
-import { mock } from "./catalog/mockData.js";
+import { initialMockData } from "./catalog/mockData.js";
 import { init as catalogInit } from "./catalog/init.js";
-import { init as initMinicart} from "./minicart/minicartInit.js";
+import { init as initMinicart} from "./minicart/init.js";
 import { randomInteger } from "../utils/helpers.js";
-import { cartFieldName, storage } from "../utils/nodesHelper.js";
+import { ls, cartStorageField, catalogStorageField } from "../utils/localStorageHelper";
 
-catalogInit(mock);
+let data = initialMockData;
+ls('update', catalogStorageField, initialMockData);
+
+catalogInit();
 
 function fillCartMockFromStorage() {
   let products = [];
   let count = 2;
 
   for(let i = 0; i < count; i++) {
-    let random = randomInteger(0, mock.length - 1);
+    let random = randomInteger(0, data.length - 1);
     //добавляю рандомное кол-во товара в корзине
-    mock[random].count = randomInteger(1, 5);
+    data[random].count = randomInteger(1, 5);
 
-    products.push(mock[random]);
+    products.push(data[random]);
   }
 
   return [...new Set(products)];
 };
 
-if(storage.getItem(cartFieldName)) {
-  storage.removeItem(cartFieldName);
-  storage.setItem(cartFieldName, JSON.stringify(fillCartMockFromStorage()) );
-
+if(ls('get', cartStorageField)) {
+  ls('update', cartStorageField, fillCartMockFromStorage())
   initMinicart();
 } else {
-  storage.setItem(cartFieldName, JSON.stringify(fillCartMockFromStorage()) );
+  console.log('CATALOG ELSE')
+  ls('set', cartStorageField, fillCartMockFromStorage());
 
   initMinicart();
 };
