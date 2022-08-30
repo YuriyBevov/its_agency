@@ -12,7 +12,7 @@ catalogInit();
 
 function fillCartMockFromStorage() {
   let products = [];
-  let count = 2;
+  let count = 4;
 
   for(let i = 0; i < count; i++) {
     let random = randomInteger(0, data.length - 1);
@@ -25,7 +25,8 @@ function fillCartMockFromStorage() {
   return [...new Set(products)];
 };
 
-if(ls('get', cartStorageField)) {
+if(ls('get', cartStorageField).length) {
+  console.log('length', ls('get', cartStorageField), ls('get', cartStorageField).length)
   ls('update', cartStorageField, fillCartMockFromStorage())
   initMinicart();
 } else {

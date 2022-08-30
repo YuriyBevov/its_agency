@@ -41,5 +41,5 @@ function generateMockData() {
 }
 
 generateMockData();
-
+console.log(mockArray);
 export let initialMockData = mockArray.sort((a,b) => Number(b.price) - Number(a.price));

@@ -9,6 +9,7 @@ function addCartItem(id, items = null) {
   let mock = ls('get', catalogStorageField);
 
   if(items) {
+    console.log('items exist', items)
     let product = mock.find(item => item.id === id);
     product.count = 1;
     let updated = [...items, product];
@@ -17,7 +18,7 @@ function addCartItem(id, items = null) {
 
     initMinicart();
   } else {
-    console.log('heare')
+    console.log('items exist not', items)
     let products = [];
     let product = mock.find(item => item.id === id);
     product.count = 1;
@@ -39,6 +40,7 @@ const onClickHandler = (evt) => {
   if(storeItems.length) {
     let isExist = storeItems.find(item => item.id === itemID);
 
+    console.log(isExist)
     if(!isExist) {
       addCartItem(itemID,storeItems);
     } else {

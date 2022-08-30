@@ -36,6 +36,7 @@ export function init() {
         let cartItem = template.content.cloneNode(true);
 
         const productCard = cartItem.querySelector('.minicart-product');
+        console.log(product.predeleted, !product.predeleted, !!product.predeleted);
 
         if(!!product.predeleted) {
           productCard.classList.add('predeleted');

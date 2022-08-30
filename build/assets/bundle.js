@@ -50,7 +50,7 @@ var data = _catalog_mockData_js__WEBPACK_IMPORTED_MODULE_0__.initialMockData;
 
 function fillCartMockFromStorage() {
   var products = [];
-  var count = 2;
+  var count = 4;
 
   for (var i = 0; i < count; i++) {
     var random = (0,_utils_helpers_js__WEBPACK_IMPORTED_MODULE_3__.randomInteger)(0, data.length - 1); //добавляю рандомное кол-во товара в корзине
@@ -64,7 +64,8 @@ function fillCartMockFromStorage() {
 
 ;
 
-if ((0,_utils_localStorageHelper__WEBPACK_IMPORTED_MODULE_4__.ls)('get', _utils_localStorageHelper__WEBPACK_IMPORTED_MODULE_4__.cartStorageField)) {
+if ((0,_utils_localStorageHelper__WEBPACK_IMPORTED_MODULE_4__.ls)('get', _utils_localStorageHelper__WEBPACK_IMPORTED_MODULE_4__.cartStorageField).length) {
+  console.log('length', (0,_utils_localStorageHelper__WEBPACK_IMPORTED_MODULE_4__.ls)('get', _utils_localStorageHelper__WEBPACK_IMPORTED_MODULE_4__.cartStorageField), (0,_utils_localStorageHelper__WEBPACK_IMPORTED_MODULE_4__.ls)('get', _utils_localStorageHelper__WEBPACK_IMPORTED_MODULE_4__.cartStorageField).length);
   (0,_utils_localStorageHelper__WEBPACK_IMPORTED_MODULE_4__.ls)('update', _utils_localStorageHelper__WEBPACK_IMPORTED_MODULE_4__.cartStorageField, fillCartMockFromStorage());
   (0,_minicart_init_js__WEBPACK_IMPORTED_MODULE_2__.init)();
 } else {
@@ -114,6 +115,7 @@ function addCartItem(id) {
   var mock = (0,_utils_localStorageHelper__WEBPACK_IMPORTED_MODULE_3__.ls)('get', _utils_localStorageHelper__WEBPACK_IMPORTED_MODULE_3__.catalogStorageField);
 
   if (items) {
+    console.log('items exist', items);
     var product = mock.find(function (item) {
       return item.id === id;
     });
@@ -122,7 +124,7 @@ function addCartItem(id) {
     (0,_utils_localStorageHelper__WEBPACK_IMPORTED_MODULE_3__.ls)('update', _utils_localStorageHelper__WEBPACK_IMPORTED_MODULE_3__.cartStorageField, updated);
     (0,_minicart_init_js__WEBPACK_IMPORTED_MODULE_0__.init)();
   } else {
-    console.log('heare');
+    console.log('items exist not', items);
     var products = [];
 
     var _product = mock.find(function (item) {
@@ -150,6 +152,7 @@ var onClickHandler = function onClickHandler(evt) {
     var isExist = storeItems.find(function (item) {
       return item.id === itemID;
     });
+    console.log(isExist);
 
     if (!isExist) {
       addCartItem(itemID, storeItems);
@@ -338,6 +341,7 @@ function generateMockData() {
 }
 
 generateMockData();
+console.log(mockArray);
 var initialMockData = mockArray.sort(function (a, b) {
   return Number(b.price) - Number(a.price);
 });
@@ -418,15 +422,15 @@ function initCounters() {
       var storeItems = (0,_utils_localStorageHelper_js__WEBPACK_IMPORTED_MODULE_1__.ls)('get', _utils_localStorageHelper_js__WEBPACK_IMPORTED_MODULE_1__.cartStorageField);
 
       if (operationType === 'dec') {
-        value--;
         (0,_minicart_changeItemCount_js__WEBPACK_IMPORTED_MODULE_0__.changeItemCount)('dec', itemID, storeItems);
+        value--;
         console.log(value, 'dec');
       } else {
-        value++;
         (0,_minicart_changeItemCount_js__WEBPACK_IMPORTED_MODULE_0__.changeItemCount)('inc', itemID, storeItems);
+        value++;
       }
 
-      counter.innerHTML = value;
+      counter.textContent = value;
     };
 
     var onClickDecValue = function onClickDecValue(evt) {
@@ -500,7 +504,16 @@ function changeItemCount(type, id, items) {
   var current = items.find(function (item) {
     return item.id === id;
   });
-  type === 'inc' ? current.count++ : current.count--;
+  /*type === 'inc' ?
+  current.count++ : current.count--;*/
+
+  console.log('ITEMS:', items, id);
+
+  if (type === 'inc') {
+    current.count++;
+  } else if (type === 'dec') {
+    current.count--;
+  }
 
   var updated = _toConsumableArray(items);
 
@@ -685,6 +698,7 @@ function init() {
       data.forEach(function (product) {
         var cartItem = template.content.cloneNode(true);
         var productCard = cartItem.querySelector('.minicart-product');
+        console.log(product.predeleted, !product.predeleted, !!product.predeleted);
 
         if (!!product.predeleted) {
           productCard.classList.add('predeleted');
@@ -1040,8 +1054,8 @@ var Modal = /*#__PURE__*/function () {
 
     _defineProperty(this, "handleGestureStart", function (evt) {
       evt.preventDefault();
-      document.addEventListener('mousemove', _this.handleGestureMove, true);
-      document.addEventListener('mouseup', _this.handleGestureEnd, true);
+      document.addEventListener('mousemove', _this.handleGestureMove, false);
+      document.addEventListener('mouseup', _this.handleGestureEnd, false);
       _this.initialTouchPos = _this.getGesturePointFromEvent(evt);
       _this.swipeArea.style.transition = 'initial';
     });
@@ -1071,8 +1085,8 @@ var Modal = /*#__PURE__*/function () {
       }
 
       _this.rafPending = false;
-      document.removeEventListener('mousemove', _this.handleGestureMove, true);
-      document.removeEventListener('mouseup', _this.handleGestureEnd, true);
+      document.removeEventListener('mousemove', _this.handleGestureMove, false);
+      document.removeEventListener('mouseup', _this.handleGestureEnd, false);
 
       _this.updateSwipeRestPosition();
 
@@ -1092,15 +1106,15 @@ var Modal = /*#__PURE__*/function () {
       }
 
       if (_this.swipe) {
-        _this.swipeArea.addEventListener('touchstart', _this.handleGestureStart, true);
+        _this.swipeArea.addEventListener('touchstart', _this.handleGestureStart, false);
 
-        _this.swipeArea.addEventListener('touchmove', _this.handleGestureMove, true);
+        _this.swipeArea.addEventListener('touchmove', _this.handleGestureMove, false);
 
-        _this.swipeArea.addEventListener('touchend', _this.handleGestureEnd, true);
+        _this.swipeArea.addEventListener('touchend', _this.handleGestureEnd, false);
 
-        _this.swipeArea.addEventListener('touchcancel', _this.handleGestureEnd, true);
+        _this.swipeArea.addEventListener('touchcancel', _this.handleGestureEnd, false);
 
-        _this.swipeArea.addEventListener('mousedown', _this.handleGestureStart, true);
+        _this.swipeArea.addEventListener('mousedown', _this.handleGestureStart, false);
 
         _this.updateSwipeRestPositionPaused = false;
       }
@@ -1118,15 +1132,15 @@ var Modal = /*#__PURE__*/function () {
         }
 
         if (_this.swipe) {
-          _this.swipeArea.removeEventListener('touchstart', _this.handleGestureStart, true);
+          _this.swipeArea.removeEventListener('touchstart', _this.handleGestureStart, false);
 
-          _this.swipeArea.removeEventListener('touchmove', _this.handleGestureMove, true);
+          _this.swipeArea.removeEventListener('touchmove', _this.handleGestureMove, false);
 
-          _this.swipeArea.removeEventListener('touchend', _this.handleGestureEnd, true);
+          _this.swipeArea.removeEventListener('touchend', _this.handleGestureEnd, false);
 
-          _this.swipeArea.removeEventListener('touchcancel', _this.handleGestureEnd, true);
+          _this.swipeArea.removeEventListener('touchcancel', _this.handleGestureEnd, false);
 
-          _this.swipeArea.removeEventListener('mousedown', _this.handleGestureStart, true);
+          _this.swipeArea.removeEventListener('mousedown', _this.handleGestureStart, false);
         }
 
         _this.overlay.classList.add('is-closing');

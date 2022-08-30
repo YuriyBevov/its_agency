@@ -14,15 +14,15 @@ export function initCounters() {
           let storeItems = ls('get', cartStorageField)
 
           if(operationType === 'dec') {
-            value--;
             changeItemCount('dec', itemID, storeItems);
+            value--;
             console.log(value, 'dec');
           } else {
-            value++;
             changeItemCount('inc', itemID, storeItems);
+            value++;
           }
 
-          counter.innerHTML = value;
+          counter.textContent = value;
       }
 
       const onClickDecValue = (evt) => {
