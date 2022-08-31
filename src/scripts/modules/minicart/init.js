@@ -82,9 +82,8 @@ export function init() {
   itemsCount = 0;
   totalPrice = 0;
 
-  let data = ls('get', cartStorageField);
+  const data = ls('get', cartStorageField);
 
-  console.log('MINICART INIT: ', data);
   if(data) {
     if(minicartContainer.querySelector('.minicart__content-item')) {
       let childNodes = minicartContainer.querySelectorAll('.minicart__content-item');

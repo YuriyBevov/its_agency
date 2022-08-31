@@ -64,7 +64,7 @@
     height: 100%;
 
     padding: 40px;
-    padding-top: 32px;
+    padding-top: 0;
 
     background-color: var(--white-color);
 
@@ -75,7 +75,7 @@
       max-width: 320px;
 
       padding: 20px;
-      padding-top: 26px;
+      padding-top: 0;
     }
   }
 
@@ -84,6 +84,11 @@
     align-items: center;
     justify-content: space-between;
     margin-bottom: 70px;
+    padding-top: 32px;
+
+    @include m-b-tablet-down {
+      padding: 26px;
+    }
 
     span {
       font-weight: 500;
@@ -107,10 +112,17 @@
   &__content {
 
     &-header {
+      position: sticky;
+      top: 0;
+      left: 0;
+
       @extend .flex-wrap;
       align-items: center;
       justify-content: space-between;
       padding: 10px 0;
+
+      background-color: var(--white-color);
+      z-index: 2;
 
       span {
         font-weight: 400;

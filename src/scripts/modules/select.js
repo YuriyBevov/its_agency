@@ -47,7 +47,6 @@ const onClickByOverlayCloseSortList = (evt) => {
 
 const onClickOpenSortList = (evt) => {
   evt.stopPropagation();
-  console.log(evt.target.dataset.activeSort)
 
   select.classList.add('is-opened');
   catalogHeader.style.zIndex = '103';
