@@ -1,4 +1,4 @@
-import { init as catalogInit } from "./init";
+/*import { init as catalogInit } from "./init";
 import { ls, catalogStorageField } from "../../utils/localStorageHelper";
 
 export function sorting (type) {
@@ -20,4 +20,4 @@ export function sorting (type) {
   }
 
   catalogInit();
-};
+};*/

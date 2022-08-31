@@ -10,13 +10,13 @@ export function initCounters() {
       const maxValue = 99;
 
       const setValue = (operationType, value, counter, target) => {
+
           let itemID = Number(target.closest('.minicart-product').dataset.id);
           let storeItems = ls('get', cartStorageField)
 
           if(operationType === 'dec') {
             changeItemCount('dec', itemID, storeItems);
             value--;
-            console.log(value, 'dec');
           } else {
             changeItemCount('inc', itemID, storeItems);
             value++;

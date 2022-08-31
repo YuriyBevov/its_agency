@@ -1,8 +1,8 @@
 //import { mock } from "./mockData";
 
-import { init as initMinicart } from "../minicart/init.js";
+/*import { init as initMinicart } from "../minicart/init.js";
 import { changeItemCount } from "../minicart/changeItemCount.js";
-import { isMinicartButtonDisabled, minicartButtonDisabling } from "../minicart/minicartButtonDisabling";
+import { isMinicartButtonDisabled, minicartButtonDisabling } from "../minicart/minicartOpenerToggler";
 import { ls, cartStorageField, catalogStorageField } from "../../utils/localStorageHelper";
 
 function addCartItem(id, items = null) {
@@ -57,4 +57,4 @@ export function initCartAddButtons() {
   btns.forEach(btn => {
     btn.addEventListener('click', onClickHandler);
   })
-}
+}*/

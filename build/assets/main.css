@@ -2749,13 +2749,13 @@ button:disabled {
     top: 115px;
   }
 }
-.catalog__content-header .items-count {
+.catalog__content-header .catalog-total {
   font-weight: 500;
   letter-spacing: 0.06em;
   text-transform: uppercase;
 }
 @media (max-width: 768px) {
-  .catalog__content-header .items-count {
+  .catalog__content-header .catalog-total {
     display: none;
   }
 }

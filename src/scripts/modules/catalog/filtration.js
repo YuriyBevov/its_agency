@@ -1,4 +1,4 @@
-import { initialMockData } from "./mockData";
+/*import { initialMockData } from "../../utils/mockData";
 import { ls, catalogStorageField } from "../../utils/localStorageHelper";
 import { sorting } from "./sorting";
 
@@ -43,4 +43,4 @@ export function initCatalogFilter() {
   filters.forEach(filter => {
     filter.addEventListener('click', onClickActivateFiltration);
   })
-}
+}*/

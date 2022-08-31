@@ -1,20 +1,12 @@
-import { init as initMinicart } from "./init.js";
+import { init as minicartInit } from "./init.js";
 import { ls, cartStorageField } from "../../utils/localStorageHelper.js";
 
 export function changeItemCount(type, id, items) {
-    let current = items.find(item => item.id === id);
+  let target = items.find(item => item.id === id);
 
-    /*type === 'inc' ?
-    current.count++ : current.count--;*/
-    console.log('ITEMS:', items, id)
-    if(type === 'inc') {
-      current.count++;
-    } else if(type === 'dec') {
-      current.count--;
-    }
+  type === 'inc' ?
+  target.count++ : target.count-- ;
 
-    let updated = [...items];
-
-    ls('update', cartStorageField, updated);
-    initMinicart();
-}
+  ls('update', cartStorageField, items);
+  minicartInit();
+};

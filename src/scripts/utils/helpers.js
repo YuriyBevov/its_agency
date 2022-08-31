@@ -168,4 +168,22 @@ function randomInteger(min, max) {
   return Math.floor(rand);
 }
 
-export  { randomInteger, setVieportHeight, debounce, setDebounce, focusTrap, getCssPropertyValue, setCssProperty, lerp, getMousePos, getRadians,limitStr, addClass, removeClass, checkClass, toggleClass, bodyLocker, getBoundingClientRect }
+function getRandomDate() {
+  const maxDate = Date.now();
+  const timestamp = Math.floor(Math.random() * maxDate);
+  return new Date(timestamp);
+}
+
+const getRandomDateInterval = (start, end) => {
+  return new Date(
+    start.getTime() + Math.random() * (end.getTime() - start.getTime())
+  );
+};
+
+function getBoolean(num) {
+  let bool = false;
+  num === 1 ? bool = true : null;
+  return bool;
+}
+
+export  { getRandomDate, getRandomDateInterval, getBoolean, randomInteger, setVieportHeight, debounce, setDebounce, focusTrap, getCssPropertyValue, setCssProperty, lerp, getMousePos, getRadians,limitStr, addClass, removeClass, checkClass, toggleClass, bodyLocker, getBoundingClientRect }
