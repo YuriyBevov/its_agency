@@ -184,3 +184,14 @@
     opacity: 0.7;
   }
 }
+
+/*symbols*/
+
+.ruble-symbol {
+  &::after {
+    position: relative;
+    top: 0;
+    right: 0;
+    content: " \20BD"
+  }
+}

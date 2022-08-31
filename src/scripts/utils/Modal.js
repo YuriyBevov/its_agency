@@ -16,6 +16,8 @@ export class Modal {
       this.isInited = false;
       this.overlay = this.modal.parentNode;
       this.close = this.modal.querySelector('.js-modal-close');
+      this.refreshOnWidth = options.refreshOnWidth ? options.refreshOnWidth : null;
+      this.refreshWidth = options.refreshWidth ? options.refreshWidth : null;
       this.focusableElements = [
         'a[href]',
         'input',
@@ -110,6 +112,7 @@ export class Modal {
       if(differenceInY > this.swipeDistance) {
         this.updateSwipeRestPositionPaused = true;
         this.refresh();
+
       }
     }
 
@@ -117,13 +120,14 @@ export class Modal {
   }
 
   updateSwipeRestPosition = () => {
-    if(this.updateSwipeRestPositionPaused) {
+    /*if(this.updateSwipeRestPositionPaused) {
       setTimeout(() => {
         this.swipeArea.style.bottom = 'calc(-100% - 75px)';
       }, 600);
     } else {
       this.swipeArea.style.bottom = 'calc(-100% - 75px)';
-    }
+    }*/
+    this.swipeArea.style.bottom = 'calc(-100% - 75px)';
   }
 
   handleGestureStart = (evt) => {
@@ -178,6 +182,7 @@ export class Modal {
 
       document.addEventListener('click', this.closeByOverlayClick);
       document.addEventListener('keydown', this.closeByEscBtn);
+
       if(this.close) {
         this.close.addEventListener('click', this.closeByBtnClick);
       }
@@ -211,6 +216,9 @@ export class Modal {
         this.swipeArea.removeEventListener('touchcancel', this.handleGestureEnd, true);
 
         this.swipeArea.removeEventListener('mousedown', this.handleGestureStart, true);
+        setTimeout(() => {
+          this.swipeArea.style.bottom = 'calc(-100% - 75px)';
+        }, 600);
       }
 
       this.overlay.classList.add('is-closing');
@@ -251,6 +259,14 @@ export class Modal {
         this.addListeners();
         this.focusTrap();
         this.bodyLocker(true);
+      }
+
+      if(this.refreshOnWidth) {
+        window.addEventListener('resize', () => {
+          if(window.innerWidth > this.refreshWidth) {
+            this.refresh();
+          }
+        })
       }
   }
 

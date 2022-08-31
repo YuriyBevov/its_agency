@@ -171,6 +171,8 @@
         font-size: 30px;
         line-height: 1;
         letter-spacing: -0.02em;
+
+        @extend .ruble-symbol;
       }
 
       @include m-b-tablet-down {

@@ -1,3 +1,4 @@
+@charset "UTF-8";
 /* base */
 /* stylelint-disable */
 /* stylelint-disable */
@@ -1539,6 +1540,14 @@ button:disabled {
   opacity: 0.7;
 }
 
+/*symbols*/
+.ruble-symbol::after, .minicart-product__desc span::after, .product-card__footer span::after, .minicart__footer-total b::after {
+  position: relative;
+  top: 0;
+  right: 0;
+  content: " ₽";
+}
+
 .lw-text-xxl {
   font-size: var(--text-xxl);
   font-weight: 400;
@@ -1827,6 +1836,7 @@ button:disabled {
   margin-right: 142px;
 }
 .main-logo svg {
+  stroke: none;
   fill: var(--main-color);
 }
 @media (max-width: 1440px) {
@@ -1835,6 +1845,12 @@ button:disabled {
     -webkit-box-flex: 1;
     -ms-flex-positive: 1;
     flex-grow: 1;
+  }
+}
+@media (max-width: 768px) {
+  .main-logo svg {
+    width: 99px;
+    height: 21px;
   }
 }
 
@@ -2305,6 +2321,7 @@ button:disabled {
 }
 .product-card__header img {
   width: 100%;
+  max-width: 300px;
 }
 .product-card__content {
   margin-bottom: 5px;
@@ -2401,9 +2418,6 @@ button:disabled {
   display: none;
 }
 
-.filter {
-  z-index: 10000;
-}
 .filter__item {
   margin-bottom: 10px;
   width: 100%;
@@ -2460,7 +2474,7 @@ button:disabled {
     background-color: var(--white-color);
     position: absolute;
     width: 100%;
-    height: 425px;
+    height: 450px;
     max-height: 75vh;
     bottom: calc(-100% - 75px);
     left: 0;
@@ -2751,7 +2765,7 @@ button:disabled {
   padding: 20px 0;
   margin-bottom: 10px;
   position: sticky;
-  top: 100px;
+  top: 95px;
   background-color: var(--white-color);
   z-index: 100;
 }

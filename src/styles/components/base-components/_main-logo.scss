@@ -4,12 +4,21 @@
   width: fit-content;
   min-height: 40px;
   margin-right: 142px;
+
   svg {
+    stroke: none;
     fill: var(--main-color);
   }
 
   @include m-b-desktop-down {
     margin: 0 auto;
     flex-grow: 1;
+  }
+
+  @include m-b-tablet-down {
+    svg {
+      width: 99px;
+      height: 21px;
+    }
   }
 }

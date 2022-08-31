@@ -6,6 +6,7 @@
 
     img {
       width: 100%;
+      max-width: 300px;
     }
 
     margin-bottom: 16px;
@@ -34,6 +35,8 @@
     span {
       font-weight: 600;
       line-height: 1;
+
+      @extend .ruble-symbol;
     }
   }
 

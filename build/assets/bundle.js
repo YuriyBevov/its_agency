@@ -768,7 +768,9 @@ if (modals) {
     if (modal.classList.contains('filter')) {
       new _utils_Modal_js__WEBPACK_IMPORTED_MODULE_0__.Modal(modal, {
         swipe: true,
-        swipeArea: '.filter'
+        swipeArea: '.filter',
+        refreshOnWidth: true,
+        refreshWidth: 768
       });
     } else {
       new _utils_Modal_js__WEBPACK_IMPORTED_MODULE_0__.Modal(modal);
@@ -1010,13 +1012,14 @@ var Modal = /*#__PURE__*/function () {
     });
 
     _defineProperty(this, "updateSwipeRestPosition", function () {
-      if (_this.updateSwipeRestPositionPaused) {
-        setTimeout(function () {
-          _this.swipeArea.style.bottom = 'calc(-100% - 75px)';
+      /*if(this.updateSwipeRestPositionPaused) {
+        setTimeout(() => {
+          this.swipeArea.style.bottom = 'calc(-100% - 75px)';
         }, 600);
       } else {
-        _this.swipeArea.style.bottom = 'calc(-100% - 75px)';
-      }
+        this.swipeArea.style.bottom = 'calc(-100% - 75px)';
+      }*/
+      _this.swipeArea.style.bottom = 'calc(-100% - 75px)';
     });
 
     _defineProperty(this, "handleGestureStart", function (evt) {
@@ -1106,6 +1109,10 @@ var Modal = /*#__PURE__*/function () {
           _this.swipeArea.removeEventListener('touchcancel', _this.handleGestureEnd, true);
 
           _this.swipeArea.removeEventListener('mousedown', _this.handleGestureStart, true);
+
+          setTimeout(function () {
+            _this.swipeArea.style.bottom = 'calc(-100% - 75px)';
+          }, 600);
         }
 
         _this.overlay.classList.add('is-closing');
@@ -1154,6 +1161,14 @@ var Modal = /*#__PURE__*/function () {
 
         _this.bodyLocker(true);
       }
+
+      if (_this.refreshOnWidth) {
+        window.addEventListener('resize', function () {
+          if (window.innerWidth > _this.refreshWidth) {
+            _this.refresh();
+          }
+        });
+      }
     });
 
     this.options = options;
@@ -1170,6 +1185,8 @@ var Modal = /*#__PURE__*/function () {
     this.isInited = false;
     this.overlay = this.modal.parentNode;
     this.close = this.modal.querySelector('.js-modal-close');
+    this.refreshOnWidth = options.refreshOnWidth ? options.refreshOnWidth : null;
+    this.refreshWidth = options.refreshWidth ? options.refreshWidth : null;
     this.focusableElements = ['a[href]', 'input', 'select', 'textarea', 'button', 'iframe', '[contenteditable]', '[tabindex]:not([tabindex^="-"])'];
     this.debounce = false;
     this.debounceTime = 750;
