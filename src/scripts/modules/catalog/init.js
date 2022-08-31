@@ -2,7 +2,7 @@ import { mock } from "../../utils/mockData";
 import { initCartAddButtons } from "./addToCart";
 import { initCatalogFilter } from "./filtration";
 import { ls, catalogStorageField } from "../../utils/localStorageHelper";
-import { catalogContainer, catalogTotal } from "../../utils/nodesHelper.js";
+import { catalogContainer, catalogTotal, catalogContent } from "../../utils/nodesHelper.js";
 import { countLibrary } from "../../utils/countLibrary.js";
 import { fillMinicartInitialState } from "../minicart/fillMinicartInitialState.js";
 
@@ -11,22 +11,34 @@ function fillCatalogTemplate(data) {
   const template = document.querySelector('#product-card-template');
   catalogTotal.textContent = data.length + countLibrary(data.length);
 
-  data.forEach(item => {
-    const catalogItem = template.content.cloneNode(true);
+  if(!data.length && !document.querySelector('.empty-catalog-note')) {
+    let div = document.createElement('div');
+    div.classList.add('empty-catalog-note');
 
-    catalogItem.querySelector('.product-card').setAttribute('data-id', item.id);
-    catalogItem.querySelector('picture source')
-      .setAttribute('srcset', `./assets/img/${item.img}@1x.webp 1x, ./assets/img/${item.img}@2x.webp 2x`);
-    catalogItem.querySelector('picture img')
-      .setAttribute('src', `./assets/img/${item.img}@1x.jpg 1x, ./assets/img/${item.img}@2x.jpg 2x`);
+    let text = document.createElement('span');
+    text.classList.add('lw-text-sm');
+    text.textContent = 'Не удалось найти товары соответствующие заданным фильтрам... Попробуйте изменить параметры фильтрации !';
 
-    catalogItem.querySelector('.product-card__content h2').textContent = item.title;
-    catalogItem.querySelector('.product-card__footer span').textContent = item.price;
+    div.appendChild(text);
+    catalogContent.appendChild(div);
+  } else {
+    data.forEach(item => {
+      const catalogItem = template.content.cloneNode(true);
 
-    fragment.appendChild(catalogItem);
-  })
+      catalogItem.querySelector('.product-card').setAttribute('data-id', item.id);
+      catalogItem.querySelector('picture source')
+        .setAttribute('srcset', `./assets/img/${item.img}@1x.webp 1x, ./assets/img/${item.img}@2x.webp 2x`);
+      catalogItem.querySelector('picture img')
+        .setAttribute('src', `./assets/img/${item.img}@1x.jpg 1x, ./assets/img/${item.img}@2x.jpg 2x`);
 
-  catalogContainer.appendChild(fragment);
+      catalogItem.querySelector('.product-card__content h2').textContent = item.title;
+      catalogItem.querySelector('.product-card__footer span').textContent = item.price;
+
+      fragment.appendChild(catalogItem);
+    })
+
+    catalogContainer.appendChild(fragment);
+  }
 
   initCartAddButtons(data);
   initCatalogFilter();

@@ -127,9 +127,9 @@ export class Modal {
   }
 
   handleGestureStart = (evt) => {
-    evt.preventDefault();
-    document.addEventListener('mousemove', this.handleGestureMove, false);
-    document.addEventListener('mouseup', this.handleGestureEnd, false);
+    //evt.preventDefault();
+    document.addEventListener('mousemove', this.handleGestureMove, true);
+    document.addEventListener('mouseup', this.handleGestureEnd, true);
 
     this.initialTouchPos = this.getGesturePointFromEvent(evt);
     this.swipeArea.style.transition = 'initial';
@@ -137,7 +137,7 @@ export class Modal {
 
 
   handleGestureMove = (evt) => {
-    evt.preventDefault();
+    //evt.preventDefault();
 
     if (this.initialTouchPos === null) {
       return;
@@ -155,7 +155,7 @@ export class Modal {
   }
 
   handleGestureEnd = (evt) => {
-    evt.preventDefault();
+    //evt.preventDefault();
 
     if (evt.touches && evt.touches.length > 0) {
       return;
@@ -163,8 +163,8 @@ export class Modal {
 
     this.rafPending = false;
 
-    document.removeEventListener('mousemove', this.handleGestureMove, false);
-    document.removeEventListener('mouseup', this.handleGestureEnd, false);
+    document.removeEventListener('mousemove', this.handleGestureMove, true);
+    document.removeEventListener('mouseup', this.handleGestureEnd, true);
 
     this.updateSwipeRestPosition();
 
@@ -183,12 +183,12 @@ export class Modal {
       }
 
       if(this.swipe) {
-        this.swipeArea.addEventListener('touchstart', this.handleGestureStart, false);
-        this.swipeArea.addEventListener('touchmove', this.handleGestureMove, false);
-        this.swipeArea.addEventListener('touchend', this.handleGestureEnd, false);
-        this.swipeArea.addEventListener('touchcancel', this.handleGestureEnd, false);
+        this.swipeArea.addEventListener('touchstart', this.handleGestureStart, true);
+        this.swipeArea.addEventListener('touchmove', this.handleGestureMove, true);
+        this.swipeArea.addEventListener('touchend', this.handleGestureEnd, true);
+        this.swipeArea.addEventListener('touchcancel', this.handleGestureEnd, true);
 
-        this.swipeArea.addEventListener('mousedown', this.handleGestureStart, false);
+        this.swipeArea.addEventListener('mousedown', this.handleGestureStart, true);
 
         this.updateSwipeRestPositionPaused = false;
       }
@@ -205,12 +205,12 @@ export class Modal {
       }
 
       if(this.swipe) {
-          this.swipeArea.removeEventListener('touchstart', this.handleGestureStart, false);
-          this.swipeArea.removeEventListener('touchmove', this.handleGestureMove, false);
-          this.swipeArea.removeEventListener('touchend', this.handleGestureEnd, false);
-          this.swipeArea.removeEventListener('touchcancel', this.handleGestureEnd, false);
+        this.swipeArea.removeEventListener('touchstart', this.handleGestureStart, true);
+        this.swipeArea.removeEventListener('touchmove', this.handleGestureMove, true);
+        this.swipeArea.removeEventListener('touchend', this.handleGestureEnd, true);
+        this.swipeArea.removeEventListener('touchcancel', this.handleGestureEnd, true);
 
-          this.swipeArea.removeEventListener('mousedown', this.handleGestureStart, false);
+        this.swipeArea.removeEventListener('mousedown', this.handleGestureStart, true);
       }
 
       this.overlay.classList.add('is-closing');

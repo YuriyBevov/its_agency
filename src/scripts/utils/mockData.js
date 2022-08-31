@@ -2,7 +2,6 @@ import { randomInteger, getRandomDateInterval, getBoolean } from "./helpers.js";
 import { CATALOG_PRODUCTS_COUNT } from "./siteOptions.js";
 
 function generateMockData() {
-  console.log('generate mock');
   let mockData = [];
 
   for(let i = 0; i < CATALOG_PRODUCTS_COUNT; i++) {

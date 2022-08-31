@@ -189,16 +189,28 @@ function fillCatalogTemplate(data) {
   var fragment = document.createDocumentFragment();
   var template = document.querySelector('#product-card-template');
   _utils_nodesHelper_js__WEBPACK_IMPORTED_MODULE_4__.catalogTotal.textContent = data.length + (0,_utils_countLibrary_js__WEBPACK_IMPORTED_MODULE_5__.countLibrary)(data.length);
-  data.forEach(function (item) {
-    var catalogItem = template.content.cloneNode(true);
-    catalogItem.querySelector('.product-card').setAttribute('data-id', item.id);
-    catalogItem.querySelector('picture source').setAttribute('srcset', "./assets/img/".concat(item.img, "@1x.webp 1x, ./assets/img/").concat(item.img, "@2x.webp 2x"));
-    catalogItem.querySelector('picture img').setAttribute('src', "./assets/img/".concat(item.img, "@1x.jpg 1x, ./assets/img/").concat(item.img, "@2x.jpg 2x"));
-    catalogItem.querySelector('.product-card__content h2').textContent = item.title;
-    catalogItem.querySelector('.product-card__footer span').textContent = item.price;
-    fragment.appendChild(catalogItem);
-  });
-  _utils_nodesHelper_js__WEBPACK_IMPORTED_MODULE_4__.catalogContainer.appendChild(fragment);
+
+  if (!data.length && !document.querySelector('.empty-catalog-note')) {
+    var div = document.createElement('div');
+    div.classList.add('empty-catalog-note');
+    var text = document.createElement('span');
+    text.classList.add('lw-text-sm');
+    text.textContent = 'Не удалось найти товары соответствующие заданным фильтрам... Попробуйте изменить параметры фильтрации !';
+    div.appendChild(text);
+    _utils_nodesHelper_js__WEBPACK_IMPORTED_MODULE_4__.catalogContent.appendChild(div);
+  } else {
+    data.forEach(function (item) {
+      var catalogItem = template.content.cloneNode(true);
+      catalogItem.querySelector('.product-card').setAttribute('data-id', item.id);
+      catalogItem.querySelector('picture source').setAttribute('srcset', "./assets/img/".concat(item.img, "@1x.webp 1x, ./assets/img/").concat(item.img, "@2x.webp 2x"));
+      catalogItem.querySelector('picture img').setAttribute('src', "./assets/img/".concat(item.img, "@1x.jpg 1x, ./assets/img/").concat(item.img, "@2x.jpg 2x"));
+      catalogItem.querySelector('.product-card__content h2').textContent = item.title;
+      catalogItem.querySelector('.product-card__footer span').textContent = item.price;
+      fragment.appendChild(catalogItem);
+    });
+    _utils_nodesHelper_js__WEBPACK_IMPORTED_MODULE_4__.catalogContainer.appendChild(fragment);
+  }
+
   (0,_addToCart__WEBPACK_IMPORTED_MODULE_1__.initCartAddButtons)(data);
   (0,_filtration__WEBPACK_IMPORTED_MODULE_2__.initCatalogFilter)();
 }
@@ -1008,16 +1020,15 @@ var Modal = /*#__PURE__*/function () {
     });
 
     _defineProperty(this, "handleGestureStart", function (evt) {
-      evt.preventDefault();
-      document.addEventListener('mousemove', _this.handleGestureMove, false);
-      document.addEventListener('mouseup', _this.handleGestureEnd, false);
+      //evt.preventDefault();
+      document.addEventListener('mousemove', _this.handleGestureMove, true);
+      document.addEventListener('mouseup', _this.handleGestureEnd, true);
       _this.initialTouchPos = _this.getGesturePointFromEvent(evt);
       _this.swipeArea.style.transition = 'initial';
     });
 
     _defineProperty(this, "handleGestureMove", function (evt) {
-      evt.preventDefault();
-
+      //evt.preventDefault();
       if (_this.initialTouchPos === null) {
         return;
       }
@@ -1033,15 +1044,14 @@ var Modal = /*#__PURE__*/function () {
     });
 
     _defineProperty(this, "handleGestureEnd", function (evt) {
-      evt.preventDefault();
-
+      //evt.preventDefault();
       if (evt.touches && evt.touches.length > 0) {
         return;
       }
 
       _this.rafPending = false;
-      document.removeEventListener('mousemove', _this.handleGestureMove, false);
-      document.removeEventListener('mouseup', _this.handleGestureEnd, false);
+      document.removeEventListener('mousemove', _this.handleGestureMove, true);
+      document.removeEventListener('mouseup', _this.handleGestureEnd, true);
 
       _this.updateSwipeRestPosition();
 
@@ -1061,15 +1071,15 @@ var Modal = /*#__PURE__*/function () {
       }
 
       if (_this.swipe) {
-        _this.swipeArea.addEventListener('touchstart', _this.handleGestureStart, false);
+        _this.swipeArea.addEventListener('touchstart', _this.handleGestureStart, true);
 
-        _this.swipeArea.addEventListener('touchmove', _this.handleGestureMove, false);
+        _this.swipeArea.addEventListener('touchmove', _this.handleGestureMove, true);
 
-        _this.swipeArea.addEventListener('touchend', _this.handleGestureEnd, false);
+        _this.swipeArea.addEventListener('touchend', _this.handleGestureEnd, true);
 
-        _this.swipeArea.addEventListener('touchcancel', _this.handleGestureEnd, false);
+        _this.swipeArea.addEventListener('touchcancel', _this.handleGestureEnd, true);
 
-        _this.swipeArea.addEventListener('mousedown', _this.handleGestureStart, false);
+        _this.swipeArea.addEventListener('mousedown', _this.handleGestureStart, true);
 
         _this.updateSwipeRestPositionPaused = false;
       }
@@ -1087,15 +1097,15 @@ var Modal = /*#__PURE__*/function () {
         }
 
         if (_this.swipe) {
-          _this.swipeArea.removeEventListener('touchstart', _this.handleGestureStart, false);
+          _this.swipeArea.removeEventListener('touchstart', _this.handleGestureStart, true);
 
-          _this.swipeArea.removeEventListener('touchmove', _this.handleGestureMove, false);
+          _this.swipeArea.removeEventListener('touchmove', _this.handleGestureMove, true);
 
-          _this.swipeArea.removeEventListener('touchend', _this.handleGestureEnd, false);
+          _this.swipeArea.removeEventListener('touchend', _this.handleGestureEnd, true);
 
-          _this.swipeArea.removeEventListener('touchcancel', _this.handleGestureEnd, false);
+          _this.swipeArea.removeEventListener('touchcancel', _this.handleGestureEnd, true);
 
-          _this.swipeArea.removeEventListener('mousedown', _this.handleGestureStart, false);
+          _this.swipeArea.removeEventListener('mousedown', _this.handleGestureStart, true);
         }
 
         _this.overlay.classList.add('is-closing');
@@ -1472,11 +1482,9 @@ function ls(type, fieldName) {
 
   if (type === 'set') {
     storage.setItem(fieldName, JSON.stringify(data));
-    console.log('STORAGE SETED ITEM');
   }
 
   if (type === 'get') {
-    console.log('STORAGE GETED ITEM');
     return JSON.parse(storage.getItem(fieldName));
   }
 }
@@ -1499,7 +1507,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 function generateMockData() {
-  console.log('generate mock');
   var mockData = [];
 
   for (var i = 0; i < _siteOptions_js__WEBPACK_IMPORTED_MODULE_1__.CATALOG_PRODUCTS_COUNT; i++) {
@@ -1538,6 +1545,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "body": () => (/* binding */ body),
 /* harmony export */   "catalogContainer": () => (/* binding */ catalogContainer),
+/* harmony export */   "catalogContent": () => (/* binding */ catalogContent),
 /* harmony export */   "catalogTotal": () => (/* binding */ catalogTotal),
 /* harmony export */   "minicartCloser": () => (/* binding */ minicartCloser),
 /* harmony export */   "minicartContainer": () => (/* binding */ minicartContainer),
@@ -1552,6 +1560,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 var body = document.querySelector('body');
 var nav = document.querySelector('.nav');
+var catalogContent = document.querySelector('.catalog__content');
 var catalogContainer = document.querySelector('.catalog__list');
 var catalogTotal = document.querySelector('.catalog-total');
 var minicartContainer = document.querySelector('.minicart__content-list');

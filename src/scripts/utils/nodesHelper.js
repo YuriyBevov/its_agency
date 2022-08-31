@@ -1,5 +1,6 @@
 export const body = document.querySelector('body');
 export const nav = document.querySelector('.nav');
+export const catalogContent = document.querySelector('.catalog__content');
 export const catalogContainer = document.querySelector('.catalog__list');
 export const catalogTotal = document.querySelector('.catalog-total');
 export const minicartContainer = document.querySelector('.minicart__content-list');

@@ -10,11 +10,9 @@ export function ls(type, fieldName, data = null) {
 
   if(type === 'set') {
     storage.setItem(fieldName, JSON.stringify(data));
-    console.log('STORAGE SETED ITEM');
   }
 
   if(type === 'get') {
-    console.log('STORAGE GETED ITEM');
     return JSON.parse(storage.getItem(fieldName));
   }
 }
