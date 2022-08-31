@@ -2,11 +2,10 @@ import {
   minicartContainer,
   minicartTotalCountNode,
   minicartTotalPriceNode,
-  minicartNode,
   minicartOpenerButton,
   minicartRemoveAllButton } from "../../utils/nodesHelper.js";
 
-import { storage, ls, cartStorageField } from "../../utils/localStorageHelper.js";
+import { ls, cartStorageField } from "../../utils/localStorageHelper.js";
 import { countLibrary } from "../../utils/countLibrary.js";
 import { initCounters } from "../counter.js";
 import { initRemoveOneButtons } from "./removeOne.js";

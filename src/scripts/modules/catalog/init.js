@@ -1,8 +1,10 @@
+import { mock } from "../../utils/mockData";
 import { initCartAddButtons } from "./addToCart";
 import { initCatalogFilter } from "./filtration";
-import { storage, ls, catalogStorageField } from "../../utils/localStorageHelper";
+import { ls, catalogStorageField } from "../../utils/localStorageHelper";
 import { catalogContainer, catalogTotal } from "../../utils/nodesHelper.js";
 import { countLibrary } from "../../utils/countLibrary.js";
+import { fillMinicartInitialState } from "../minicart/fillMinicartInitialState.js";
 
 function fillCatalogTemplate(data) {
   const fragment = document.createDocumentFragment();
@@ -25,14 +27,13 @@ function fillCatalogTemplate(data) {
   })
 
   catalogContainer.appendChild(fragment);
+
+  initCartAddButtons(data);
+  initCatalogFilter();
 }
 
-export function init() {
-  console.log('catalog init')
-  //const data = ls('get', catalogStorageField);
-  let data = JSON.parse(storage.getItem(catalogStorageField));
-  console.log(data, 'TEST')
-
+export function init(_data = null) {
+  const data = _data ? _data : ls('get', catalogStorageField);
   const catalogItems = catalogContainer.querySelectorAll('.catalog__list-item');
 
   if(catalogItems.length) {
@@ -40,7 +41,5 @@ export function init() {
   }
 
   fillCatalogTemplate(data);
-
-  //initCartAddButtons();
-  //initCatalogFilter();
+  fillMinicartInitialState(mock);
 }

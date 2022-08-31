@@ -1,10 +1,6 @@
 import { minicartNode, minicartFooter, minicartEmptyNode, minicartOpenerButton } from "../../utils/nodesHelper";
 
-export let isMinicartOpenerDisabled = false;
-
 export function minicartOpenerDisabling(bool) {
-  //console.log('MINICART OPENER TOGGLER', bool);
-
   if(bool) {
     isMinicartOpenerDisabled = true;
     minicartNode.classList.add('hidden');

@@ -1,8 +1,7 @@
 import { randomInteger, getRandomDateInterval, getBoolean } from "./helpers.js";
 import { CATALOG_PRODUCTS_COUNT } from "./siteOptions.js";
 
-export function generateMockData() {
-
+function generateMockData() {
   console.log('generate mock');
   let mockData = [];
 
@@ -25,3 +24,5 @@ export function generateMockData() {
 
   return mockData.sort((a,b) => Number(b.price) - Number(a.price));
 }
+
+export const mock = generateMockData();
