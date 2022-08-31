@@ -11,7 +11,7 @@ block variables
 html(lang="ru")
   +head(title, desc, keywords)
 
-  body
+  body.loading
     include ../components/main-header
 
     main
@@ -19,7 +19,4 @@ html(lang="ru")
 
     include ../components/main-footer
 
-    block modals
-
-    block scripts
-      //script(src="./js/bundle.js")
+    include ./templates

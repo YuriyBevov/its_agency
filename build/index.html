@@ -8,9 +8,13 @@
     <meta name="keywords" content=""/>
     <title>its.agency test</title>
     <link rel="stylesheet" href="./assets/main.css"/>
+    <link rel="preload" href="./assets/fonts/Inter-Regular.woff2" as="font" type="font/woff2" crossorigin="crossorigin"/>
+    <link rel="preload" href="./assets/fonts/Inter-Medium.woff2" as="font" type="font/woff2" crossorigin="crossorigin"/>
+    <link rel="preload" href="./assets/fonts/Inter-Light.woff2" as="font" type="font/woff2" crossorigin="crossorigin"/>
+    <link rel="preload" href="./assets/fonts/Inter-SemiBold.woff2" as="font" type="font/woff2" crossorigin="crossorigin"/>
     <script defer="defer" src="./assets/bundle.js"></script>
   </head>
-  <body>
+  <body class="loading">
     <header class="main-header">
       <div class="container">
         <div class="main-header__wrapper">
@@ -45,7 +49,7 @@
                 <use xlink:href="./assets/sprite.svg#icon-heart"></use>
               </svg></a>
             <div class="minicart">
-              <button class="minicart__button js-minicart-opener" type="button" aria-label="Просмотр корзины" data-modal-anchor="minicart">4</button>
+              <button class="minicart__button js-minicart-opener" type="button" aria-label="Просмотр корзины" data-modal-anchor="minicart"></button>
               <div class="minicart__overlay">
                 <div class="minicart__body is-modal" id="minicart">
                   <div class="minicart__header"><span>Корзина</span>
@@ -56,56 +60,17 @@
                     </button>
                   </div>
                   <div class="minicart__content">
-                    <div class="minicart__content-header"><span class="js-minicart-total">4 товара</span>
+                    <div class="minicart__content-header"><span class="js-minicart-total"></span>
                       <button class="minicart-remove-all">очистить список</button>
                     </div>
-                    <ul class="minicart__content-list">
-                      <!-- тут будет шаблон-->
-                    </ul>
+                    <ul class="minicart__content-list"></ul>
                   </div>
-                  <div class="minicart__content--empty hidden"><span>Корзина пока пуста...</span></div>
                   <div class="minicart__footer">
-                    <div class="minicart__footer-total"><span>Итого</span><b class="js-minicart-total-price">14400&#8381;</b></div>
+                    <div class="minicart__footer-total"><span>Итого</span><b class="js-minicart-total-price"></b></div>
                                 <button class="minicart__footer-offer-button js-minicart-offer main-button" type="button">Оформить заказ</button>
                   </div>
                 </div>
               </div>
-              <!-- убрать в layout все template-->
-              <template id="cart-product-template">
-                <li class="minicart__content-item">
-                  <div class="minicart-product">
-                    <picture>
-                      <source srcset="./assets/img/img_name@1x.webp 1x, ./assets/img/img_name@2x.webp 2x" type="image/webp"><img src="./assets/img/img_name@1x.jpg&quot; srcset=&quot;./assets/img/img_name.jpg 2x" alt="" width="96" height="96">
-                    </picture>
-                    <div class="minicart-product__desc">
-                      <h2></h2><span></span>
-                    </div>
-                    <div class="minicart-product__counter">
-                      <div class="counter">
-                        <button class="js-counter-dec" type="button">
-                          <svg width="24" height="24">
-                            <use xlink:href="./assets/sprite.svg#icon-minus"></use>
-                          </svg>
-                        </button><span class="js-counter-total">1</span>
-                        <button class="js-counter-inc" type="button">
-                          <svg width="24" height="24">
-                            <use xlink:href="./assets/sprite.svg#icon-plus"></use>
-                          </svg>
-                        </button>
-                      </div>
-                    </div>
-                    <!--.minicart-product__remove--refresh-->
-                    <button class="minicart-product__remove js-minicart-product-remove" type="button">
-                      <svg class="icon-remove" width="24" height="24">
-                        <use xlink:href="./assets/sprite.svg#icon-close"></use>
-                      </svg>
-                      <svg class="icon-refresh" width="24" height="24">
-                        <use xlink:href="./assets/sprite.svg#icon-refresh"></use>
-                      </svg>
-                    </button>
-                  </div>
-                </li>
-              </template>
             </div>
           </div>
         </div>
@@ -244,8 +209,13 @@
               </div>
             </div>
             <div class="catalog__content">
+              <div class="loader is-active" aria-hidden="true">
+                <div class="loader-dot loader-dot--left"></div>
+                <div class="loader-dot loader-dot--middle"></div>
+                <div class="loader-dot loader-dot--right"></div>
+              </div>
               <div class="catalog__content-header">
-                <button class="lw-text-xs filter-show-button" type="button" data-modal-anchor="catalog-filter">Фильтры</button><span class="lw-text-xs catalog-total">412 товаров</span>
+                <button class="lw-text-xs filter-show-button" type="button" data-modal-anchor="catalog-filter">Фильтры</button><span class="lw-text-xs catalog-total"></span>
                 <div class="sorting">
                   <button class="sorting__header" type="button" data-active-sort="expensive">Сначала дорогие</button>
                   <div class="sorting__items">
@@ -260,33 +230,65 @@
             </div>
           </div>
         </div>
-        <template id="product-card-template">
-          <li class="catalog__list-item">
-            <div class="product-card" tabindex="0">
-              <div class="product-card__header">
-                <picture>
-                  <source srcset="" type="image/webp"><img src="" alt="" width="278" height="278">
-                </picture>
-              </div>
-              <div class="product-card__content">
-                <h2></h2>
-              </div>
-              <div class="product-card__footer"><span></span>
-                <button class="cart-add-button" type="button" aria-label="добавить в корзину">
-                  <svg width="20" height="20">
-                    <use xlink:href="./assets/sprite.svg#icon-plus"></use>
-                  </svg>
-                </button>
-              </div>
-            </div>
-          </li>
-        </template>
       </section>
     </main>
     <footer class="main-footer">
       <div class="container"></div>
     </footer>
-    <!--include ./modals/...-->
-    <!--script(src="./js/bundle.js")-->
+    <template id="product-card-template">
+      <li class="catalog__list-item">
+        <div class="product-card" tabindex="0">
+          <div class="product-card__header">
+            <picture>
+              <source srcset="" type="image/webp"><img src="" alt="" width="278" height="278">
+            </picture>
+          </div>
+          <div class="product-card__content">
+            <h2></h2>
+          </div>
+          <div class="product-card__footer"><span></span>
+            <button class="cart-add-button" type="button" aria-label="добавить в корзину">
+              <svg width="20" height="20">
+                <use xlink:href="./assets/sprite.svg#icon-plus"></use>
+              </svg>
+            </button>
+          </div>
+        </div>
+      </li>
+    </template>
+    <template id="cart-item-template">
+      <li class="minicart__content-item">
+        <div class="minicart-product">
+          <picture>
+            <source srcset="./assets/img/img_name@1x.webp 1x, ./assets/img/img_name@2x.webp 2x" type="image/webp"><img src="./assets/img/img_name@1x.jpg&quot; srcset=&quot;./assets/img/img_name.jpg 2x" alt="" width="96" height="96">
+          </picture>
+          <div class="minicart-product__desc">
+            <h2></h2><span></span>
+          </div>
+          <div class="minicart-product__counter">
+            <div class="counter">
+              <button class="js-counter-dec" type="button">
+                <svg width="24" height="24">
+                  <use xlink:href="./assets/sprite.svg#icon-minus"></use>
+                </svg>
+              </button><span class="js-counter-total">1</span>
+              <button class="js-counter-inc" type="button">
+                <svg width="24" height="24">
+                  <use xlink:href="./assets/sprite.svg#icon-plus"></use>
+                </svg>
+              </button>
+            </div>
+          </div>
+          <button class="minicart-product__remove js-minicart-product-remove" type="button">
+            <svg class="icon-remove" width="24" height="24">
+              <use xlink:href="./assets/sprite.svg#icon-close"></use>
+            </svg>
+            <svg class="icon-refresh" width="24" height="24">
+              <use xlink:href="./assets/sprite.svg#icon-refresh"></use>
+            </svg>
+          </button>
+        </div>
+      </li>
+    </template>
   </body>
 </html>

@@ -1,50 +1,3 @@
-include ../../mixins/product-card
-
--
-  const catalogList = [
-    {
-      img: 'catalog-item-1',
-      title: 'Краска Wallquest, Brownsone MS90102',
-      price: '5800&nbsp;&#8381;'
-    },
-
-    {
-      img: 'catalog-item-2',
-      title: 'Краска Wallquest, Brownsone MS90102',
-      price: '6000&nbsp;&#8381;'
-    },
-
-    {
-      img: 'catalog-item-3',
-      title: 'Краска Wallquest, Brownsone MS90102',
-      price: '4200&nbsp;&#8381;'
-    },
-
-    {
-      img: 'catalog-item-4',
-      title: 'Краска Wallquest, Brownsone MS90102',
-      price: '5600&nbsp;&#8381;'
-    },
-
-    {
-      img: 'catalog-item-2',
-      title: 'Краска Wallquest, Brownsone MS90102',
-      price: '6000&nbsp;&#8381;'
-    },
-
-    {
-      img: 'catalog-item-3',
-      title: 'Краска Wallquest, Brownsone MS90102',
-      price: '4200&nbsp;&#8381;'
-    },
-
-    {
-      img: 'catalog-item-4',
-      title: 'Краска Wallquest, Brownsone MS90102',
-      price: '5600&nbsp;&#8381;'
-    },
-  ]
-
 section.catalog
   .container
     .catalog__wrapper
@@ -53,32 +6,10 @@ section.catalog
 
 
       .catalog__content
+        include ../../components/base-components/loader
         .catalog__content-header
           button(type="button" data-modal-anchor="catalog-filter").lw-text-xs.filter-show-button Фильтры
-          span.lw-text-xs.catalog-total 412 товаров
+          span.lw-text-xs.catalog-total
           include ../../components/catalog-sort
 
         ul.catalog__list
-
-  template(id="product-card-template")
-    li.catalog__list-item
-      .product-card(tabindex="0")
-        .product-card__header
-          picture
-            source(srcset="" type="image/webp")
-            img(src="" alt="" width="278" height="278")
-
-        .product-card__content
-          h2
-
-        .product-card__footer
-          span
-          button(type="button" aria-label="добавить в корзину").cart-add-button
-            svg(width="20" height="20")
-              use(xlink:href="./assets/sprite.svg#icon-plus")
-
-
-
-
-
-

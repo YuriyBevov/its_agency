@@ -1,5 +1,6 @@
 import { init as minicartInit } from "../minicart/init.js";
 import { ls, cartStorageField, catalogStorageField } from "../../utils/localStorageHelper";
+import { minicartBtnAnimation } from "../minicartBtnAnimation.js";
 
 const onClickAddItemToCart = (evt) => {
   const target = evt.currentTarget;
@@ -10,6 +11,7 @@ const onClickAddItemToCart = (evt) => {
 
   if(current) {
     current.count++;
+    minicartBtnAnimation();
     ls('update', cartStorageField, cartItems);
     minicartInit();
   } else {
@@ -17,6 +19,7 @@ const onClickAddItemToCart = (evt) => {
     const current = catalogItems.find(item => item.id === targetID);
 
     current.count = 1;
+    minicartBtnAnimation();
     cartItems = [...cartItems, current];
 
     ls('update', cartStorageField, cartItems);

@@ -3,8 +3,9 @@
     position: relative;
     @extend .flex-centered-content;
 
-    width: 40px;
-    height: 40px;
+    width: fit-content;
+    min-width: 40px;
+    min-height: 40px;
 
     border: none;
     border-radius: 50%;
@@ -16,8 +17,8 @@
       left: 50%;
       transform: translate(-50%, -50%);
 
-      width: 24px;
-      height: 24px;
+      width: 80%;
+      height: 80%;
 
       content: '';
 
@@ -25,6 +26,10 @@
       background-color: var(--green-color);
 
       z-index: -1;
+    }
+
+    &.animated {
+      animation: minicartButtonAnimation 0.45s 0.15s ease-in-out;
     }
   }
 

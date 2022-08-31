@@ -12,3 +12,4 @@ export const minicartCloser = document.querySelector('.minicart__closer');
 export const minicartRemoveAllButton = document.querySelector('.minicart-remove-all');
 export const minicartTotalCountNode = document.querySelector('.js-minicart-total');
 export const minicartTotalPriceNode = document.querySelector('.js-minicart-total-price');
+export const loader = document.querySelector('.loader');

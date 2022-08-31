@@ -1371,7 +1371,7 @@ button:disabled {
   flex-wrap: wrap;
 }
 
-.flex-centered-content, .catalog__content-header .filter-show-button, .hero__slider-pagination, .sorting__header, .sorting__item, .minicart-product__remove, .minicart__content-header button, .minicart__header button, .minicart__button, .user a, .nav__list-item a, .counter span, .counter button, .cart-add-button, .main-logo, .main-button, .burger {
+.flex-centered-content, .catalog__content-header .filter-show-button, .hero__slider-pagination, .sorting__header, .sorting__item, .minicart-product__remove, .minicart__content-header button, .minicart__header button, .minicart__button, .user a, .nav__list-item a, .counter span, .counter button, .cart-add-button, .main-logo, .main-button, .burger, .loader {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -1702,7 +1702,7 @@ button:disabled {
     transform: translateY(var(--currentFilterPos));
     opacity: 1;
   }
-  to {
+  100% {
     -webkit-transform: translateY(-100vh);
     transform: translateY(-100vh);
     opacity: 0;
@@ -1714,7 +1714,7 @@ button:disabled {
     transform: translateY(var(--currentFilterPos));
     opacity: 1;
   }
-  to {
+  100% {
     -webkit-transform: translateY(-100vh);
     transform: translateY(-100vh);
     opacity: 0;
@@ -1726,7 +1726,7 @@ button:disabled {
     transform: translateY(50px);
     opacity: 0;
   }
-  to {
+  100% {
     -webkit-transform: translateY(0);
     transform: translateY(0);
     opacity: 1;
@@ -1738,7 +1738,7 @@ button:disabled {
     transform: translateY(50px);
     opacity: 0;
   }
-  to {
+  100% {
     -webkit-transform: translateY(0);
     transform: translateY(0);
     opacity: 1;
@@ -1750,7 +1750,7 @@ button:disabled {
     transform: translateY(0);
     opacity: 1;
   }
-  to {
+  100% {
     -webkit-transform: translateY(50px);
     transform: translateY(50px);
     opacity: 0;
@@ -1762,10 +1762,26 @@ button:disabled {
     transform: translateY(0);
     opacity: 1;
   }
-  to {
+  100% {
     -webkit-transform: translateY(50px);
     transform: translateY(50px);
     opacity: 0;
+  }
+}
+@-webkit-keyframes minicartButtonAnimation {
+  0% {
+    background-color: var(--green-color);
+  }
+  100% {
+    background-color: transparent;
+  }
+}
+@keyframes minicartButtonAnimation {
+  0% {
+    background-color: var(--green-color);
+  }
+  100% {
+    background-color: transparent;
   }
 }
 /*vendor custom*/
@@ -1779,6 +1795,80 @@ button:disabled {
 }
 
 /* base components */
+.loader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 999;
+  overflow: hidden;
+}
+.loader-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  margin: 0 5px;
+  background-color: var(--white-color);
+}
+.loader-dot--left {
+  -webkit-animation: loader 1s ease-in infinite;
+  animation: loader 1s ease-in infinite;
+}
+.loader-dot--middle {
+  -webkit-animation: loader 1s 0.3s ease-in infinite;
+  animation: loader 1s 0.3s ease-in infinite;
+}
+.loader-dot--right {
+  -webkit-animation: loader 1s 0.7s ease-in infinite;
+  animation: loader 1s 0.7s ease-in infinite;
+}
+
+@-webkit-keyframes loader {
+  0% {
+    -webkit-transform: scale(0.2);
+    transform: scale(0.2);
+  }
+  50% {
+    -webkit-transform: scale(1);
+    transform: scale(1);
+  }
+  100% {
+    -webkit-transform: scale(0.2);
+    transform: scale(0.2);
+  }
+}
+
+@keyframes loader {
+  0% {
+    -webkit-transform: scale(0.2);
+    transform: scale(0.2);
+  }
+  50% {
+    -webkit-transform: scale(1);
+    transform: scale(1);
+  }
+  100% {
+    -webkit-transform: scale(0.2);
+    transform: scale(0.2);
+  }
+}
+body:not(.loading) .loader {
+  -webkit-animation: fadeOut 0.5s 0.3s ease-out forwards;
+  animation: fadeOut 0.5s 0.3s ease-out forwards;
+}
+
+@keyframes fadeOut {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
 .burger {
   position: relative;
   width: 40px;
@@ -2109,8 +2199,11 @@ button:disabled {
 }
 .minicart__button {
   position: relative;
-  width: 40px;
-  height: 40px;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  min-width: 40px;
+  min-height: 40px;
   border: none;
   border-radius: 50%;
   background-color: transparent;
@@ -2122,12 +2215,16 @@ button:disabled {
   -webkit-transform: translate(-50%, -50%);
   -ms-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
-  width: 24px;
-  height: 24px;
+  width: 80%;
+  height: 80%;
   content: "";
   border-radius: 50%;
   background-color: var(--green-color);
   z-index: -1;
+}
+.minicart__button.animated {
+  -webkit-animation: minicartButtonAnimation 0.45s 0.15s ease-in-out;
+  animation: minicartButtonAnimation 0.45s 0.15s ease-in-out;
 }
 .minicart__overlay {
   display: none;

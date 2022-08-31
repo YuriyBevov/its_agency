@@ -1,0 +1,63 @@
+.loader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  background-color: rgba(0,0,0,.5);
+  z-index: 999;
+  overflow: hidden;
+
+  @extend .flex-centered-content;
+
+  &-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    margin: 0 5px;
+    background-color: var(--white-color);
+
+
+    &--left {
+      animation: loader 1s ease-in infinite;
+    }
+    &--middle {
+      animation: loader 1s 0.3s ease-in infinite;
+    }
+    &--right {
+      animation: loader 1s 0.7s ease-in infinite;
+    }
+  }
+}
+
+@keyframes loader {
+  0% {
+    transform: scale(0.2);
+  }
+
+  50% {
+    transform: scale(1);
+  }
+
+  100% {
+    transform: scale(0.2);
+  }
+}
+
+body:not(.loading) {
+  .loader {
+    animation: fadeOut 0.5s 0.3s ease-out forwards;
+  }
+}
+
+@keyframes fadeOut {
+  0% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+    visibility: hidden;
+  }
+}

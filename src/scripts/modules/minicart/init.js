@@ -50,7 +50,7 @@ function setMinicartOptions(productData, productCard) {
 
 function fillMinicartTemplate(data) {
   const fragment = document.createDocumentFragment();
-  const template = document.querySelector('#cart-product-template');
+  const template = document.querySelector('#cart-item-template');
 
   data.forEach(product => {
     const cartItem = template.content.cloneNode(true);

@@ -1,35 +1,7 @@
 include ../mixins/main-button
-include ../mixins/minicart-product-card
-
--
-  const minicartList = [
-    {
-      img: 'catalog-item-1',
-      imgWidth: '96',
-      imgHeight: '96',
-      title: 'Краска Wallquest, Brownsone MS90102',
-      price: '5800&nbsp;&#8381;'
-    },
-
-    {
-      img: 'catalog-item-2',
-      imgWidth: '96',
-      imgHeight: '96',
-      title: 'Краска Wallquest, Brownsone MS90102',
-      price: '6000&nbsp;&#8381;'
-    },
-
-    {
-      img: 'catalog-item-3',
-      imgWidth: '96',
-      imgHeight: '96',
-      title: 'Краска Wallquest, Brownsone MS90102',
-      price: '4200&nbsp;&#8381;'
-    },
-  ]
 
 .minicart
-  button(type="button" aria-label="Просмотр корзины" data-modal-anchor="minicart").minicart__button.js-minicart-opener 4
+  button(type="button" aria-label="Просмотр корзины" data-modal-anchor="minicart").minicart__button.js-minicart-opener
 
   .minicart__overlay
     .minicart__body#minicart.is-modal
@@ -41,50 +13,16 @@ include ../mixins/minicart-product-card
 
       .minicart__content
         .minicart__content-header
-          span.js-minicart-total 4 товара
+          span.js-minicart-total
           button.minicart-remove-all очистить список
         ul.minicart__content-list
-          // тут будет шаблон
 
-      .minicart__content--empty.hidden
-        span Корзина пока пуста...
       .minicart__footer
         .minicart__footer-total
           span Итого
-          b.js-minicart-total-price 14400&#8381;
+          b.js-minicart-total-price
 
         +main-button({
           text: 'Оформить заказ',
           cls: 'minicart__footer-offer-button js-minicart-offer'
         })
-
-  // убрать в layout все template
-  template(id="cart-product-template")
-    li.minicart__content-item
-      .minicart-product
-        picture
-          source(srcset=`./assets/img/img_name@1x.webp 1x, ./assets/img/img_name@2x.webp 2x` type="image/webp")
-          img(src=`./assets/img/img_name@1x.jpg" srcset="./assets/img/img_name.jpg 2x` alt="" width="96" height="96")
-
-        .minicart-product__desc
-          h2
-          span
-
-        .minicart-product__counter
-          include ../components/base-components/counter
-
-        //.minicart-product__remove--refresh
-        button(type="button").minicart-product__remove.js-minicart-product-remove
-          svg(width="24" height="24").icon-remove
-            use(xlink:href="./assets/sprite.svg#icon-close")
-          svg(width="24" height="24").icon-refresh
-            use(xlink:href="./assets/sprite.svg#icon-refresh")
-
-
-
-
-
-
-
-
-
