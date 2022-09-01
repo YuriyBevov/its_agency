@@ -1,3 +1,4 @@
+export const header = document.querySelector('header');
 export const body = document.querySelector('body');
 export const nav = document.querySelector('.nav');
 export const catalogContent = document.querySelector('.catalog__content');

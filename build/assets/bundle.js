@@ -1570,6 +1570,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "catalogContainer": () => (/* binding */ catalogContainer),
 /* harmony export */   "catalogContent": () => (/* binding */ catalogContent),
 /* harmony export */   "catalogTotal": () => (/* binding */ catalogTotal),
+/* harmony export */   "header": () => (/* binding */ header),
 /* harmony export */   "loader": () => (/* binding */ loader),
 /* harmony export */   "minicartCloser": () => (/* binding */ minicartCloser),
 /* harmony export */   "minicartContainer": () => (/* binding */ minicartContainer),
@@ -1582,6 +1583,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "minicartTotalPriceNode": () => (/* binding */ minicartTotalPriceNode),
 /* harmony export */   "nav": () => (/* binding */ nav)
 /* harmony export */ });
+var header = document.querySelector('header');
 var body = document.querySelector('body');
 var nav = document.querySelector('.nav');
 var catalogContent = document.querySelector('.catalog__content');

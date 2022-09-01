@@ -1,5 +1,5 @@
 .catalog {
-  padding: 40px 0;
+  padding-bottom: 40px;
 
   &__wrapper {
     display: grid;
@@ -17,9 +17,9 @@
 
   &__sidebar {
     position: sticky;
-    top: 120px;
+    top: 100px;
     height: fit-content;
-    padding: 30px 0;
+    padding: 70px 0 30px;
 
     @include m-b-tablet-down {
       display: none;
@@ -53,10 +53,11 @@
       justify-content: space-between;
 
       padding: 20px 0;
+      padding-top: 55px;
       margin-bottom: 10px;
 
       position: sticky;
-      top: 95px;
+      top: 100px;
       background-color: var(--white-color);
       z-index: 100;
 

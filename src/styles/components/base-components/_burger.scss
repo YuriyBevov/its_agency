@@ -31,6 +31,6 @@
   display: none;
 
   @include m-b-desktop-down {
-    display: block;
+    display: flex;
   }
 }
