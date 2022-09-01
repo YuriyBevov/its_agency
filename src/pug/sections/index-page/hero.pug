@@ -3,7 +3,7 @@
     {
       img: 'hero-slide',
       title: 'Краски',
-      text: 'Идеально подходят для стен и других поверхностей. </br>Найди свой идеальный цвет!'
+      text: 'Идеально подходят для стен и других поверхностей. <br/>Найди свой идеальный цвет!'
     },
     {
       img: 'hero-slide',
@@ -13,7 +13,7 @@
     {
       img: 'hero-slide',
       title: 'Краски',
-      text: 'Идеально подходят для стен и других поверхностей. </br>Найди свой идеальный цвет!'
+      text: 'Идеально подходят для стен и других поверхностей. <br/>Найди свой идеальный цвет!'
     },
     {
       img: 'hero-slide',
@@ -23,7 +23,7 @@
     {
       img: 'hero-slide',
       title: 'Краски',
-      text: 'Идеально подходят для стен и других поверхностей. </br>Найди свой идеальный цвет!'
+      text: 'Идеально подходят для стен и других поверхностей. <br/>Найди свой идеальный цвет!'
     },
     {
       img: 'hero-slide',
@@ -43,7 +43,7 @@ section.hero
           .swiper-slide.hero__slide
             picture
               source(srcset=`./assets/img/${slide.img}@1x.webp 1x, ./assets/img/${slide.img}@2x.webp 2x` type="image/webp")
-              img(src=`./assets/img/${slide.img}@1x.jpg" srcset="./assets/img/${slide.img}@2x.jpg 2x` alt= slide.title width="1920" height="560")
+              img(src=`./assets/img/${slide.img}@1x.jpg` srcset=`./assets/img/${slide.img}@2x.jpg 2x` alt= slide.title width="1920" height="560")
 
             .hero__slide-content
               h2!= slide.title
