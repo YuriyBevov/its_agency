@@ -3,6 +3,6 @@
 Использовано в работе:
 
 Pug, Scss, Swiper.js + gsap.js.
-Сборка Gulp/Webpack.
+Сборка проекта: Gulp/Webpack.
 
 Все настройки сборки в gulp.config.js
