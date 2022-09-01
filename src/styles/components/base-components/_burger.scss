@@ -13,11 +13,13 @@
   .burger__lines {
     display: block;
     width: 100%;
+    min-width: 24px;
     height: fit-content;
 
     .burger-line {
       display: block;
-      width: 100%;
+      width: inherit;
+      min-width: inherit;
       height: 2px;
       margin: 4px 0;
 

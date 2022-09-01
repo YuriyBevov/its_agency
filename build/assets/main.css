@@ -1884,13 +1884,15 @@ body:not(.loading) .loader {
 .burger .burger__lines {
   display: block;
   width: 100%;
+  min-width: 24px;
   height: -webkit-fit-content;
   height: -moz-fit-content;
   height: fit-content;
 }
 .burger .burger__lines .burger-line {
   display: block;
-  width: 100%;
+  width: inherit;
+  min-width: inherit;
   height: 2px;
   margin: 4px 0;
   background-color: var(--main-color);

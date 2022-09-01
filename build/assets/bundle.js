@@ -1063,8 +1063,7 @@ var Modal = /*#__PURE__*/function () {
         }, 600);
       } else {
         _this.swipeArea.style.bottom = 'calc(-100% - 125px)';
-      } //this.swipeArea.style.bottom = 'calc(-100% - 125px)';
-
+      }
     });
 
     _defineProperty(this, "handleGestureStart", function (evt) {

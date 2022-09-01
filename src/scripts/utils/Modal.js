@@ -127,7 +127,6 @@ export class Modal {
     } else {
       this.swipeArea.style.bottom = 'calc(-100% - 125px)';
     }
-    //this.swipeArea.style.bottom = 'calc(-100% - 125px)';
   }
 
   handleGestureStart = (evt) => {
