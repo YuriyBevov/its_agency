@@ -120,14 +120,14 @@ export class Modal {
   }
 
   updateSwipeRestPosition = () => {
-    /*if(this.updateSwipeRestPositionPaused) {
+    if(this.updateSwipeRestPositionPaused) {
       setTimeout(() => {
         this.swipeArea.style.bottom = 'calc(-100% - 75px)';
       }, 600);
     } else {
       this.swipeArea.style.bottom = 'calc(-100% - 75px)';
-    }*/
-    this.swipeArea.style.bottom = 'calc(-100% - 75px)';
+    }
+    //this.swipeArea.style.bottom = 'calc(-100% - 75px)';
   }
 
   handleGestureStart = (evt) => {

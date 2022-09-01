@@ -1057,14 +1057,14 @@ var Modal = /*#__PURE__*/function () {
     });
 
     _defineProperty(this, "updateSwipeRestPosition", function () {
-      /*if(this.updateSwipeRestPositionPaused) {
-        setTimeout(() => {
-          this.swipeArea.style.bottom = 'calc(-100% - 75px)';
+      if (_this.updateSwipeRestPositionPaused) {
+        setTimeout(function () {
+          _this.swipeArea.style.bottom = 'calc(-100% - 75px)';
         }, 600);
       } else {
-        this.swipeArea.style.bottom = 'calc(-100% - 75px)';
-      }*/
-      _this.swipeArea.style.bottom = 'calc(-100% - 75px)';
+        _this.swipeArea.style.bottom = 'calc(-100% - 75px)';
+      } //this.swipeArea.style.bottom = 'calc(-100% - 75px)';
+
     });
 
     _defineProperty(this, "handleGestureStart", function (evt) {

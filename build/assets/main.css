@@ -2206,6 +2206,7 @@ body:not(.loading) .loader {
   min-height: 40px;
   border: none;
   border-radius: 50%;
+  color: var(--main-color);
   background-color: transparent;
 }
 .minicart__button::after {
@@ -2571,8 +2572,9 @@ body:not(.loading) .loader {
     background-color: var(--white-color);
     position: absolute;
     width: 100%;
-    height: 450px;
-    max-height: 75vh;
+    height: 100%;
+    height: -webkit-fill-available;
+    max-height: 450px;
     bottom: calc(-100% - 75px);
     left: 0;
     border-radius: 24px 24px 0 0;
