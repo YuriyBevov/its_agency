@@ -58,6 +58,7 @@
     height: 40px;
     opacity: .2;
     margin-left: auto;
+    @extend .svg-stroke;
 
     .icon-refresh {
       display: none;

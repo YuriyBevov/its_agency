@@ -10,18 +10,28 @@ function fillCatalogTemplate(data) {
   const fragment = document.createDocumentFragment();
   const template = document.querySelector('#product-card-template');
   catalogTotal.textContent = data.length + countLibrary(data.length);
+  const emptyNode = document.querySelector('.empty-catalog-note');
 
-  if(!data.length && !document.querySelector('.empty-catalog-note')) {
-    let div = document.createElement('div');
-    div.classList.add('empty-catalog-note');
+  if(!data.length) {
 
-    let text = document.createElement('span');
-    text.classList.add('lw-text-sm');
-    text.textContent = 'Не удалось найти товары соответствующие заданным фильтрам... Попробуйте изменить параметры фильтрации !';
+    if (!emptyNode) {
+      let div = document.createElement('div');
+      div.classList.add('empty-catalog-note');
 
-    div.appendChild(text);
-    catalogContent.appendChild(div);
+      let text = document.createElement('span');
+      text.classList.add('lw-text-sm');
+      text.textContent = 'Не удалось найти товары соответствующие заданным фильтрам... Попробуйте изменить параметры фильтрации !';
+
+      div.appendChild(text);
+      catalogContent.appendChild(div);
+    }
+
   } else {
+
+    if(emptyNode) {
+      emptyNode.remove();
+    }
+
     data.forEach(item => {
       const catalogItem = template.content.cloneNode(true);
 
