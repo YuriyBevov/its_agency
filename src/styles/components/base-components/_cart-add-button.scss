@@ -8,10 +8,7 @@
   border-radius: 8px;
   background-color: var(--green-color);
 
-  svg {
-    fill: none;
-    stroke: var(--main-color);
-  }
+  @extend .svg-stroke;
 
   transition: opacity var(--main-t-rules), background 0.1s ease-in;
 

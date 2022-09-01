@@ -1325,11 +1325,6 @@ h1, h2, h3, h4, h5, h6, p {
   margin: 0;
 }
 
-svg {
-  fill: none;
-  stroke: var(--main-color);
-}
-
 .hidden {
   display: none !important;
 }
@@ -1391,7 +1386,7 @@ button:disabled {
   flex-wrap: wrap;
 }
 
-.flex-column, .minicart-product__desc, .minicart__footer-total, .minicart__body, .callback {
+.flex-column, .minicart-product__desc, .minicart__footer-total, .minicart__body, .callback, .burger .burger__lines {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -1546,6 +1541,11 @@ button:disabled {
   top: 0;
   right: 0;
   content: " ₽";
+}
+
+.svg-stroke svg, .minicart__header button svg, .user a svg, .nav .nav__container button svg, .counter button svg, .cart-add-button svg {
+  fill: none;
+  stroke: var(--main-color);
 }
 
 .lw-text-xxl {
@@ -1882,7 +1882,6 @@ body:not(.loading) .loader {
   display: none;
 }
 .burger .burger__lines {
-  display: block;
   width: 100%;
   min-width: 24px;
   height: -webkit-fit-content;
@@ -1894,7 +1893,7 @@ body:not(.loading) .loader {
   width: inherit;
   min-width: inherit;
   height: 2px;
-  margin: 4px 0;
+  margin: 2px 0;
   background-color: var(--main-color);
 }
 @media (max-width: 1440px) {
@@ -1928,8 +1927,8 @@ body:not(.loading) .loader {
   margin-right: 142px;
 }
 .main-logo svg {
-  stroke: none;
-  fill: var(--main-color);
+  stroke: none !important;
+  fill: var(--main-color) !important;
 }
 @media (max-width: 1440px) {
   .main-logo {
@@ -1954,10 +1953,6 @@ body:not(.loading) .loader {
   -webkit-transition: opacity var(--main-t-rules), background 0.1s ease-in;
   -o-transition: opacity var(--main-t-rules), background 0.1s ease-in;
   transition: opacity var(--main-t-rules), background 0.1s ease-in;
-}
-.cart-add-button svg {
-  fill: none;
-  stroke: var(--main-color);
 }
 .cart-add-button:active {
   background-color: var(--gray-color);
@@ -2062,9 +2057,6 @@ body:not(.loading) .loader {
 }
 .nav .nav__container button {
   display: none;
-}
-.nav .nav__container button svg {
-  stroke: var(--main-color);
 }
 .nav__list-item {
   margin: 0 12px;
@@ -2187,10 +2179,6 @@ body:not(.loading) .loader {
 }
 .user a {
   margin: 0 2px;
-}
-.user a svg {
-  fill: none;
-  stroke: var(--black-color);
 }
 @media (max-width: 768px) {
   .user a {

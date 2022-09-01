@@ -6,10 +6,7 @@
     @extend .flex-centered-content;
     margin: 0 2px;
 
-    svg {
-      fill: none;
-      stroke: var(--black-color);
-    }
+    @extend .svg-stroke;
 
     @include m-b-tablet-down {
       display: none;

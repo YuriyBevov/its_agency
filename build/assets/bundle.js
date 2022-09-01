@@ -1067,7 +1067,6 @@ var Modal = /*#__PURE__*/function () {
     });
 
     _defineProperty(this, "handleGestureStart", function (evt) {
-      //evt.preventDefault();
       document.addEventListener('mousemove', _this.handleGestureMove, true);
       document.addEventListener('mouseup', _this.handleGestureEnd, true);
       _this.initialTouchPos = _this.getGesturePointFromEvent(evt);
@@ -1075,7 +1074,6 @@ var Modal = /*#__PURE__*/function () {
     });
 
     _defineProperty(this, "handleGestureMove", function (evt) {
-      //evt.preventDefault();
       if (_this.initialTouchPos === null) {
         return;
       }
@@ -1091,7 +1089,6 @@ var Modal = /*#__PURE__*/function () {
     });
 
     _defineProperty(this, "handleGestureEnd", function (evt) {
-      //evt.preventDefault();
       if (evt.touches && evt.touches.length > 0) {
         return;
       }

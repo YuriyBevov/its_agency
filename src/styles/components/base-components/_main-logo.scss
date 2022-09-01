@@ -6,8 +6,8 @@
   margin-right: 142px;
 
   svg {
-    stroke: none;
-    fill: var(--main-color);
+    stroke: none !important;
+    fill: var(--main-color) !important;
   }
 
   @include m-b-desktop-down {

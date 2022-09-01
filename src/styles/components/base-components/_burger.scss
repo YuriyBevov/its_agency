@@ -12,7 +12,7 @@
   cursor: pointer;
 
   .burger__lines {
-    display: block;
+    @extend .flex-column;
     width: 100%;
     min-width: 24px;
     height: fit-content;
@@ -22,7 +22,7 @@
       width: inherit;
       min-width: inherit;
       height: 2px;
-      margin: 4px 0;
+      margin: 2px 0;
 
       background-color: var(--main-color);
     }

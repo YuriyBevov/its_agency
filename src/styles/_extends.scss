@@ -195,3 +195,10 @@
     content: " \20BD"
   }
 }
+
+.svg-stroke {
+  svg {
+    fill: none;
+    stroke: var(--main-color);
+  }
+}

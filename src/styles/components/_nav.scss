@@ -7,9 +7,7 @@
       display: none;
       @extend .button-default;
 
-      svg {
-        stroke: var(--main-color);
-      }
+      @extend .svg-stroke;
     }
   }
 

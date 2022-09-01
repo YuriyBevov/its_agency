@@ -130,7 +130,6 @@ export class Modal {
   }
 
   handleGestureStart = (evt) => {
-    //evt.preventDefault();
     document.addEventListener('mousemove', this.handleGestureMove, true);
     document.addEventListener('mouseup', this.handleGestureEnd, true);
 
@@ -140,8 +139,6 @@ export class Modal {
 
 
   handleGestureMove = (evt) => {
-    //evt.preventDefault();
-
     if (this.initialTouchPos === null) {
       return;
     }
@@ -158,8 +155,6 @@ export class Modal {
   }
 
   handleGestureEnd = (evt) => {
-    //evt.preventDefault();
-
     if (evt.touches && evt.touches.length > 0) {
       return;
     }
@@ -170,7 +165,6 @@ export class Modal {
     document.removeEventListener('mouseup', this.handleGestureEnd, true);
 
     this.updateSwipeRestPosition();
-
     this.initialTouchPos = null;
   }
 
