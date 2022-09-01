@@ -19,7 +19,7 @@
     background-color: var(--gray-color);
   }
 
-  @include m-b-tablet-up {
+  @include m-b-tablet-lg-up {
     opacity: 0;
 
     &:focus-visible {
