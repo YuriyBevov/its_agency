@@ -1,3 +1,8 @@
-Сборка Gulp/Webpack
+Тестовое задание для its.agency
 
-Все настройки в gulp.config.js
+Использовано в работе:
+
+Pug, Scss, Swiper.js + gsap.js.
+Сборка проекта: Gulp/Webpack.
+
+Все настройки сборки в gulp.config.js
