@@ -1,7 +1,7 @@
 import { mock } from "../../utils/mockData";
 import { initCartAddButtons } from "./addToCart";
 import { initCatalogFilter } from "./filtration";
-import { ls, catalogStorageField } from "../../utils/localStorageHelper";
+import { ls, catalogStorageField } from "../../utils/sessionStorageHelper";
 import { catalogContainer, catalogTotal, catalogContent } from "../../utils/nodesHelper.js";
 import { countLibrary } from "../../utils/countLibrary.js";
 import { fillMinicartInitialState } from "../minicart/fillMinicartInitialState.js";

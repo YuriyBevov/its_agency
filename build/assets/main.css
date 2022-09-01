@@ -1371,7 +1371,7 @@ button:disabled {
   flex-wrap: wrap;
 }
 
-.flex-centered-content, .catalog__content-header .filter-show-button, .hero__slider-pagination, .sorting__header, .sorting__item, .minicart-product__remove, .minicart__content-header button, .minicart__header button, .minicart__button, .user a, .nav__list-item a, .counter span, .counter button, .cart-add-button, .main-logo, .main-button, .burger, .loader {
+.flex-centered-content, .catalog__content-header .filter-show-button, .hero__slider-pagination, .sorting__header, .sorting__item, .minicart-product__remove, .minicart__content-header button, .minicart__header button, .minicart__button, .user a, .nav__list-item a, .counter span, .counter button, .cart-add-button, .main-logo, .main-button, .loader {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -1871,9 +1871,8 @@ body:not(.loading) .loader {
 }
 .burger {
   position: relative;
-  width: 40px;
-  min-width: 40px;
-  height: 40px;
+  width: 36px;
+  height: 36px;
   margin-right: 5px;
   margin-left: -9px;
   background: var(--white-color);
@@ -1897,9 +1896,7 @@ body:not(.loading) .loader {
 }
 @media (max-width: 1440px) {
   .burger {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
+    display: block;
   }
 }
 

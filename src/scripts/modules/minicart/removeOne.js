@@ -1,4 +1,4 @@
-import { ls, cartStorageField } from "../../utils/localStorageHelper";
+import { ls, cartStorageField } from "../../utils/sessionStorageHelper";
 import { minicartContainer } from "../../utils/nodesHelper.js";
 import { init as minicartInit } from "./init.js";
 

@@ -1,4 +1,4 @@
-export const storage = window.localStorage;
+export const storage = window.sessionStorage;
 export const cartStorageField = 'cart_mock';
 export const catalogStorageField = 'catalog_mock';
 

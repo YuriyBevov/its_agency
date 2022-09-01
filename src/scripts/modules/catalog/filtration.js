@@ -1,6 +1,6 @@
 import { sorting } from "./sorting";
 import { mock } from "../../utils/mockData";
-import { ls, catalogStorageField } from "../../utils/localStorageHelper";
+import { ls, catalogStorageField } from "../../utils/sessionStorageHelper";
 
 const filters = document.querySelectorAll('.filter__item input');
 

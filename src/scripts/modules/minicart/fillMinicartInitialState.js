@@ -1,7 +1,7 @@
 import { randomInteger } from "../../utils/helpers";
 import { init as minicartInit} from "./init";
 import { INITIAL_CART_ITEMS } from "../../utils/siteOptions";
-import { ls, cartStorageField } from "../../utils/localStorageHelper";
+import { ls, cartStorageField } from "../../utils/sessionStorageHelper";
 
 function getProducts(mock) {
   let products = [];

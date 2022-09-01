@@ -1,5 +1,5 @@
 import { init as catalogInit } from "./init";
-import { ls, catalogStorageField } from "../../utils/localStorageHelper";
+import { ls, catalogStorageField } from "../../utils/sessionStorageHelper";
 
 export function sorting (type, items = null) {
   const catalogItems = items ? items : ls('get', catalogStorageField);

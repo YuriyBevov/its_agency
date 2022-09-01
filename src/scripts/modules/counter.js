@@ -1,5 +1,5 @@
 import { changeItemCount } from './minicart/changeItemCount.js';
-import { ls, cartStorageField } from "../utils/localStorageHelper.js";
+import { ls, cartStorageField } from "../utils/sessionStorageHelper.js";
 
 export function initCounters() {
   const decBtns = document.querySelectorAll('.js-counter-dec');

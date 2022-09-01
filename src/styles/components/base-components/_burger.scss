@@ -1,10 +1,9 @@
 .burger {
   position: relative;
 
-  @extend .flex-centered-content;
-  width: 40px;
-  min-width: 40px;
-  height: 40px;
+  //@extend .flex-centered-content;
+  width: 36px;
+  height: 36px;
   margin-right: 5px;
   margin-left: -9px;
   background: var(--white-color);
@@ -31,6 +30,6 @@
   display: none;
 
   @include m-b-desktop-down {
-    display: flex;
+    display: block;
   }
 }

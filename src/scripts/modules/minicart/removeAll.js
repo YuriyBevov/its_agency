@@ -1,5 +1,5 @@
 import { minicartRemoveAllButton } from "../../utils/nodesHelper";
-import { ls, cartStorageField } from "../../utils/localStorageHelper";
+import { ls, cartStorageField } from "../../utils/sessionStorageHelper";
 import { init as minicartInit } from "./init";
 
 let cartItems;

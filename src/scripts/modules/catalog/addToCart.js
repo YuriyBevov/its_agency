@@ -1,5 +1,5 @@
 import { init as minicartInit } from "../minicart/init.js";
-import { ls, cartStorageField, catalogStorageField } from "../../utils/localStorageHelper";
+import { ls, cartStorageField, catalogStorageField } from "../../utils/sessionStorageHelper";
 import { minicartBtnAnimation } from "../minicartBtnAnimation.js";
 
 const onClickAddItemToCart = (evt) => {

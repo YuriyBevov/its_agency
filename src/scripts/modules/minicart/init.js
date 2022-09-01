@@ -5,7 +5,7 @@ import {
   minicartOpenerButton,
   minicartRemoveAllButton } from "../../utils/nodesHelper.js";
 
-import { ls, cartStorageField } from "../../utils/localStorageHelper.js";
+import { ls, cartStorageField } from "../../utils/sessionStorageHelper.js";
 import { countLibrary } from "../../utils/countLibrary.js";
 import { initCounters } from "../counter.js";
 import { initRemoveOneButtons } from "./removeOne.js";

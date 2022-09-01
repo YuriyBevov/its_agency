@@ -1,5 +1,5 @@
 import { init as minicartInit } from "./init.js";
-import { ls, cartStorageField } from "../../utils/localStorageHelper.js";
+import { ls, cartStorageField } from "../../utils/sessionStorageHelper.js";
 import { minicartBtnAnimation } from "../minicartBtnAnimation.js";
 
 export function changeItemCount(type, id, items) {
