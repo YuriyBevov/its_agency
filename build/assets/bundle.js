@@ -11,8 +11,6 @@
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _utils_helpers_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../utils/helpers.js */ "./src/scripts/utils/helpers.js");
 /* harmony import */ var _utils_nodesHelper_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../utils/nodesHelper.js */ "./src/scripts/utils/nodesHelper.js");
-/* harmony import */ var _utils_sessionStorageHelper_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../utils/sessionStorageHelper.js */ "./src/scripts/utils/sessionStorageHelper.js");
-
 
 
 document.addEventListener('DOMContentLoaded', function () {

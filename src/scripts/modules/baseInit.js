@@ -1,6 +1,5 @@
 import { setVieportHeight } from '../utils/helpers.js';
 import { body } from "../utils/nodesHelper.js";
-import { ls, cartStorageField, catalogStorageField } from "../utils/sessionStorageHelper.js";
 
 document.addEventListener('DOMContentLoaded', () => {
   let content = document.querySelectorAll('svg, img, video, audio');
