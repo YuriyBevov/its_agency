@@ -1371,7 +1371,7 @@ button:disabled {
   flex-wrap: wrap;
 }
 
-.flex-centered-content, .catalog__content-header .filter-show-button, .hero__slider-pagination, .sorting__header, .sorting__item, .minicart-product__remove, .minicart__content-header button, .minicart__header button, .minicart__button, .user a, .nav__list-item a, .counter span, .counter button, .cart-add-button, .main-logo, .main-button, .loader {
+.flex-centered-content, .catalog__content-header .filter-show-button, .hero__slider-pagination, .sorting__header, .sorting__item, .minicart-product__remove, .minicart__content-header button, .minicart__header button, .minicart__button, .user a, .nav__list-item a, .counter span, .counter button, .cart-add-button, .main-logo, .main-button, .burger, .loader {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -1876,7 +1876,6 @@ body:not(.loading) .loader {
   margin-right: 5px;
   margin-left: -9px;
   background: var(--white-color);
-  background-color: red;
   border: none;
   z-index: 11;
   cursor: pointer;
